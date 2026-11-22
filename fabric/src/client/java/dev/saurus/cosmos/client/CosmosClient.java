@@ -63,7 +63,7 @@ public final class CosmosClient implements ClientModInitializer {
 
         HudElementRegistry.addLast(Identifier.fromNamespaceAndPath("cosmos", "hud"), (g, delta) -> {
             Minecraft mc = Minecraft.getInstance();
-            if (!CosmosState.spaceMode || mc.options.hideGui) return;
+            if (!CosmosState.spaceMode) return;
             var u = CosmosState.universe();
             if (u == null) return;
             int x = 6, y = 6, white = 0xFFFFFFFF, grey = 0xFFAAAAAA, cyan = 0xFF66DDFF;

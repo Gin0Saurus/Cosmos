@@ -17,7 +17,7 @@ public final class ShipMotion {
 
     public static void apply(Universe u, double dt, float yRot, float xRot, double t) {
         Minecraft mc = Minecraft.getInstance();
-        if (dt <= 0 || mc.player == null || mc.screen != null) return;
+        if (dt <= 0 || mc.player == null) return;
         Options o = mc.options;
         double fwd = (o.keyUp.isDown() ? 1 : 0) - (o.keyDown.isDown() ? 1 : 0);
         double side = (o.keyRight.isDown() ? 1 : 0) - (o.keyLeft.isDown() ? 1 : 0);
