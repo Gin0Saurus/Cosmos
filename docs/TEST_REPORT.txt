@@ -1,0 +1,151 @@
+built build/core/cosmos-core.jar
+[Coordinates]
+  PASS Proxima distance (ly) from HYG xyz: got 4.226192955, expected 4.226600000 (rel tol 0.00100, rel err 9.63e-05)
+  PASS 1 mm offset preserved at Andromeda distance (m): got 0.0009999275208, expected 0.001000000000 (tol 2.00e-06)
+  PASS 1 mm offset preserved at 10 Gly (m): got 0.001000000000, expected 0.001000000000 (tol 2.00e-06)
+  PASS Earth-radius separation at 10 Gly (m): got 6371000.000, expected 6371000.000 (tol 0.00100)
+  PASS sector carry
+  PASS sector borrow
+[Floating origin / scaled-space rendering]
+  PASS Sun angular size preserved by scaled-space projection: got 0.009300735271, expected 0.009300735093 (rel tol 1.00e-06, rel err 1.91e-08)
+  PASS render distance inside far shell
+  PASS compression is monotonic
+[Frames]
+  PASS Galactic centre RA (deg): got 266.4049948, expected 266.4050000 (tol 0.0100)
+  PASS Galactic centre Dec (deg): got -28.93617396, expected -28.93600000 (tol 0.0100)
+  PASS North Galactic Pole Dec (deg): got 27.12825000, expected 27.12800000 (tol 0.0100)
+[Solar System vs JPL Horizons, 2026-11-22 TDB]
+  PASS Earth heliocentric direction error 0.076 arcmin (limit 1.0)
+  PASS Earth heliocentric distance: got 1.477693460e+11, expected 1.477723701e+11 (rel tol 0.0100, rel err 2.05e-05)
+  PASS Mars heliocentric direction error 0.183 arcmin (limit 2.0)
+  PASS Mars heliocentric distance: got 2.416747413e+11, expected 2.416857108e+11 (rel tol 0.0100, rel err 4.54e-05)
+  PASS Jupiter heliocentric direction error 1.479 arcmin (limit 2.0)
+  PASS Jupiter heliocentric distance: got 7.960570833e+11, expected 7.963863676e+11 (rel tol 0.0100, rel err 0.000413)
+  PASS Neptune heliocentric direction error 0.523 arcmin (limit 2.0)
+  PASS Neptune heliocentric distance: got 4.469455214e+12, expected 4.469508024e+12 (rel tol 0.0100, rel err 1.18e-05)
+  PASS Moon geocentric JD 2451545.0 direction error 0.128 arcmin (limit 3.0)
+  PASS Moon geocentric JD 2451545.0 distance (km): got 402444.8124, expected 402448.6399 (tol 50.0)
+  PASS Moon geocentric JD 2456445.0 direction error 0.036 arcmin (limit 3.0)
+  PASS Moon geocentric JD 2456445.0 distance (km): got 383600.2935, expected 383601.7504 (tol 50.0)
+  PASS Moon geocentric JD 2461366.5 direction error 0.017 arcmin (limit 3.0)
+  PASS Moon geocentric JD 2461366.5 distance (km): got 371769.4096, expected 371762.7363 (tol 50.0)
+[Satellites at independent validation epoch 2013-06-01 (not used in fit)]
+  PASS Phobos (401) direction error 129.1 arcmin (limit 180)
+  PASS Phobos distance: got 9234554.530, expected 9505652.423 (rel tol 0.0400, rel err 0.0285)
+  PASS Deimos (402) direction error 17.0 arcmin (limit 60)
+  PASS Deimos distance: got 23457000.00, expected 23455280.75 (rel tol 0.0100, rel err 7.33e-05)
+  PASS Io (501) direction error 3.2 arcmin (limit 60)
+  PASS Io distance: got 423349505.8, expected 422339472.8 (rel tol 0.0100, rel err 0.00239)
+  PASS Europa (502) direction error 21.8 arcmin (limit 60)
+  PASS Europa distance: got 675987307.1, expected 667793842.0 (rel tol 0.0200, rel err 0.0123)
+  PASS Ganymede (503) direction error 3.4 arcmin (limit 60)
+  PASS Ganymede distance: got 1070845849, expected 1072469603 (rel tol 0.0100, rel err 0.00151)
+  PASS Callisto (504) direction error 3.2 arcmin (limit 60)
+  PASS Callisto distance: got 1876859608, expected 1876861342 (rel tol 0.0100, rel err 9.24e-07)
+  PASS Mimas (601) direction error 1125.2 arcmin (limit 1500)
+  PASS Mimas distance: got 189407184.1, expected 186137516.1 (rel tol 0.0250, rel err 0.0176)
+  PASS Tethys (603) direction error 43.9 arcmin (limit 60)
+  PASS Tethys distance: got 294716172.5, expected 294729512.3 (rel tol 0.0100, rel err 4.53e-05)
+  PASS Dione (604) direction error 16.3 arcmin (limit 60)
+  PASS Dione distance: got 378180432.2, expected 376704115.3 (rel tol 0.0100, rel err 0.00392)
+  PASS Rhea (605) direction error 40.2 arcmin (limit 60)
+  PASS Rhea distance: got 527362818.1, expected 526937991.5 (rel tol 0.0100, rel err 0.000806)
+  PASS Titan (606) direction error 176.7 arcmin (limit 240)
+  PASS Titan distance: got 1196433850, expected 1226728492 (rel tol 0.0300, rel err 0.0247)
+  PASS Iapetus (608) direction error 117.1 arcmin (limit 150)
+  PASS Iapetus distance: got 3630831311, expected 3617987757 (rel tol 0.0100, rel err 0.00355)
+  PASS Ariel (701) direction error 4.1 arcmin (limit 60)
+  PASS Ariel distance: got 190899797.7, expected 191017506.0 (rel tol 0.0100, rel err 0.000616)
+  PASS Umbriel (702) direction error 4.2 arcmin (limit 60)
+  PASS Umbriel distance: got 264931620.8, expected 264850740.4 (rel tol 0.0100, rel err 0.000305)
+  PASS Titania (703) direction error 9.0 arcmin (limit 60)
+  PASS Titania distance: got 435428327.1, expected 435095301.6 (rel tol 0.0100, rel err 0.000765)
+  PASS Oberon (704) direction error 16.7 arcmin (limit 60)
+  PASS Oberon distance: got 584125142.5, expected 583822296.4 (rel tol 0.0100, rel err 0.000519)
+  PASS Miranda (705) direction error 4.9 arcmin (limit 60)
+  PASS Miranda distance: got 129731478.8, expected 129683078.5 (rel tol 0.0100, rel err 0.000373)
+  PASS Triton (801) direction error 210.5 arcmin (limit 240)
+  PASS Triton distance: got 354800000.0, expected 354769717.9 (rel tol 0.0100, rel err 8.54e-05)
+  PASS Charon (901) direction error 1.4 arcmin (limit 60)
+  PASS Charon distance: got 19600000.00, expected 19598613.05 (rel tol 0.0100, rel err 7.08e-05)
+[Scale]
+  PASS Earth equatorial radius (km): got 6378.136600, expected 6378.136600 (tol 1.00e-09)
+  PASS Jupiter/Earth equatorial radius ratio ~11.2: got 11.20891641, expected 11.21000000 (rel tol 0.00500, rel err 9.67e-05)
+  PASS Sun radius (km): got 695700.0000, expected 695700.0000 (tol 1.00e-06)
+  PASS Earth(-Moon barycentre) mean semi-major axis ~1 AU: got 1.000002610, expected 1.000000000 (rel tol 1.00e-05, rel err 2.61e-06)
+  PASS Neptune mean semi-major axis ~30 AU: got 30.06992276, expected 30.07000000 (rel tol 0.00100, rel err 2.57e-06)
+  PASS Earth sidereal year (days): got 365.2577798, expected 365.2560000 (rel tol 0.000500, rel err 4.87e-06)
+[Rotation / tidal locking]
+  PASS Earth sidereal day (h): got 23.93447117, expected 23.93446960 (rel tol 1.00e-06, rel err 6.58e-08)
+  PASS Moon is tidally locked
+  PASS Io is tidally locked
+  PASS Titan is tidally locked
+  PASS Earth is not tidally locked
+  PASS Venus rotation is retrograde
+  PASS Earth obliquity from IAU pole vs ecliptic (deg): got 23.43928096, expected 23.44000000 (tol 0.0200)
+  PASS Uranus obliquity (deg, NASA 97.8): got 97.76980019, expected 97.80000000 (tol 0.300)
+[Seasons: Earth-Sun distance]
+  PASS Earth perihelion 2026-01-03 (AU): got 0.9832748549, expected 0.9833000000 (tol 0.000300)
+  PASS Earth aphelion 2026-07-06 (AU): got 1.016692255, expected 1.016660000 (tol 0.000300)
+[Kepler round trip]
+  PASS Mars osculating a (AU): got 1.523787398, expected 1.523700000 (rel tol 0.00200, rel err 5.74e-05)
+  PASS Mars osculating e: got 0.09338184303, expected 0.09340000000 (tol 0.00200)
+  PASS Kepler state->elements->state position error (m): got 0.0001439511281, expected 0.000000000 (tol 1.00)
+  PASS hyperbolic round trip a: got -20000000.00, expected -20000000.00 (rel tol 1.00e-09, rel err 1.68e-15)
+  PASS hyperbolic round trip e: got 1.500000000, expected 1.500000000 (tol 1.00e-09)
+    . Universe loaded in 2.32 s: 112,470 stars, 5,393 exoplanets in 3,880 systems, 12,101 deep-sky objects, 132,873 searchable names
+[Search]
+  PASS search "Sirius" -> Sirius [STAR]
+  PASS search "Proxima Centauri" -> Proxima Centauri [STAR]
+  PASS search "Sagittarius A*" -> Sagittarius A* [BLACK_HOLE]
+  PASS search "Sgr A*" -> Sagittarius A* [BLACK_HOLE]
+  PASS search "Andromeda" -> Andromeda Galaxy [GALAXY]
+  PASS search "M31" -> Andromeda Galaxy [GALAXY]
+  PASS search "TRAPPIST-1" -> TRAPPIST-1 [STAR]
+  PASS search "TRAPPIST-1 system" -> TRAPPIST-1 system [STAR]
+  PASS search "Alpha Centauri" -> Rigil Kentaurus [STAR]
+  PASS search "Betelgeuse" -> Betelgeuse [STAR]
+  PASS search "Orion Nebula" -> Great Orion Nebula [NEBULA]
+  PASS search "Titan" -> Titan [MOON]
+  PASS search "HD 209458" -> HIP 108859 [STAR]
+[Distances from real data]
+  PASS Proxima Centauri distance (ly; HYG/Hipparcos 1.2959 pc): got 4.224758816, expected 4.227000000 (tol 0.0100)
+  PASS Sirius distance (ly): got 8.599951729, expected 8.600000000 (tol 0.0500)
+  PASS Andromeda distance (Mly; Li et al. 2021 761 kpc): got 2.482050034, expected 2.482000000 (tol 0.0100)
+  PASS Sgr A* distance (pc): got 8277.000000, expected 8277.000000 (tol 1.00)
+  PASS Sgr A* lies at the Galactic centre direction (deg): got 0.07238480893, expected 0.000000000 (tol 0.100)
+[Exoplanet systems]
+  PASS TRAPPIST-1 has 7 planets
+  PASS TRAPPIST-1 e period (d): got 6.099570000, expected 6.099570000 (rel tol 0.00300, rel err 0.00)
+  PASS Proxima system has catalogued planets
+  PASS Proxima b semi-major axis (AU): got 0.04857000000, expected 0.04857000000 (rel tol 0.00100, rel err 2.86e-16)
+  PASS TRAPPIST-1 e transits from Earth's viewpoint (max cos = 0.99998)
+[Star colours]
+  PASS Sun B-V 0.656 -> Teff (K): got 5756.588113, expected 5772.000000 (tol 150)
+  PASS Sirius renders blue-white (b >= r)
+  PASS Betelgeuse renders orange-red (r > b)
+[Black hole physics]
+  PASS Sgr A* Schwarzschild radius (km): got 12690115.58, expected 12690000.00 (rel tol 0.00500, rel err 9.11e-06)
+  PASS Schwarzschild ISCO = 6M: got 6.000000000, expected 6.000000000 (tol 1.00e-09)
+  PASS Extremal Kerr prograde ISCO -> 1M: got 1.035232386, expected 1.000000000 (tol 0.0500)
+  PASS weak-field deflection 4M/b at b=1000M: got 0.004011823797, expected 0.004000000000 (rel tol 0.0200, rel err 0.00296)
+  PASS ray with b = 5.19 M (just below 3*sqrt3) is captured
+  PASS ray with b = 5.21 M (just above 3*sqrt3) escapes
+  PASS disc redshift at ISCO, face-on (g = sqrt(1-3/r)): got 0.7071067812, expected 0.7071067812 (tol 1.00e-12)
+[Procedural determinism]
+  PASS same cell -> identical stars (13037)
+  PASS different seed -> different content
+  PASS model density at the Sun = 1: got 1.303353010, expected 1.000000000 (tol 0.360)
+  PASS density toward the Galactic centre is far higher
+  PASS no procedural stars inside the catalogue sphere
+[Travel planner]
+  PASS 1 g brachistochrone to Proxima: Earth time (yr): got 5.849695491, expected 5.900000000 (tol 0.200)
+  PASS 1 g brachistochrone to Proxima: ship time (yr): got 3.534907386, expected 3.600000000 (tol 0.200)
+  PASS warp is flagged as non-physical
+[Flight model]
+  PASS sea-level air density from 1 bar and 8 km scale height (kg/m^3): got 1.272879788, expected 1.270000000 (tol 0.0800)
+  PASS altitude after 5 orbits in full N-body field (km): got 499.9917927, expected 500.0000000 (tol 15.0)
+
+(11.3 s)
+
+128 passed, 0 failed
