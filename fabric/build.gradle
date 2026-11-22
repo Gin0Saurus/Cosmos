@@ -43,5 +43,6 @@ java {
 // Used by CI to inspect the real Minecraft / Fabric API signatures.
 tasks.register('printClasspath') {
 	def cp = sourceSets.client.compileClasspath
-	doLast { file("${buildDir}/classpath.txt").text = cp.files.join('\n') }
+	def out = layout.buildDirectory.file("classpath.txt")
+	doLast { def f = out.get().asFile; f.parentFile.mkdirs(); f.text = cp.files.join('\n') }
 }
