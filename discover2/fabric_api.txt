@@ -1,0 +1,146 @@
+=== net.fabricmc.fabric.api.client.rendering.v1.FabricRenderPipeline
+Compiled from "FabricRenderPipeline.java"
+public interface net.fabricmc.fabric.api.client.rendering.v1.FabricRenderPipeline {
+  public default boolean usePipelineDrawModeForGui();
+}
+=== net.fabricmc.fabric.api.client.rendering.v1.FabricRenderPipeline$Builder
+Compiled from "FabricRenderPipeline.java"
+public interface net.fabricmc.fabric.api.client.rendering.v1.FabricRenderPipeline$Builder {
+  public default com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withUsePipelineDrawModeForGui(boolean);
+  public default com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withoutUsePipelineDrawModeForGui();
+}
+=== net.fabricmc.fabric.api.client.command.v2.ClientCommands
+Compiled from "ClientCommands.java"
+public final class net.fabricmc.fabric.api.client.command.v2.ClientCommands {
+  private net.fabricmc.fabric.api.client.command.v2.ClientCommands();
+  public static com.mojang.brigadier.CommandDispatcher<net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource> getActiveDispatcher();
+  public static void refreshCommandCompletions();
+  public static com.mojang.brigadier.builder.LiteralArgumentBuilder<net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource> literal(java.lang.String);
+  public static <T> com.mojang.brigadier.builder.RequiredArgumentBuilder<net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource, T> argument(java.lang.String, com.mojang.brigadier.arguments.ArgumentType<T>);
+}
+=== net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback
+Compiled from "ClientCommandRegistrationCallback.java"
+public interface net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback {
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback> EVENT;
+  public abstract void register(com.mojang.brigadier.CommandDispatcher<net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource>, net.minecraft.commands.CommandBuildContext);
+  static {};
+}
+=== net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
+Compiled from "FabricClientCommandSource.java"
+public interface net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource extends net.minecraft.commands.SharedSuggestionProvider {
+  public abstract void sendFeedback(net.minecraft.network.chat.Component);
+  public abstract void sendError(net.minecraft.network.chat.Component);
+  public abstract net.minecraft.client.Minecraft getClient();
+  public abstract net.minecraft.client.player.LocalPlayer getPlayer();
+  public default net.minecraft.world.entity.Entity getEntity();
+  public default net.minecraft.world.phys.Vec3 getPosition();
+  public default net.minecraft.world.phys.Vec2 getRotation();
+  public abstract net.minecraft.client.multiplayer.ClientLevel getLevel();
+  public default java.lang.Object getMeta(java.lang.String);
+  public abstract boolean attended();
+}
+=== net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper
+Compiled from "KeyMappingHelper.java"
+public final class net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper {
+  private net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper();
+  public static net.minecraft.client.KeyMapping registerKeyMapping(net.minecraft.client.KeyMapping);
+  public static com.mojang.blaze3d.platform.InputConstants$Key getBoundKeyOf(net.minecraft.client.KeyMapping);
+}
+=== net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents
+Compiled from "ClientTickEvents.java"
+public final class net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents {
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents$StartTick> START_CLIENT_TICK;
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents$EndTick> END_CLIENT_TICK;
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents$StartLevelTick> START_LEVEL_TICK;
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents$EndLevelTick> END_LEVEL_TICK;
+  private net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents();
+  static {};
+}
+=== net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents$EndTick
+Compiled from "ClientTickEvents.java"
+public interface net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents$EndTick {
+  public abstract void onEndTick(net.minecraft.client.Minecraft);
+}
+=== net.fabricmc.fabric.api.client.gametest.v1.FabricClientGameTest
+Compiled from "FabricClientGameTest.java"
+public interface net.fabricmc.fabric.api.client.gametest.v1.FabricClientGameTest {
+  public abstract void runTest(net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext);
+}
+=== net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext
+Compiled from "ClientGameTestContext.java"
+public interface net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext {
+  public static final int NO_TIMEOUT;
+  public static final int DEFAULT_TIMEOUT;
+  public abstract void waitTick();
+  public abstract void waitTicks(int);
+  public abstract int waitFor(java.util.function.Predicate<net.minecraft.client.Minecraft>);
+  public abstract int waitFor(java.util.function.Predicate<net.minecraft.client.Minecraft>, int);
+  public abstract int waitForScreen(java.lang.Class<? extends net.minecraft.client.gui.screens.Screen>);
+  public abstract void setScreen(java.util.function.Supplier<net.minecraft.client.gui.screens.Screen>);
+  public abstract void clickScreenButton(java.lang.String);
+  public abstract boolean tryClickScreenButton(java.lang.String);
+  public default java.nio.file.Path takeScreenshot(java.lang.String);
+  public abstract java.nio.file.Path takeScreenshot(net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotOptions);
+  public default void assertScreenshotEquals(java.lang.String);
+  public abstract void assertScreenshotEquals(net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonOptions);
+  public default org.joml.Vector2i assertScreenshotContains(java.lang.String);
+  public abstract org.joml.Vector2i assertScreenshotContains(net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonOptions);
+  public abstract net.fabricmc.fabric.api.client.gametest.v1.TestInput getInput();
+  public abstract net.fabricmc.fabric.api.client.gametest.v1.world.TestWorldBuilder worldBuilder();
+  public abstract void restoreDefaultGameOptions();
+  public abstract <E extends java.lang.Throwable> void runOnClient(org.apache.commons.lang3.function.FailableConsumer<net.minecraft.client.Minecraft, E>) throws E;
+  public abstract <T, E extends java.lang.Throwable> T computeOnClient(org.apache.commons.lang3.function.FailableFunction<net.minecraft.client.Minecraft, T, E>) throws E;
+}
+=== net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContext
+Compiled from "TestSingleplayerContext.java"
+public interface net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContext extends java.lang.AutoCloseable {
+  public abstract net.fabricmc.fabric.api.client.gametest.v1.world.TestWorldSave getWorldSave();
+  public abstract net.fabricmc.fabric.api.client.gametest.v1.context.TestServerConnection getConnection();
+  public abstract net.fabricmc.fabric.api.client.gametest.v1.context.TestServerContext getServer();
+  public abstract void close();
+}
+=== net.fabricmc.fabric.api.client.gametest.v1.world.TestWorldBuilder
+Compiled from "TestWorldBuilder.java"
+public interface net.fabricmc.fabric.api.client.gametest.v1.world.TestWorldBuilder {
+  public abstract net.fabricmc.fabric.api.client.gametest.v1.world.TestWorldBuilder setUseConsistentSettings(boolean);
+  public abstract net.fabricmc.fabric.api.client.gametest.v1.world.TestWorldBuilder adjustSettings(java.util.function.Consumer<net.minecraft.client.gui.screens.worldselection.WorldCreationUiState>);
+  public abstract net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContext create();
+  public default net.fabricmc.fabric.api.client.gametest.v1.context.TestDedicatedServerContext createServer();
+  public abstract net.fabricmc.fabric.api.client.gametest.v1.context.TestDedicatedServerContext createServer(java.util.Properties);
+}
+=== net.fabricmc.fabric.api.client.gametest.v1.context.TestServerContext
+Compiled from "TestServerContext.java"
+public interface net.fabricmc.fabric.api.client.gametest.v1.context.TestServerContext {
+  public abstract void runCommand(java.lang.String);
+  public abstract <E extends java.lang.Throwable> void runOnServer(org.apache.commons.lang3.function.FailableConsumer<net.minecraft.server.MinecraftServer, E>) throws E;
+  public abstract <T, E extends java.lang.Throwable> T computeOnServer(org.apache.commons.lang3.function.FailableFunction<net.minecraft.server.MinecraftServer, T, E>) throws E;
+  public abstract int waitFor(java.util.function.Predicate<net.minecraft.server.MinecraftServer>);
+  public abstract int waitFor(java.util.function.Predicate<net.minecraft.server.MinecraftServer>, int);
+}
+=== net.fabricmc.fabric.api.client.gametest.v1.context.TestClientLevelContext
+Error: class not found: net.fabricmc.fabric.api.client.gametest.v1.context.TestClientLevelContext
+=== net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotOptions
+Compiled from "TestScreenshotOptions.java"
+public interface net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotOptions extends net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotCommonOptions<net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotOptions> {
+  public static net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotOptions of(java.lang.String);
+}
+=== net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents$EndMain
+Compiled from "LevelRenderEvents.java"
+public interface net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents$EndMain {
+  public abstract void endMain(net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderContext);
+}
+=== net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents$StartMain
+Compiled from "LevelRenderEvents.java"
+public interface net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents$StartMain {
+  public abstract void startMain(net.fabricmc.fabric.api.client.rendering.v1.level.LevelTerrainRenderContext);
+}
+=== net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents$AfterTranslucentTerrain
+Compiled from "LevelRenderEvents.java"
+public interface net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents$AfterTranslucentTerrain {
+  public abstract void afterTranslucentTerrain(net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderContext);
+}
+=== net.fabricmc.fabric.api.client.rendering.v1.level.LevelTerrainRenderContext
+Compiled from "LevelTerrainRenderContext.java"
+public interface net.fabricmc.fabric.api.client.rendering.v1.level.LevelTerrainRenderContext extends net.fabricmc.fabric.api.client.rendering.v1.level.AbstractLevelRenderContext {
+  public abstract net.minecraft.client.renderer.chunk.ChunkSectionsToRender sectionsToRender();
+}
