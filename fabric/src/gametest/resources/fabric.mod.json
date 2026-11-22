@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "cosmos-test",
+  "version": "1.0.0",
+  "name": "Cosmos client game test",
+  "environment": "client",
+  "entrypoints": { "fabric-client-gametest": ["dev.saurus.cosmos.test.CosmosClientGameTest"] },
+  "depends": { "cosmos": "*" }
+}

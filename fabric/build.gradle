@@ -28,6 +28,16 @@ dependencies {
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 }
 
+fabricApi {
+	configureTests {
+		createSourceSet = true
+		modId = "cosmos-test"
+		enableGameTests = false
+		enableClientGameTests = true
+		eula = true
+	}
+}
+
 processResources {
 	def version = project.version
 	inputs.property "version", version

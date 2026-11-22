@@ -1,20 +1,23 @@
 {
-	"schemaVersion": 1,
-	"id": "cosmos",
-	"version": "${version}",
-	"name": "Cosmos",
-	"description": "A true-scale, data-driven universe: real stars, planets, exoplanets, galaxies and black holes.",
-	"authors": ["Gino"],
-	"license": "All-Rights-Reserved",
-	"environment": "*",
-	"entrypoints": {
-		"main": ["dev.saurus.cosmos.mod.CosmosMod"],
-		"client": ["dev.saurus.cosmos.client.CosmosClient"]
-	},
-	"depends": {
-		"fabricloader": ">=0.20.1",
-		"minecraft": "~26.3",
-		"java": ">=25",
-		"fabric-api": "*"
-	}
+  "schemaVersion": 1,
+  "id": "cosmos",
+  "version": "${version}",
+  "name": "Cosmos",
+  "description": "A true-scale, data-driven universe: 112k real stars, the real Solar System on JPL orbits, 5,393 exoplanets, galaxies and black holes. Type /cosmos help in game.",
+  "authors": [
+    "Gino"
+  ],
+  "license": "All-Rights-Reserved",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "dev.saurus.cosmos.client.CosmosClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.20.1",
+    "minecraft": "~26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
 }
