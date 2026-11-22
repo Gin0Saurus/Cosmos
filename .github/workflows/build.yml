@@ -20,14 +20,17 @@ jobs:
         run: chmod +x gradlew && ./gradlew --no-daemon build -x test 2>&1 | tee ../build.log; exit ${PIPESTATUS[0]}
       - name: Install headless GL
         if: steps.build.outcome == 'success'
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq xvfb mesa-utils libgl1-mesa-dri > /dev/null
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq xvfb mesa-utils libgl1-mesa-dri libglx-mesa0 libegl1 libegl-mesa0 mesa-vulkan-drivers libvulkan1 vulkan-tools > /dev/null
+          xvfb-run -a -s "-screen 0 1280x720x24 +extension GLX" glxinfo -B > glinfo.txt 2>&1 || true
+          xvfb-run -a -s "-screen 0 1280x720x24" vulkaninfo --summary >> glinfo.txt 2>&1 || true
       - name: Run in-game test (real Minecraft client)
         id: gametest
         if: steps.build.outcome == 'success'
         working-directory: fabric
         continue-on-error: true
         timeout-minutes: 25
-        run: xvfb-run -a -s "-screen 0 1280x720x24" ./gradlew --no-daemon runClientGameTest 2>&1 | tee ../gametest.log; exit ${PIPESTATUS[0]}
+        env: { SDL_VIDEO_FORCE_EGL: "1", LIBGL_ALWAYS_SOFTWARE: "1", MESA_GL_VERSION_OVERRIDE: "4.5", MESA_GLSL_VERSION_OVERRIDE: "450" }
+        run: xvfb-run -a -s "-screen 0 1280x720x24 +extension GLX +render -noreset" ./gradlew --no-daemon runClientGameTest 2>&1 | tee ../gametest.log; exit ${PIPESTATUS[0]}
       - name: Debug dumps
         if: always()
         run: |
@@ -37,7 +40,7 @@ jobs:
         if: always()
         run: |
           mkdir -p out/screenshots
-          cp build.log out/ 2>/dev/null || true; cp gametest.log out/ 2>/dev/null || true; cp debug_sky.txt out/ 2>/dev/null || true
+          cp build.log out/ 2>/dev/null || true; cp gametest.log out/ 2>/dev/null || true; cp debug_sky.txt out/ 2>/dev/null || true; cp glinfo.txt out/ 2>/dev/null || true
           cp fabric/build/libs/cosmos-*.jar out/ 2>/dev/null || true
           find fabric -name '*.png' -path '*screenshot*' -newer fabric/build.gradle -exec cp {} out/screenshots/ \; 2>/dev/null || true
           find fabric -name 'latest.log' -path '*run*' -exec cp {} out/minecraft-latest.log \; 2>/dev/null || true
