@@ -29,6 +29,9 @@ layout(std140) uniform CosmosSpace {
 };
 
 uniform sampler2D SkySampler;
+// Milky Way glow texture is stored as pow(40*L, 1/2.2) (see MilkyWayGlow.enc); decode back to linear radiance.
+vec3 skyLin(vec2 uv) { return pow(texture(SkySampler, uv).rgb, vec3(2.2)) / 40.0; }
+
 
 layout(location = 0) out vec4 fragColor;
 
@@ -239,7 +242,7 @@ vec3 renderBlackHole(vec3 rdWorld, out float covered) {
     }
     float bend = acos(clamp(dot(normalize(v), rd), -1.0, 1.0));
     covered = captured ? 1.0 : clamp(bend * 400.0, 0.0, 1.0);
-    if (!captured) col += trans * Params.z * texture(SkySampler, equirectUV(normalize(transpose(toBh) * v))).rgb;
+    if (!captured) col += trans * Params.z * skyLin(equirectUV(normalize(transpose(toBh) * v)));
     if (trans < 0.99) covered = 1.0;
     return col;
 }
@@ -256,7 +259,7 @@ void main() {
     if (BH.w > 0.5) {
         float cov; col = renderBlackHole(rd, cov); alpha = cov;
     } else {
-        col = Params.z * texture(SkySampler, equirectUV(rd)).rgb;
+        col = Params.z * skyLin(equirectUV(rd));
     }
     if (Galaxy.w > 0.5) col += renderGalaxy(rd);
 
