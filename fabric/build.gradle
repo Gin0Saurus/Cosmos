@@ -1,0 +1,47 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+}
+
+base { archivesName = "cosmos" }
+
+loom {
+	splitEnvironmentSourceSets()
+	mods {
+		"cosmos" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+}
+
+// The Minecraft-independent engine is compiled straight into the mod jar.
+sourceSets {
+	main {
+		java { srcDir '../core/src/main/java' }
+		resources { srcDir '../core/src/main/resources' }
+	}
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+}
+
+processResources {
+	def version = project.version
+	inputs.property "version", version
+	filesMatching("fabric.mod.json") { expand "version": version }
+}
+
+tasks.withType(JavaCompile).configureEach { it.options.release = 25 }
+java {
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+// Used by CI to inspect the real Minecraft / Fabric API signatures.
+tasks.register('printClasspath') {
+	def cp = sourceSets.client.compileClasspath
+	doLast { file("${buildDir}/classpath.txt").text = cp.files.join('\n') }
+}

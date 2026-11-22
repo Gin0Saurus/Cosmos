@@ -1,0 +1,47 @@
+name: discover-api
+# Dumps the real Minecraft 26.3 / Fabric API signatures that the mod is written against,
+# and pushes them to the ci-results branch (the build sandbox cannot reach Mojang directly).
+on: { workflow_dispatch: {}, push: { paths: ['.github/workflows/discover.yml'] } }
+permissions: { contents: write }
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: '25' }
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Resolve Minecraft + Fabric
+        working-directory: fabric
+        run: chmod +x gradlew && ./gradlew --no-daemon printClasspath
+      - name: Dump signatures
+        run: |
+          set -x
+          mkdir -p out
+          CP=$(tr '\n' ':' < fabric/build/classpath.txt)
+          cp fabric/build/classpath.txt out/
+          MC=$(grep -iE 'minecraft' fabric/build/classpath.txt | grep -iE 'client|merged|common' | head -5)
+          echo "$MC" > out/mc_jars.txt
+          for j in $MC; do unzip -Z1 "$j" | grep '\.class$' | sed 's/\.class$//; s#/#.#g' >> out/mc_classes.txt; done
+          sort -u -o out/mc_classes.txt out/mc_classes.txt
+          for j in $(tr '\n' ' ' < fabric/build/classpath.txt); do case "$j" in *fabric*api*|*fabric-*) unzip -Z1 "$j" 2>/dev/null | grep '\.class$' | sed 's/\.class$//; s#/#.#g' >> out/fabric_classes.txt;; esac; done
+          sort -u -o out/fabric_classes.txt out/fabric_classes.txt
+          grep -vE '\$[0-9]' out/fabric_classes.txt | grep -iE 'render|hud|command|keybind|keymapping|event|gametest|screen' > out/fabric_interesting.txt || true
+          CLASSES="net.minecraft.client.Minecraft net.minecraft.client.Camera net.minecraft.client.renderer.LevelRenderer net.minecraft.client.renderer.GameRenderer net.minecraft.client.renderer.RenderPipelines net.minecraft.client.renderer.SkyRenderer net.minecraft.client.renderer.DynamicUniforms com.mojang.blaze3d.pipeline.RenderPipeline com.mojang.blaze3d.pipeline.RenderPipeline\$Builder com.mojang.blaze3d.systems.RenderSystem com.mojang.blaze3d.systems.RenderPass com.mojang.blaze3d.systems.GpuDevice com.mojang.blaze3d.systems.CommandEncoder com.mojang.blaze3d.buffers.GpuBuffer com.mojang.blaze3d.buffers.Std140Builder com.mojang.blaze3d.vertex.VertexFormat com.mojang.blaze3d.vertex.DefaultVertexFormat com.mojang.blaze3d.vertex.BufferBuilder com.mojang.blaze3d.vertex.Tesselator com.mojang.blaze3d.vertex.PoseStack net.minecraft.client.gui.GuiGraphics net.minecraft.client.KeyMapping net.minecraft.client.player.LocalPlayer net.minecraft.client.renderer.texture.DynamicTexture net.minecraft.client.renderer.texture.TextureManager com.mojang.blaze3d.platform.NativeImage net.minecraft.client.renderer.state.SkyRenderState net.minecraft.client.renderer.state.LevelRenderState"
+          for c in $CLASSES; do echo "=== $c" >> out/javap.txt; javap -p -cp "$CP" "$c" >> out/javap.txt 2>&1 || true; done
+          grep -iE 'render|level|sky|hud|world|client' out/fabric_interesting.txt | head -400 > out/fabric_render_classes.txt || true
+          for c in $(grep -iE 'Render.*Events?$|Hud|LevelRender|WorldRender|ClientCommand|KeyBinding|KeyMapping|ClientTickEvents|FabricClientGameTest|ClientGameTestContext|TestSingleplayerContext|TestClientWorldContext|TestInput|TestScreenshot' out/fabric_classes.txt | grep -v '\$' | head -80); do echo "=== $c" >> out/fabric_javap.txt; javap -p -cp "$CP" "$c" >> out/fabric_javap.txt 2>&1 || true; done
+          for j in $MC; do unzip -o -q "$j" 'assets/minecraft/shaders/*' -d out/mc_assets 2>/dev/null || true; done
+          find out/mc_assets -type f | sort > out/mc_shader_files.txt || true
+          mkdir -p out/shaders_ref
+          for f in core/sky.vsh core/sky.fsh core/stars.vsh core/stars.fsh core/position_color.vsh core/position_color.fsh core/position_tex.vsh core/position_tex.fsh include/projection.glsl include/dynamictransforms.glsl include/fog.glsl include/globals.glsl; do cp "out/mc_assets/assets/minecraft/shaders/$f" "out/shaders_ref/$(echo $f | tr / _)" 2>/dev/null || true; done
+          rm -rf out/mc_assets
+          ls -la out
+      - name: Publish to ci-results branch
+        run: |
+          git config user.name "cosmos-ci"; git config user.email "ci@users.noreply.github.com"
+          git fetch origin ci-results || true
+          git checkout --orphan ci-results-tmp
+          git rm -rq --cached . ; rm -rf fabric core shaders preview tools docs previews .github README.md build.sh .gitignore
+          mkdir -p discover && cp -r out/* discover/ && rm -rf out
+          git add discover && git commit -qm "API discovery for Minecraft 26.3" && git push -f origin ci-results-tmp:ci-results
