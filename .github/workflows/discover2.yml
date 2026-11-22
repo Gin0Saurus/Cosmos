@@ -1,0 +1,37 @@
+name: discover-api-2
+on: { workflow_dispatch: {}, push: { paths: ['.github/workflows/discover2.yml'] } }
+permissions: { contents: write }
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with: { distribution: temurin, java-version: '25' }
+      - uses: gradle/actions/setup-gradle@v4
+      - working-directory: fabric
+        run: chmod +x gradlew && ./gradlew --no-daemon printClasspath
+      - name: Dump RenderPearl + rendering internals
+        run: |
+          mkdir -p out
+          CP=$(tr '\n' ':' < fabric/build/classpath.txt)
+          MC=$(grep -iE 'minecraft-(clientOnly|common)' fabric/build/classpath.txt)
+          for j in $MC; do unzip -Z1 "$j" | grep '\.class$' | sed 's/\.class$//; s#/#.#g'; done | sort -u > all.txt
+          grep -E '^com\.mojang\.renderpearl\.api\.' all.txt | grep -vE '\$[0-9]|package-info' > rp.txt
+          for c in $(cat rp.txt); do echo "=== $c"; javap -p -cp "$CP" "$c" 2>&1 | grep -v 'lambda\$'; done > out/renderpearl_api.txt
+          for c in net.minecraft.client.renderer.RenderPipelines net.minecraft.client.Minecraft net.minecraft.client.renderer.GameRenderer net.minecraft.client.renderer.LevelRenderer net.minecraft.client.renderer.SkyRenderer net.minecraft.client.renderer.PostPass net.minecraft.client.renderer.UniformValue com.mojang.blaze3d.pipeline.RenderTarget com.mojang.blaze3d.pipeline.TextureTarget com.mojang.blaze3d.systems.RenderSystem com.mojang.blaze3d.buffers.Std140Builder com.mojang.blaze3d.vertex.DefaultVertexFormat net.minecraft.client.gui.GuiGraphicsExtractor net.minecraft.client.renderer.state.level.LevelRenderState net.minecraft.client.renderer.state.level.CameraRenderState net.minecraft.client.renderer.state.GameRenderState net.minecraft.client.Camera net.minecraft.client.DeltaTracker net.minecraft.client.gui.Font net.minecraft.network.chat.Component net.minecraft.resources.Identifier net.minecraft.client.KeyMapping net.minecraft.client.KeyMapping\$Category com.mojang.blaze3d.platform.InputConstants net.minecraft.client.player.LocalPlayer net.minecraft.client.multiplayer.ClientLevel net.minecraft.world.level.Level; do echo "=== $c"; javap -p -cp "$CP" "$c" 2>&1 | grep -v 'lambda\$'; done > out/mc_api.txt
+          for c in net.minecraft.client.renderer.SkyRenderer net.minecraft.client.renderer.PostPass; do echo "=== $c"; javap -c -p -cp "$CP" "$c" 2>&1 | grep -E '^\s+[a-z].*\(|invoke|getstatic|ldc|^  [a-z]'; done > out/bytecode_sky_post.txt
+          javap -c -p -cp "$CP" net.minecraft.client.renderer.RenderPipelines 2>&1 | grep -E 'ldc|invoke' | head -1500 > out/bytecode_renderpipelines.txt
+          F=$(grep -iE 'fabric-(rendering|command|key|client-gametest|lifecycle)[^/]*\.jar$' fabric/build/classpath.txt | tr '\n' ':')
+          for c in net.fabricmc.fabric.api.client.rendering.v1.FabricRenderPipeline 'net.fabricmc.fabric.api.client.rendering.v1.FabricRenderPipeline$Builder' net.fabricmc.fabric.api.client.command.v2.ClientCommands net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents 'net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents$EndTick' net.fabricmc.fabric.api.client.gametest.v1.FabricClientGameTest net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContext net.fabricmc.fabric.api.client.gametest.v1.world.TestWorldBuilder net.fabricmc.fabric.api.client.gametest.v1.context.TestServerContext net.fabricmc.fabric.api.client.gametest.v1.context.TestClientLevelContext net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotOptions 'net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents$EndMain' 'net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents$StartMain' 'net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents$AfterTranslucentTerrain' net.fabricmc.fabric.api.client.rendering.v1.level.LevelTerrainRenderContext; do echo "=== $c"; javap -p -cp "$CP" "$c" 2>&1 | grep -v 'lambda\$'; done > out/fabric_api.txt
+          grep -iE 'gametest' fabric/build/classpath.txt > out/gametest_jars.txt || true
+          for j in $MC; do unzip -o -q "$j" 'assets/minecraft/shaders/*' -d mca 2>/dev/null || true; done
+          find mca -type f | sed 's#mca/assets/minecraft/shaders/##' | sort > out/shader_files.txt
+          mkdir -p out/sh; for f in core/blit_screen.vsh core/blit_screen.fsh post/blur.fsh post/blit.fsh post/sobel.vsh include/oit.glsl core/screenquad.vsh post/screenquad.vsh; do [ -f mca/assets/minecraft/shaders/$f ] && cp mca/assets/minecraft/shaders/$f out/sh/$(echo $f|tr / _); done; true
+          ls -la out out/sh; wc -l out/*.txt
+      - name: Publish
+        run: |
+          git config user.name "cosmos-ci"; git config user.email "ci@users.noreply.github.com"
+          git fetch origin ci-results && git checkout -B r origin/ci-results
+          rm -rf discover2 && mkdir discover2 && cp -r out/* discover2/
+          git add discover2 && git commit -qm "API discovery 2 (RenderPearl)" && git push origin r:ci-results
