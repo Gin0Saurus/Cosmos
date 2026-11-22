@@ -1,0 +1,20 @@
+Earth-Alps-Mont-Blanc: at lat 45.800 lon 6.800, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
+Earth-Himalaya-Everest: at lat 27.900 lon 86.850, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
+Earth-Amazon: at lat -3.000 lon -60.000, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
+Earth-Sahara: at lat 23.000 lon 13.000, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
+Earth-Greenland-ice: at lat 72.000 lon -40.000, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
+Earth-English-coast: at lat 50.750 lon 0.250, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
+Moon-Apollo-11: at lat 0.674 lon 23.474, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
+Moon-Tycho-highlands: at lat -43.300 lon -11.400, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
+Mars-Jezero: at lat 18.439 lon 77.449, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
+Mars-Valles-Marineris: at lat -10.899 lon -59.200, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
+Mars-Olympus-Mons-flank: at lat 18.000 lon -131.000, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
+Mars-north-polar-cap: at lat 84.499 lon 0.001, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
+Europa: at lat 10.000 lon 29.999, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
+Io: at lat 5.001 lon 9.999, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
+Titan-lakes: at lat 70.000 lon -44.999, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
+Pluto-Sputnik-Planitia-edge: at lat 24.999 lon 159.999, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
+gravity earth: per-tick gravity 0.08000 blocks/tick^2 (Earth 0.08000), ratio 1.0000, expected g/g0 = 1.0014; jump height 1.25 blocks
+FAIL gravity: java.lang.AssertionError: Timed out waiting for predicate
+FAIL wrap-around: java.lang.AssertionError: Timed out waiting for predicate
+FAIL launch/land: java.lang.AssertionError: Timed out waiting for predicate
