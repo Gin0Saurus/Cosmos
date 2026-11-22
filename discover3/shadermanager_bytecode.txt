@@ -1,0 +1,212 @@
+  private static final org.slf4j.Logger LOGGER;
+  public static final int MAX_LOG_LENGTH;
+  public static final java.lang.String SHADER_PATH;
+  public static final java.lang.String SHADER_INCLUDE_PATH;
+  public static final java.lang.String SHADER_INCLUDE_EXTENSION;
+  public static final net.minecraft.resources.FileToIdConverter SHADER_INCLUDE_CONVERTER;
+  private static final net.minecraft.resources.FileToIdConverter POST_CHAIN_ID_CONVERTER;
+  private final net.minecraft.client.renderer.texture.TextureManager textureManager;
+  private final java.util.function.Consumer<java.lang.Exception> recoveryHandler;
+  private net.minecraft.client.renderer.ShaderManager$PostChainCache postChains;
+  private final net.minecraft.client.renderer.Projection postChainProjection;
+  private final net.minecraft.client.renderer.ProjectionMatrixBuffer postChainProjectionMatrixBuffer;
+  public net.minecraft.client.renderer.ShaderManager(net.minecraft.client.renderer.texture.TextureManager, java.util.function.Consumer<java.lang.Exception>);
+         1: invokespecial #3                  // Method java/lang/Object."<init>":()V
+        13: invokespecial #17                 // Method net/minecraft/client/renderer/ShaderManager$PostChainCache."<init>":(Lnet/minecraft/client/renderer/ShaderManager;Lnet/minecraft/client/renderer/ShaderManager$Configs;)V
+        24: invokespecial #26                 // Method net/minecraft/client/renderer/Projection."<init>":()V
+        35: ldc           #33                 // String post
+        37: invokespecial #35                 // Method net/minecraft/client/renderer/ProjectionMatrixBuffer."<init>":(Ljava/lang/String;)V
+        57: ldc           #50                 // float 0.1f
+        59: ldc           #51                 // float 1000.0f
+        64: invokevirtual #52                 // Method net/minecraft/client/renderer/Projection.setupOrtho:(FFFFZ)V
+  public final java.util.concurrent.CompletableFuture<java.lang.Void> reload(net.minecraft.server.packs.resources.PreparableReloadListener$SharedState, java.util.concurrent.Executor, net.minecraft.server.packs.resources.PreparableReloadListener$PreparationBarrier, java.util.concurrent.Executor);
+         1: invokevirtual #56                 // Method net/minecraft/server/packs/resources/PreparableReloadListener$SharedState.resourceManager:()Lnet/minecraft/server/packs/resources/ResourceManager;
+         6: invokestatic  #62                 // Method com/mojang/blaze3d/systems/RenderSystem.getDevice:()Lcom/mojang/renderpearl/api/device/GpuDevice;
+        13: invokedynamic #68,  0             // InvokeDynamic #0:get:(Lnet/minecraft/server/packs/resources/ResourceManager;)Ljava/util/function/Supplier;
+        19: invokestatic  #72                 // Method java/util/concurrent/CompletableFuture.supplyAsync:(Ljava/util/function/Supplier;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
+        27: invokedynamic #78,  0             // InvokeDynamic #1:apply:(Lcom/mojang/renderpearl/api/device/GpuDevice;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)Ljava/util/function/Function;
+        34: invokevirtual #82                 // Method java/util/concurrent/CompletableFuture.thenComposeAsync:(Ljava/util/function/Function;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
+        39: invokestatic  #86                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+        43: invokedynamic #92,  0             // InvokeDynamic #2:apply:(Lnet/minecraft/server/packs/resources/PreparableReloadListener$PreparationBarrier;)Ljava/util/function/Function;
+        48: invokevirtual #95                 // Method java/util/concurrent/CompletableFuture.thenCompose:(Ljava/util/function/Function;)Ljava/util/concurrent/CompletableFuture;
+        54: invokedynamic #99,  0             // InvokeDynamic #3:accept:(Lnet/minecraft/client/renderer/ShaderManager;Lcom/mojang/renderpearl/api/device/GpuDevice;)Ljava/util/function/Consumer;
+        61: invokevirtual #103                // Method java/util/concurrent/CompletableFuture.thenAcceptAsync:(Ljava/util/function/Consumer;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
+  private static java.util.concurrent.CompletableFuture<java.util.List<com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline>> compilePipelines(com.mojang.renderpearl.api.device.GpuDevice, com.mojang.renderpearl.api.pipeline.ShaderSource, java.util.List<com.mojang.renderpearl.api.pipeline.RenderPipeline>, java.util.concurrent.Executor, java.util.concurrent.Executor);
+         1: invokeinterface #107,  1          // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+        11: invokedynamic #113,  0            // InvokeDynamic #4:apply:(Lcom/mojang/renderpearl/api/device/GpuDevice;Lcom/mojang/renderpearl/api/pipeline/ShaderSource;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)Ljava/util/function/Function;
+        16: invokeinterface #116,  2          // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+        21: invokeinterface #122,  1          // InterfaceMethod java/util/stream/Stream.toList:()Ljava/util/List;
+        26: invokestatic  #126                // Method net/minecraft/util/Util.sequence:(Ljava/util/List;)Ljava/util/concurrent/CompletableFuture;
+  private static net.minecraft.client.renderer.ShaderManager$Configs loadConfigs(net.minecraft.server.packs.resources.ResourceManager);
+         0: invokestatic  #132                // Method com/google/common/collect/ImmutableMap.builder:()Lcom/google/common/collect/ImmutableMap$Builder;
+         4: invokestatic  #132                // Method com/google/common/collect/ImmutableMap.builder:()Lcom/google/common/collect/ImmutableMap$Builder;
+         9: ldc           #138                // String shaders
+        11: invokedynamic #140,  0            // InvokeDynamic #5:isIncluded:()Lnet/minecraft/server/packs/resources/ResourceManager$Selector;
+        16: invokeinterface #144,  3          // InterfaceMethod net/minecraft/server/packs/resources/ResourceManager.listResources:(Ljava/lang/String;Lnet/minecraft/server/packs/resources/ResourceManager$Selector;)Ljava/util/Map;
+        23: invokeinterface #150,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+        28: invokeinterface #156,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+        37: invokeinterface #162,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        47: invokeinterface #168,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        59: invokeinterface #174,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+        71: invokestatic  #179                // Method com/mojang/renderpearl/api/pipeline/ShaderType.byLocation:(Lnet/minecraft/resources/Identifier;)Lcom/mojang/renderpearl/api/pipeline/ShaderType;
+        85: invokeinterface #185,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+        96: invokestatic  #190                // Method loadShader:(Lnet/minecraft/resources/Identifier;Lnet/minecraft/server/packs/resources/Resource;Lcom/mojang/renderpearl/api/pipeline/ShaderType;Lcom/google/common/collect/ImmutableMap$Builder;)V
+       107: invokevirtual #198                // Method net/minecraft/resources/FileToIdConverter.matches:(Lnet/minecraft/resources/Identifier;)Z
+       117: invokeinterface #185,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+       126: invokestatic  #204                // Method loadInclude:(Lnet/minecraft/resources/Identifier;Lnet/minecraft/server/packs/resources/Resource;Lcom/google/common/collect/ImmutableMap$Builder;)V
+       132: invokestatic  #132                // Method com/google/common/collect/ImmutableMap.builder:()Lcom/google/common/collect/ImmutableMap$Builder;
+       141: invokevirtual #211                // Method net/minecraft/resources/FileToIdConverter.listMatchingResources:(Lnet/minecraft/server/packs/resources/ResourceManager;)Ljava/util/Map;
+       144: invokeinterface #150,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+       149: invokeinterface #156,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+       158: invokeinterface #162,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+       168: invokeinterface #168,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       180: invokeinterface #174,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+       190: invokeinterface #185,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+       200: invokestatic  #215                // Method loadPostChain:(Lnet/minecraft/resources/Identifier;Lnet/minecraft/server/packs/resources/Resource;Lcom/google/common/collect/ImmutableMap$Builder;)V
+       211: invokevirtual #218                // Method com/google/common/collect/ImmutableMap$Builder.build:()Lcom/google/common/collect/ImmutableMap;
+       215: invokevirtual #218                // Method com/google/common/collect/ImmutableMap$Builder.build:()Lcom/google/common/collect/ImmutableMap;
+       220: invokevirtual #218                // Method com/google/common/collect/ImmutableMap$Builder.build:()Lcom/google/common/collect/ImmutableMap;
+       223: invokespecial #224                // Method net/minecraft/client/renderer/ShaderManager$Configs."<init>":(Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;)V
+  private static void loadShader(net.minecraft.resources.Identifier, net.minecraft.server.packs.resources.Resource, com.mojang.renderpearl.api.pipeline.ShaderType, com.google.common.collect.ImmutableMap$Builder<net.minecraft.client.renderer.ShaderManager$ShaderSourceKey, java.lang.String>);
+         1: invokevirtual #227                // Method net/minecraft/server/packs/resources/Resource.readAllAsString:()Ljava/lang/String;
+         7: invokevirtual #231                // Method com/mojang/renderpearl/api/pipeline/ShaderType.idConverter:()Lnet/minecraft/resources/FileToIdConverter;
+        11: invokevirtual #235                // Method net/minecraft/resources/FileToIdConverter.fileToId:(Lnet/minecraft/resources/Identifier;)Lnet/minecraft/resources/Identifier;
+        24: invokespecial #241                // Method net/minecraft/client/renderer/ShaderManager$ShaderSourceKey."<init>":(Lnet/minecraft/resources/Identifier;Lcom/mojang/renderpearl/api/pipeline/ShaderType;)V
+        29: invokevirtual #244                // Method com/google/common/collect/ImmutableMap$Builder.put:(Ljava/lang/Object;Ljava/lang/Object;)Lcom/google/common/collect/ImmutableMap$Builder;
+        41: ldc           #254                // String Failed to load shader source at {}
+        46: invokeinterface #256,  4          // InterfaceMethod org/slf4j/Logger.error:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+  private static void loadInclude(net.minecraft.resources.Identifier, net.minecraft.server.packs.resources.Resource, com.google.common.collect.ImmutableMap$Builder<net.minecraft.resources.Identifier, com.mojang.renderpearl.api.pipeline.ShaderSource$CachedIncludeSource>);
+         1: invokevirtual #227                // Method net/minecraft/server/packs/resources/Resource.readAllAsString:()Ljava/lang/String;
+         6: invokestatic  #262                // Method includeShaderLocationToId:(Lnet/minecraft/resources/Identifier;)Lnet/minecraft/resources/Identifier;
+        17: invokestatic  #265                // Method com/mojang/renderpearl/api/pipeline/ShaderSource$CachedIncludeSource.create:(Lnet/minecraft/resources/Identifier;Ljava/lang/String;)Lcom/mojang/renderpearl/api/pipeline/ShaderSource$CachedIncludeSource;
+        20: invokevirtual #244                // Method com/google/common/collect/ImmutableMap$Builder.put:(Ljava/lang/Object;Ljava/lang/Object;)Lcom/google/common/collect/ImmutableMap$Builder;
+        31: ldc           #254                // String Failed to load shader source at {}
+        35: invokeinterface #256,  4          // InterfaceMethod org/slf4j/Logger.error:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+  private static void loadPostChain(net.minecraft.resources.Identifier, net.minecraft.server.packs.resources.Resource, com.google.common.collect.ImmutableMap$Builder<net.minecraft.resources.Identifier, net.minecraft.client.renderer.PostChainConfig>);
+         4: invokevirtual #235                // Method net/minecraft/resources/FileToIdConverter.fileToId:(Lnet/minecraft/resources/Identifier;)Lnet/minecraft/resources/Identifier;
+         9: invokevirtual #271                // Method net/minecraft/server/packs/resources/Resource.openAsReader:()Ljava/io/BufferedReader;
+        16: invokestatic  #275                // Method net/minecraft/util/StrictJsonParser.parse:(Ljava/io/Reader;)Lcom/google/gson/JsonElement;
+        31: invokeinterface #293,  3          // InterfaceMethod com/mojang/serialization/Codec.parse:(Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+        36: invokedynamic #298,  0            // InvokeDynamic #6:apply:()Ljava/util/function/Function;
+        41: invokeinterface #301,  2          // InterfaceMethod com/mojang/serialization/DataResult.getOrThrow:(Ljava/util/function/Function;)Ljava/lang/Object;
+        49: invokevirtual #244                // Method com/google/common/collect/ImmutableMap$Builder.put:(Ljava/lang/Object;Ljava/lang/Object;)Lcom/google/common/collect/ImmutableMap$Builder;
+        60: invokevirtual #307                // Method java/io/Reader.close:()V
+        75: invokevirtual #307                // Method java/io/Reader.close:()V
+        87: invokevirtual #314                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       101: ldc_w         #320                // String Failed to parse post chain at {}
+       107: invokeinterface #256,  4          // InterfaceMethod org/slf4j/Logger.error:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+  public static java.util.Map<net.minecraft.resources.Identifier, com.mojang.renderpearl.api.pipeline.ShaderSource$CachedIncludeSource> listAllIncludes(net.minecraft.server.packs.resources.ResourceManager);
+         4: invokespecial #324                // Method java/util/HashMap."<init>":()V
+        12: invokevirtual #211                // Method net/minecraft/resources/FileToIdConverter.listMatchingResources:(Lnet/minecraft/server/packs/resources/ResourceManager;)Ljava/util/Map;
+        16: invokedynamic #325,  0            // InvokeDynamic #7:accept:(Ljava/util/Map;)Ljava/util/function/BiConsumer;
+        21: invokeinterface #328,  2          // InterfaceMethod java/util/Map.forEach:(Ljava/util/function/BiConsumer;)V
+  private static net.minecraft.resources.Identifier includeShaderLocationToId(net.minecraft.resources.Identifier);
+         4: invokevirtual #235                // Method net/minecraft/resources/FileToIdConverter.fileToId:(Lnet/minecraft/resources/Identifier;)Lnet/minecraft/resources/Identifier;
+         7: ldc_w         #332                // String .glsl
+        10: invokevirtual #334                // Method net/minecraft/resources/Identifier.withSuffix:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+  private void apply(com.mojang.renderpearl.api.device.GpuDevice, net.minecraft.client.renderer.ShaderManager$PendingResults);
+         9: invokespecial #17                 // Method net/minecraft/client/renderer/ShaderManager$PostChainCache."<init>":(Lnet/minecraft/client/renderer/ShaderManager;Lnet/minecraft/client/renderer/ShaderManager$Configs;)V
+        17: invokespecial #345                // Method java/util/ArrayList."<init>":()V
+        31: invokespecial #348                // Method com/mojang/blaze3d/pipeline/PipelineCache."<init>":(Lcom/mojang/renderpearl/api/device/GpuDevice;Lcom/mojang/renderpearl/api/pipeline/ShaderSource;)V
+        38: invokevirtual #351                // Method com/mojang/blaze3d/pipeline/PipelineCache.clear:()V
+        50: invokeinterface #358,  1          // InterfaceMethod java/util/List.size:()I
+        64: invokeinterface #362,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+        80: invokeinterface #362,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+       101: invokevirtual #372                // Method com/mojang/blaze3d/pipeline/PipelineCache.insert:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lcom/mojang/renderpearl/api/pipeline/CompiledRenderPipeline;)V
+       111: invokevirtual #376                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline.getLocation:()Lnet/minecraft/resources/Identifier;
+       114: invokeinterface #380,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+       128: invokeinterface #384,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+       140: invokeinterface #390,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       149: invokeinterface #162,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+       159: invokeinterface #168,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       176: invokeinterface #391,  1          // InterfaceMethod com/mojang/renderpearl/api/pipeline/CompiledRenderPipeline.close:()V
+       186: invokevirtual #392                // Method com/mojang/blaze3d/pipeline/PipelineCache.close:()V
+       195: invokeinterface #107,  1          // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+       200: invokedynamic #395,  0            // InvokeDynamic #8:apply:()Ljava/util/function/Function;
+       205: invokeinterface #116,  2          // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+       210: ldc_w         #396                // String \n
+       213: invokestatic  #398                // Method java/util/stream/Collectors.joining:(Ljava/lang/CharSequence;)Ljava/util/stream/Collector;
+       216: invokeinterface #404,  2          // InterfaceMethod java/util/stream/Stream.collect:(Ljava/util/stream/Collector;)Ljava/lang/Object;
+       224: invokedynamic #410,  0            // InvokeDynamic #9:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+       229: invokespecial #414                // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+       242: invokeinterface #358,  1          // InterfaceMethod java/util/List.size:()I
+       256: invokeinterface #362,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+       272: invokeinterface #362,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+       293: invokevirtual #372                // Method com/mojang/blaze3d/pipeline/PipelineCache.insert:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lcom/mojang/renderpearl/api/pipeline/CompiledRenderPipeline;)V
+       303: invokevirtual #376                // Method com/mojang/renderpearl/api/pipeline/RenderPipeline.getLocation:()Lnet/minecraft/resources/Identifier;
+       306: invokeinterface #380,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+       320: invokeinterface #384,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+       331: ldc_w         #418                // String Failed to load optional shader programs:\n{}
+       336: invokeinterface #107,  1          // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+       341: invokedynamic #420,  0            // InvokeDynamic #10:apply:()Ljava/util/function/Function;
+       346: invokeinterface #116,  2          // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+       351: ldc_w         #396                // String \n
+       354: invokestatic  #398                // Method java/util/stream/Collectors.joining:(Ljava/lang/CharSequence;)Ljava/util/stream/Collector;
+       357: invokeinterface #404,  2          // InterfaceMethod java/util/stream/Stream.collect:(Ljava/util/stream/Collector;)Ljava/lang/Object;
+       362: invokeinterface #421,  3          // InterfaceMethod org/slf4j/Logger.warn:(Ljava/lang/String;Ljava/lang/Object;)V
+       371: invokevirtual #425                // Method net/minecraft/client/renderer/ShaderManager$PostChainCache.close:()V
+       381: invokestatic  #426                // Method com/mojang/blaze3d/systems/RenderSystem.setCurrentPipelineCache:(Lcom/mojang/blaze3d/pipeline/PipelineCache;)Lcom/mojang/blaze3d/pipeline/PipelineCache;
+       393: invokevirtual #392                // Method com/mojang/blaze3d/pipeline/PipelineCache.close:()V
+  public java.lang.String getName();
+         0: ldc_w         #430                // String Shader Loader
+  private void tryTriggerRecovery(java.lang.Exception);
+        16: invokeinterface #436,  2          // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+  public boolean isPostEffectValid(net.minecraft.resources.Identifier, java.util.Set<net.minecraft.resources.Identifier>);
+        11: invokeinterface #445,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        27: ldc_w         #447                // String Requested post effect does not exist: {}
+        31: invokeinterface #421,  3          // InterfaceMethod org/slf4j/Logger.warn:(Ljava/lang/String;Ljava/lang/Object;)V
+        39: invokestatic  #449                // Method net/minecraft/client/renderer/PostChain.getReferencedExternalTargets:(Lnet/minecraft/client/renderer/PostChainConfig;)Ljava/util/Set;
+        43: invokestatic  #455                // Method com/google/common/collect/Sets.difference:(Ljava/util/Set;Ljava/util/Set;)Lcom/google/common/collect/Sets$SetView;
+        50: invokeinterface #461,  1          // InterfaceMethod java/util/Set.isEmpty:()Z
+        61: ldc_w         #462                // String Requested post chain {} can not be used as a post effect because it uses targets inaccessible to post effects: {}
+        67: invokeinterface #464,  4          // InterfaceMethod org/slf4j/Logger.warn:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+  public net.minecraft.client.renderer.PostChain getPostChain(net.minecraft.resources.Identifier, java.util.Set<net.minecraft.resources.Identifier>);
+         6: invokevirtual #466                // Method net/minecraft/client/renderer/ShaderManager$PostChainCache.getOrLoadPostChain:(Lnet/minecraft/resources/Identifier;Ljava/util/Set;)Lnet/minecraft/client/renderer/PostChain;
+        14: ldc_w         #472                // String Failed to load post chain: {}
+        19: invokeinterface #256,  4          // InterfaceMethod org/slf4j/Logger.error:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+        32: invokestatic  #475                // Method java/util/Optional.empty:()Ljava/util/Optional;
+        35: invokeinterface #481,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        43: invokevirtual #484                // Method tryTriggerRecovery:(Ljava/lang/Exception;)V
+  public void close();
+         4: invokevirtual #425                // Method net/minecraft/client/renderer/ShaderManager$PostChainCache.close:()V
+        11: invokevirtual #488                // Method net/minecraft/client/renderer/ProjectionMatrixBuffer.close:()V
+  public java.util.stream.Stream<net.minecraft.resources.Identifier> getAvailablePostEffects();
+         4: invokevirtual #489                // Method net/minecraft/client/renderer/ShaderManager$PostChainCache.getKnownPostEffects:()Ljava/util/stream/Stream;
+  private static java.lang.String lambda$apply$1(net.minecraft.resources.Identifier);
+         1: invokestatic  #492                // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+         4: invokedynamic #496,  0            // InvokeDynamic #11:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+  private static java.lang.String lambda$apply$0(net.minecraft.resources.Identifier);
+         1: invokestatic  #492                // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+         4: invokedynamic #496,  0            // InvokeDynamic #11:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+  private static void lambda$listAllIncludes$0(java.util.Map, net.minecraft.resources.Identifier, net.minecraft.server.packs.resources.Resource);
+         1: invokevirtual #227                // Method net/minecraft/server/packs/resources/Resource.readAllAsString:()Ljava/lang/String;
+         6: invokestatic  #262                // Method includeShaderLocationToId:(Lnet/minecraft/resources/Identifier;)Lnet/minecraft/resources/Identifier;
+        17: invokestatic  #265                // Method com/mojang/renderpearl/api/pipeline/ShaderSource$CachedIncludeSource.create:(Lnet/minecraft/resources/Identifier;Ljava/lang/String;)Lcom/mojang/renderpearl/api/pipeline/ShaderSource$CachedIncludeSource;
+        20: invokeinterface #481,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        33: ldc_w         #499                // String Couldn\'t read shader file {}
+        38: invokeinterface #256,  4          // InterfaceMethod org/slf4j/Logger.error:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+  private static boolean lambda$loadConfigs$0(net.minecraft.resources.Identifier);
+  private static java.util.concurrent.CompletableFuture lambda$compilePipelines$0(com.mojang.renderpearl.api.device.GpuDevice, com.mojang.renderpearl.api.pipeline.ShaderSource, java.util.concurrent.Executor, java.util.concurrent.Executor, com.mojang.renderpearl.api.pipeline.RenderPipeline);
+         5: invokeinterface #501,  4          // InterfaceMethod com/mojang/renderpearl/api/device/GpuDevice.compilePipeline:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lcom/mojang/renderpearl/api/pipeline/ShaderSource;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
+        10: invokedynamic #507,  0            // InvokeDynamic #12:apply:()Ljava/util/function/Function;
+        16: invokevirtual #508                // Method java/util/concurrent/CompletableFuture.thenApplyAsync:(Ljava/util/function/Function;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
+  private void lambda$reload$3(com.mojang.renderpearl.api.device.GpuDevice, net.minecraft.client.renderer.ShaderManager$PendingResults);
+         3: invokevirtual #511                // Method apply:(Lcom/mojang/renderpearl/api/device/GpuDevice;Lnet/minecraft/client/renderer/ShaderManager$PendingResults;)V
+  private static java.util.concurrent.CompletionStage lambda$reload$1(com.mojang.renderpearl.api.device.GpuDevice, java.util.concurrent.Executor, java.util.concurrent.Executor, net.minecraft.client.renderer.ShaderManager$Configs);
+         0: invokestatic  #514                // Method net/minecraft/client/renderer/RenderPipelines.requiredPipelines:()Ljava/util/List;
+         5: invokestatic  #518                // Method net/minecraft/client/renderer/RenderPipelines.optionalPipelines:()Ljava/util/List;
+        16: invokestatic  #520                // Method compilePipelines:(Lcom/mojang/renderpearl/api/device/GpuDevice;Lcom/mojang/renderpearl/api/pipeline/ShaderSource;Ljava/util/List;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
+        25: invokestatic  #520                // Method compilePipelines:(Lcom/mojang/renderpearl/api/device/GpuDevice;Lcom/mojang/renderpearl/api/pipeline/ShaderSource;Ljava/util/List;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
+        33: invokedynamic #524,  0            // InvokeDynamic #13:apply:(Lnet/minecraft/client/renderer/ShaderManager$Configs;Ljava/util/List;Ljava/util/List;)Ljava/util/function/BiFunction;
+        38: invokevirtual #527                // Method java/util/concurrent/CompletableFuture.thenCombine:(Ljava/util/concurrent/CompletionStage;Ljava/util/function/BiFunction;)Ljava/util/concurrent/CompletableFuture;
+  private static net.minecraft.client.renderer.ShaderManager$PendingResults lambda$reload$2(net.minecraft.client.renderer.ShaderManager$Configs, java.util.List, java.util.List, java.util.List, java.util.List);
+        10: invokespecial #531                // Method net/minecraft/client/renderer/ShaderManager$PendingResults."<init>":(Lnet/minecraft/client/renderer/ShaderManager$Configs;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
+  private static net.minecraft.client.renderer.ShaderManager$Configs lambda$reload$0(net.minecraft.server.packs.resources.ResourceManager);
+         1: invokestatic  #534                // Method loadConfigs:(Lnet/minecraft/server/packs/resources/ResourceManager;)Lnet/minecraft/client/renderer/ShaderManager$Configs;
+  static {};
+         0: invokestatic  #538                // Method com/mojang/logging/LogUtils.getLogger:()Lorg/slf4j/Logger;
+        10: ldc_w         #544                // String shaders/include
+        13: ldc_w         #332                // String .glsl
+        16: invokespecial #546                // Method net/minecraft/resources/FileToIdConverter."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+        22: ldc_w         #549                // String post_effect
+        25: invokestatic  #551                // Method net/minecraft/resources/FileToIdConverter.json:(Ljava/lang/String;)Lnet/minecraft/resources/FileToIdConverter;

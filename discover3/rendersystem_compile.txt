@@ -1,0 +1,60 @@
+  public static void setFallbackPipelineCache(com.mojang.blaze3d.pipeline.PipelineCache);
+    Code:
+         0: getstatic     #13                 // Field fallbackPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+         3: ifnull        16
+         6: new           #17                 // class java/lang/IllegalStateException
+         9: dup
+        10: ldc           #19                 // String Fallback pipeline cache already set
+        12: invokespecial #21                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+        15: athrow
+        16: aload_0
+        17: putstatic     #13                 // Field fallbackPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+        20: return
+  public static com.mojang.blaze3d.pipeline.PipelineCache setCurrentPipelineCache(com.mojang.blaze3d.pipeline.PipelineCache);
+    Code:
+         0: getstatic     #24                 // Field currentPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+         3: astore_1
+         4: aload_0
+         5: putstatic     #24                 // Field currentPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+         8: aload_1
+         9: areturn
+  public static com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline getCompiledPipelineNullable(com.mojang.renderpearl.api.pipeline.RenderPipeline);
+    Code:
+         0: getstatic     #24                 // Field currentPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+         3: ifnull        20
+         6: getstatic     #24                 // Field currentPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+         9: aload_0
+        10: invokevirtual #27                 // Method com/mojang/blaze3d/pipeline/PipelineCache.get:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/CompiledRenderPipeline;
+        13: astore_1
+        14: aload_1
+        15: ifnull        20
+        18: aload_1
+        19: areturn
+        20: getstatic     #13                 // Field fallbackPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+        23: ifnonnull     36
+        26: new           #17                 // class java/lang/IllegalStateException
+        29: dup
+        30: ldc           #33                 // String Fallback pipeline cache not yet set
+        32: invokespecial #21                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+        35: athrow
+        36: getstatic     #13                 // Field fallbackPipelineCache:Lcom/mojang/blaze3d/pipeline/PipelineCache;
+        39: aload_0
+        40: invokevirtual #27                 // Method com/mojang/blaze3d/pipeline/PipelineCache.get:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/CompiledRenderPipeline;
+        43: areturn
+  public static com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline getCompiledPipeline(com.mojang.renderpearl.api.pipeline.RenderPipeline);
+    Code:
+         0: aload_0
+         1: invokestatic  #35                 // Method getCompiledPipelineNullable:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/CompiledRenderPipeline;
+         4: astore_1
+         5: aload_1
+         6: ifnull        11
+         9: aload_1
+        10: areturn
+        11: new           #17                 // class java/lang/IllegalStateException
+        14: dup
+        15: aload_0
+        16: invokevirtual #38                 // Method com/mojang/renderpearl/api/pipeline/RenderPipeline.getLocation:()Lnet/minecraft/resources/Identifier;
+        19: invokestatic  #44                 // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+        22: invokedynamic #50,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+        27: invokespecial #21                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+        30: athrow
