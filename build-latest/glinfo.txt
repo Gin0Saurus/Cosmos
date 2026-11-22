@@ -1,0 +1,1 @@
+E: Command line option 'a' [from -a] is not understood in combination with the other options.
