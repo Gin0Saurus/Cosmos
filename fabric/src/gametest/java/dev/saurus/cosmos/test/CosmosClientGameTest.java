@@ -159,11 +159,11 @@ public final class CosmosClientGameTest implements FabricClientGameTest {
     }
 
     private void spaceTour(ClientGameTestContext context) {
-        String[] tour = { "Earth", "Saturn", "Sagittarius A*", "Andromeda" };
+        String[] tour = { "Earth", "Moon", "Mars", "Saturn", "Sagittarius A*", "Andromeda" };
         int i = 0;
         for (String t : tour) {
             context.runOnClient(mc -> CosmosCommands.goTo(t));
-            context.waitTicks(80);
+            context.waitTicks(160);   // surface map of a walkable body renders on a worker thread
             context.takeScreenshot(String.format("cosmos-x%02d-%s", i++, t.replaceAll("[^A-Za-z0-9]+", "_")));
         }
         context.runOnClient(mc -> CosmosState.spaceMode = false);

@@ -71,6 +71,33 @@ public final class CosmosRenderer {
         sampler = dev.createSampler(AddressMode.REPEAT, AddressMode.CLAMP_TO_EDGE, FilterMode.LINEAR, FilterMode.LINEAR, 1, OptionalDouble.empty());
         skyTex = dev.createTexture(() -> "cosmos milky way", GpuTexture.USAGE_TEXTURE_BINDING | GpuTexture.USAGE_COPY_DST, GpuFormat.RGBA8_UNORM, SKY_W, SKY_H, 1, 1);
         skyView = dev.createTextureView(skyTex);
+        bodyTex = dev.createTexture(() -> "cosmos body surface", GpuTexture.USAGE_TEXTURE_BINDING | GpuTexture.USAGE_COPY_DST, GpuFormat.RGBA8_UNORM, BODY_W, BODY_H, 1, 1);
+        bodyView = dev.createTextureView(bodyTex);
+    }
+
+    // ------------------------------------------------------------------ surface map of the walkable body you're nearest
+    private static final int BODY_W = 1024, BODY_H = 512;
+    private GpuTexture bodyTex; private GpuTextureView bodyView;
+    private String bodyTexId = null, bodyJobId = null;
+    private CompletableFuture<int[]> bodyJob;
+
+    /** Same terrain model as the chunks, rendered to a map once per body (~1-3 s on a worker thread). */
+    private void updateBodyMapAsync(String focus) {
+        if (bodyJob != null && bodyJob.isDone()) {
+            try {
+                int[] px = bodyJob.join();
+                try (NativeImage img = new NativeImage(BODY_W, BODY_H, false)) {
+                    for (int y = 0; y < BODY_H; y++) for (int x = 0; x < BODY_W; x++) img.setPixelABGR(x, y, px[y * BODY_W + x]);
+                    RenderSystem.getDevice().createCommandEncoder().writeToTexture(bodyTex, img);
+                }
+                bodyTexId = bodyJobId;
+            } catch (Exception e) { bodyTexId = null; }
+            bodyJob = null;
+        }
+        if (focus != null && !focus.equals(bodyTexId) && bodyJob == null) {
+            bodyJobId = focus;
+            bodyJob = CompletableFuture.supplyAsync(() -> dev.saurus.cosmos.core.terrain.SurfaceMap.render(dev.saurus.cosmos.world.Planets.terrain(focus), BODY_W, BODY_H));
+        }
     }
 
     // ------------------------------------------------------------------ async content
@@ -229,6 +256,7 @@ public final class CosmosRenderer {
             pass.setPipeline(RenderSystem.getCompiledPipeline(CosmosPipelines.SPACE));
             pass.setUniform("CosmosSpace", spaceUbo);
             pass.setUniform("SkySampler", skyView, sampler);
+            pass.setUniform("BodySampler", bodyView, sampler);
             pass.setVertexBuffer(0, fullscreenTri.slice());
             pass.draw(3, 1, 0, 0);
         }
@@ -317,6 +345,20 @@ public final class CosmosRenderer {
         }
         for (float[][] arr : new float[][][]{pos, col, atm, atm2, light})
             for (float[] v : arr) s.putVec4(v[0], v[1], v[2], v[3]);
+        // the nearest walkable body (within 60 radii) is drawn with its real surface map
+        int texIndex = -1; String focus = null; double bestRatio = 60;
+        for (int i = 0; i < bodies.size(); i++) {
+            Body bd = bodies.get(i).body();
+            if (bd == null || !dev.saurus.cosmos.core.terrain.PlanetTerrains.isWalkable(bd.id)) continue;
+            double ratio = cam.distanceTo(bodies.get(i).pos()) / bodies.get(i).radiusM();
+            if (ratio < bestRatio) { bestRatio = ratio; focus = bd.id; texIndex = i; }
+        }
+        updateBodyMapAsync(focus);
+        Body fb = texIndex >= 0 ? bodies.get(texIndex).body() : null;
+        boolean ready = fb != null && fb.id.equals(bodyTexId);
+        Mat3 toBodyFixed = ready && fb.rotation != null ? fb.rotation.orientation(t).transpose() : Mat3.IDENTITY;
+        s.putMat4f(toMatrix4f(toBodyFixed));
+        s.putVec4(ready ? texIndex : -1, 0, 0, 0);
         bb.position(0).limit(SPACE_UBO_SIZE);
         enc.writeToBuffer(spaceUbo.slice(), bb);
         MemoryUtil.memFree(bb);

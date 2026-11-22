@@ -96,7 +96,8 @@ public final class EarthTerrain implements PlanetTerrain {
 
     /** Mean annual near-surface temperature (C): insolation by latitude, 6.5 C/km lapse rate. */
     public static double temperature(double lat, double elevationM) {
-        return -25 + 52 * Math.cos(lat) - 6.5 * Math.max(0, elevationM) / 1000;
+        // 5 C/km: between the free-air 6.5 C/km and the weaker lapse over sun-heated high plateaus (Tibet, Andes)
+        return -25 + 52 * Math.cos(lat) - 5.0 * Math.max(0, elevationM) / 1000;
     }
 
     @Override public TerrainColumn column(double lat, double lon, double e, double slope) {
@@ -104,13 +105,13 @@ public final class EarthTerrain implements PlanetTerrain {
         double[] u = PlanetProjection.unit(lat, lon);
         double px = u[0] * radius, py = u[1] * radius, pz = u[2] * radius;
         if (e < 0) {
-            Surface s = T < -1.5 ? Surface.FROZEN_OCEAN : e < -2000 ? Surface.DEEP_OCEAN : Surface.OCEAN;
+            double ice = T + n.fbm(px, py, pz, 500_000, 3, 0.5) * 6;     // ragged sea-ice edge, ~70 N / 66 S
+            Surface s = ice < -6.5 ? Surface.FROZEN_OCEAN : e < -2000 ? Surface.DEEP_OCEAN : Surface.OCEAN;
             return new TerrainColumn(e, s, 0, TerrainColumn.Liquid.WATER);
         }
         double M = moisture(lat, lon) + n.fbm(px, py, pz, 400_000, 3, 0.5) * 0.18;
         Surface s;
-        if (T < -8) s = Surface.ICE_SHEET;
-        else if (T < -2 && e > 2500) s = Surface.SNOWY_PEAKS;
+        if (T < -8) s = Math.abs(Math.toDegrees(lat)) > 55 ? Surface.ICE_SHEET : T < -11 ? Surface.SNOWY_PEAKS : Surface.TUNDRA;  // ice sheets / glaciers / alpine steppe
         else if (T < 0) s = M > 0.45 ? Surface.SNOW : Surface.TUNDRA;
         else if (T < 6) s = M > 0.32 ? Surface.TAIGA : Surface.TUNDRA;
         else if (M < 0.2) s = Surface.DESERT;
@@ -118,7 +119,8 @@ public final class EarthTerrain implements PlanetTerrain {
         else if (T > 21 && M > 0.62) s = Surface.JUNGLE;
         else if (M < 0.5) s = n.fbm(px, py, pz, 60_000, 3, 0.5) > 0.05 ? Surface.FOREST : Surface.GRASSLAND;
         else s = Surface.FOREST;
-        if (s != Surface.ICE_SHEET && s != Surface.SNOWY_PEAKS && (slope > 0.6 || e > 3200)) s = T < 2 ? Surface.SNOWY_PEAKS : Surface.MOUNTAIN;
+        // steep ground is bare rock, or snow and ice where it's cold enough; high but flat plateaus keep their climate class
+        if (s != Surface.ICE_SHEET && s != Surface.SNOWY_PEAKS && (slope > 0.6 || (e > 3000 && slope > 0.22))) s = T < -5 ? Surface.SNOWY_PEAKS : Surface.MOUNTAIN;
         if (e < 60 && slope < 0.15 && T > 4 && s != Surface.DESERT && nearCoast(lat, lon)) s = Surface.BEACH;
         return new TerrainColumn(e, s, Double.NaN, TerrainColumn.Liquid.NONE);
     }

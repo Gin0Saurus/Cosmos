@@ -37,6 +37,7 @@ public final class CosmosPipelines {
             .withBindGroupLayout(BindGroupLayout.builder()
                     .withUniform("CosmosSpace", UniformType.UNIFORM_BUFFER)
                     .withUniform("SkySampler", UniformType.COMBINED_IMAGE_SAMPLER)
+                    .withUniform("BodySampler", UniformType.COMBINED_IMAGE_SAMPLER)
                     .build())
             .withVertexBinding(0, DefaultVertexFormat.POSITION)
             .withPrimitiveTopology(PrimitiveTopology.TRIANGLES)

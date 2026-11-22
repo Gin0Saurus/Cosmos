@@ -64,7 +64,7 @@ public final class SurfaceLink {
         float[] yp = CosmosState.lookAt(up.negate().add(up.cross(CosmosState.upHint()).normalize().mul(0.9)).normalize());
         if (mc.player != null) {
             mc.player.setYRot(yp[0]); mc.player.setXRot(yp[1]);
-            mc.player.sendSystemMessage(Component.literal(String.format("§bLeft %s's atmosphere at %.2f, %.2f. Fly back down into any planet or moon to land.", b.name, p.latDeg(), p.lonDeg())));
+            mc.player.sendSystemMessage(Component.literal(String.format((b.atmosphere != null ? "§bLeft %s's atmosphere" : "§bLifted off %s") + " at %.2f, %.2f. Fly back down into any planet or moon to land.", b.name, p.latDeg(), p.lonDeg())));
         }
     }
 

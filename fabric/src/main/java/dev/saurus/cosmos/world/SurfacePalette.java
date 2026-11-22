@@ -25,7 +25,7 @@ public final class SurfacePalette {
                     tempC > 16 ? "minecraft:deep_lukewarm_ocean" : tempC < 6 ? "minecraft:deep_cold_ocean" : "minecraft:deep_ocean");
             case FROZEN_OCEAN -> L(Blocks.GRAVEL.defaultBlockState(), Blocks.GRAVEL.defaultBlockState(), 2, stone, "minecraft:frozen_ocean");
             case BEACH -> L(Blocks.SAND.defaultBlockState(), Blocks.SAND.defaultBlockState(), 4, Blocks.SANDSTONE.defaultBlockState(), "minecraft:beach");
-            case ICE_SHEET -> L(Blocks.SNOW_BLOCK.defaultBlockState(), Blocks.PACKED_ICE.defaultBlockState(), 40, stone, "minecraft:ice_spikes");
+            case ICE_SHEET -> L(Blocks.SNOW_BLOCK.defaultBlockState(), Blocks.PACKED_ICE.defaultBlockState(), 40, stone, "minecraft:snowy_plains");
             case SNOW -> L(grass, dirt, 3, stone, "minecraft:snowy_plains");
             case TUNDRA -> L(grass, dirt, 2, stone, "minecraft:snowy_plains");
             case TAIGA -> L(grass, dirt, 3, stone, tempC < 2 ? "minecraft:snowy_taiga" : "minecraft:taiga");

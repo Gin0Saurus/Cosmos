@@ -26,9 +26,12 @@ layout(std140) uniform CosmosSpace {
     vec4 BodyAtm[16];     // Rayleigh coefficients per km (rgb), w = Rayleigh scale height (km); w = 0 -> airless
     vec4 BodyAtm2[16];    // Mie scattering per km, Mie g, atmosphere thickness (km), star luminosity factor
     vec4 BodyLight[16];   // unit direction to the light source, w = light intensity
+    mat4 BodyFrame;       // ICRS -> body-fixed frame of the body with a surface map
+    vec4 TexBody;         // x = index of that body in the arrays (-1: none)
 };
 
 uniform sampler2D SkySampler;
+uniform sampler2D BodySampler;  // surface map rendered from the same terrain model the chunks use
 // Milky Way glow texture is stored as pow(40*L, 1/2.2) (see MilkyWayGlow.enc); decode back to linear radiance.
 vec3 skyLin(vec2 uv) { return pow(texture(SkySampler, uv).rgb, vec3(2.2)) / 40.0; }
 
@@ -179,6 +182,8 @@ vec3 shadeSurface(int i, vec3 n, vec3 rd) {
         alb *= band;
     } else if (type > 2.5) {
         alb *= 0.95 + 0.05 * sin(n.z * 20.0);
+    } else if (TexBody.x > -0.5 && abs(float(i) - TexBody.x) < 0.5) {
+        alb = pow(texture(BodySampler, equirectUV(normalize(mat3(BodyFrame) * n))).rgb, vec3(2.2)) * 2.0;
     } else {
         alb *= 0.85 + 0.3 * (fbm3(n * 8.0) - 0.5); // albedo variation (procedural)
     }

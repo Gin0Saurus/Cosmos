@@ -42,7 +42,9 @@ public final class Craters {
                 double dx = px - ccx, dy = py - ccy, dz = pz - ccz;
                 double r = Math.sqrt(dx * dx + dy * dy + dz * dz), R = dd / 2;
                 if (r > R * 2.5) continue;
-                double depth = 0.2 * dd, rim = 0.04 * dd, x = r / R;
+                // drawn without the 2x vertical exaggeration: craters below the elevation model's resolution keep their
+                // true depth-to-diameter shape instead of becoming pits
+                double depth = 0.2 * dd / 2, rim = 0.04 * dd / 2, x = r / R;
                 double age = Noise.hash01(seed + 5, i, j, k);      // 0 = fresh, 1 = degraded
                 double degrade = 1 - 0.6 * age;
                 double h;

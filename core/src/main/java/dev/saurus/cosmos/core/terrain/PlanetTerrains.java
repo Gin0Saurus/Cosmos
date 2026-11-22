@@ -35,7 +35,7 @@ public final class PlanetTerrains {
                 new Region("Stickney", -1, -49, 22, -1800, true, GREY_REGOLITH)));
         add(prof("deimos", "tiny, smooth regolith-mantled", 2_000, 0.5, 250, 6_000, 0, 1, DARK_REGOLITH, DARK_REGOLITH, DARK_REGOLITH, GREY_REGOLITH));
         add(new Profile("io", "no impact craters (resurfaced by volcanism), sulfur plains, lava paterae, isolated mountains up to 17 km",
-                0, 0, 700, 300_000, 3500, 200_000, SULFUR_PLAINS, SULFUR_PLAINS, DARK_REGOLITH, null, Liquid.NONE, 0, 0,
+                0, 0, 700, 300_000, 3500, 200_000, SULFUR_PLAINS, SULFUR_PLAINS, SULFUR_PLAINS, null, Liquid.NONE, 0, 0,
                 false, false, true, false, List.of()));
         add(new Profile("europa", "young water-ice crust, few craters, global lineae (double ridges)", 25_000, 0.04, 250, 200_000, 0, 1,
                 CLEAN_ICE, CLEAN_ICE, DIRTY_ICE, CLEAN_ICE, Liquid.NONE, 0, 0, true, false, false, false, List.of()));
