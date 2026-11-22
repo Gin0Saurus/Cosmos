@@ -64,7 +64,7 @@ public final class SurfaceLink {
         float[] yp = CosmosState.lookAt(up.negate().add(up.cross(CosmosState.upHint()).normalize().mul(0.9)).normalize());
         if (mc.player != null) {
             mc.player.setYRot(yp[0]); mc.player.setXRot(yp[1]);
-            mc.player.displayClientMessage(Component.literal(String.format("§bLeft %s's atmosphere at %.2f, %.2f. Fly back down into any planet or moon to land.", b.name, p.latDeg(), p.lonDeg())), false);
+            mc.player.sendSystemMessage(Component.literal(String.format("§bLeft %s's atmosphere at %.2f, %.2f. Fly back down into any planet or moon to land.", b.name, p.latDeg(), p.lonDeg())));
         }
     }
 
@@ -97,7 +97,7 @@ public final class SurfaceLink {
     public static boolean requestLanding(String body, double latDeg, double lonDeg) {
         Minecraft mc = Minecraft.getInstance();
         if (!ClientPlayNetworking.canSend(CosmosPayloads.Land.TYPE)) {
-            if (mc.player != null) mc.player.displayClientMessage(Component.literal("§cThis server doesn't have Cosmos installed, so you can't land on other worlds here."), false);
+            if (mc.player != null) mc.player.sendSystemMessage(Component.literal("§cThis server doesn't have Cosmos installed, so you can't land on other worlds here."));
             return false;
         }
         landRequestedAt = System.currentTimeMillis();
