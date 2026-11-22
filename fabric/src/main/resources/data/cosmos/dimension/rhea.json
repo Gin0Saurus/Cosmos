@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:rhea",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "rhea",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "rhea"
+    }
+  }
+}

@@ -27,6 +27,8 @@ public final class CosmosState {
     // ---- modes
     public static boolean spaceMode = false;
     public static boolean overworldSky = true;
+    /** Standing on an airless body: stars stay visible in daylight. */
+    public static boolean vacuumSky = false;
     public static double observerLatDeg = 51.4779, observerLonDeg = 0.0; // Royal Observatory, Greenwich (default)
 
     // ---- ship

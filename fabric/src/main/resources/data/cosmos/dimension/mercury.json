@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:mercury",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "mercury",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "mercury"
+    }
+  }
+}

@@ -9,6 +9,7 @@ public final class AllTests {
         CoordinateTests.run();
         SolarSystemTests.run(ss);
         if (!Boolean.getBoolean("cosmos.quick")) ExtraTests.run(ss);
+        TerrainTests.run(ss);
         System.out.printf("%n(%.1f s)%n", (System.nanoTime() - t0) / 1e9);
         System.exit(Check.finish());
     }

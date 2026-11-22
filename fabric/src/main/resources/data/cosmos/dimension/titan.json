@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:titan",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "titan",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "titan"
+    }
+  }
+}

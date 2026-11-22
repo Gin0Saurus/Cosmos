@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:europa",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "europa",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "europa"
+    }
+  }
+}

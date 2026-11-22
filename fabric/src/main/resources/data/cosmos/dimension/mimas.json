@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:mimas",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "mimas",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "mimas"
+    }
+  }
+}

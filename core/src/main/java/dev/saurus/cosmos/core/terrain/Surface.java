@@ -1,0 +1,14 @@
+package dev.saurus.cosmos.core.terrain;
+
+/** What the top of a terrain column is made of. The Minecraft layer maps each to blocks and a biome. */
+public enum Surface {
+    // Earth
+    OCEAN, DEEP_OCEAN, FROZEN_OCEAN, BEACH, ICE_SHEET, SNOW, TUNDRA, TAIGA, FOREST, GRASSLAND, SAVANNA, DESERT, JUNGLE, MOUNTAIN, SNOWY_PEAKS,
+    // Moon
+    LUNAR_HIGHLAND, LUNAR_MARE, LUNAR_EJECTA, LUNAR_POLAR_ICE,
+    // Mars
+    MARS_DUST, MARS_DARK_SAND, MARS_ROCK, MARS_VOLCANIC, MARS_LAYERED, MARS_POLAR_ICE,
+    // other worlds
+    GREY_REGOLITH, DARK_REGOLITH, BASALT_PLAINS, SULFUR_PLAINS, VOLCANIC_VENT, CLEAN_ICE, DIRTY_ICE, DARK_ICE,
+    NITROGEN_ICE, THOLIN, ORGANIC_DUNES, ORGANIC_SHORE
+}

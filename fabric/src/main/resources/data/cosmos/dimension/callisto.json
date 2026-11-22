@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:callisto",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "callisto",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "callisto"
+    }
+  }
+}

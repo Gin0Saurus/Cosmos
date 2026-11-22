@@ -134,6 +134,7 @@ public final class CosmosRenderer {
         double tod = Math.floorMod(dayTime, 24000L);
         double night = tod < 12000 ? 0 : tod < 13500 ? (tod - 12000) / 1500 : tod < 22500 ? 1 : tod < 24000 ? (24000 - tod) / 1500 : 0;
         night *= 1 - rain;
+        if (CosmosState.vacuumSky) night = 1;           // no atmosphere: the stars are out in daylight too
         if (night < 0.01) return;
         // Earth's rotation: Minecraft midnight (18000) = local sidereal time RA_sun + 12h, so the real stars that are
         // opposite the Sun today are overhead at midnight.

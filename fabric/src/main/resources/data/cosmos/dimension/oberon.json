@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:oberon",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "oberon",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "oberon"
+    }
+  }
+}

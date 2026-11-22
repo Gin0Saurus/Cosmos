@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:ganymede",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "ganymede",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "ganymede"
+    }
+  }
+}

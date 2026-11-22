@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:enceladus",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "enceladus",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "enceladus"
+    }
+  }
+}

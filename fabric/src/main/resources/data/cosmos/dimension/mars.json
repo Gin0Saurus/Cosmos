@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:mars",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "mars",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "mars"
+    }
+  }
+}

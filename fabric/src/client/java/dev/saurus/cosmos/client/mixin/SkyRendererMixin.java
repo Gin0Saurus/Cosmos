@@ -2,6 +2,7 @@ package dev.saurus.cosmos.client.mixin;
 
 import com.mojang.blaze3d.pipeline.RenderTarget;
 import com.mojang.renderpearl.api.buffers.GpuBufferSlice;
+import dev.saurus.cosmos.client.CosmosState;
 import dev.saurus.cosmos.client.render.CosmosRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.SkyRenderer;
@@ -23,6 +24,10 @@ public abstract class SkyRendererMixin {
     private void cosmos$realStars(GpuBufferSlice fog, SkyRenderState state, CallbackInfo ci) {
         Minecraft mc = Minecraft.getInstance();
         if (mc.level == null || !mc.level.dimensionType().hasSkyLight()) return;
+        String body = dev.saurus.cosmos.world.Planets.bodyOf(mc.level);
+        CosmosState.vacuumSky = body != null && dev.saurus.cosmos.world.Planets.body(body).atmosphere == null;
+        if (body != null && mc.player != null)   // the real sky over where you actually stand
+            CosmosState.observerLatDeg = Math.toDegrees(dev.saurus.cosmos.world.Planets.projection(body).latLon(mc.player.getX(), mc.player.getZ())[0]);
         Matrix4f viewProj = mc.gameRenderer.mainCamera().getViewRotationProjectionMatrix(new Matrix4f());
         CosmosRenderer.INSTANCE.renderOverworldSky(renderTarget, viewProj, new Matrix4f(),
                 mc.level.getOverworldClockTime(), mc.level.getRainLevel(1.0f));

@@ -3,13 +3,16 @@
   "id": "cosmos",
   "version": "${version}",
   "name": "Cosmos",
-  "description": "A true-scale, data-driven universe: 112k real stars, the real Solar System on JPL orbits, 5,393 exoplanets, galaxies and black holes. Type /cosmos help in game.",
+  "description": "A true-scale, data-driven universe you can walk on: Earth, the Moon, Mars and 23 more worlds generated from real NASA/NOAA elevation data, with real gravity. 112k real stars, JPL orbits, exoplanets, galaxies and black holes. Type /cosmos help in game.",
   "authors": [
     "Gino"
   ],
   "license": "All-Rights-Reserved",
-  "environment": "client",
+  "environment": "*",
   "entrypoints": {
+    "main": [
+      "dev.saurus.cosmos.CosmosMod"
+    ],
     "client": [
       "dev.saurus.cosmos.client.CosmosClient"
     ]
@@ -21,6 +24,7 @@
     "fabric-api": "*"
   },
   "mixins": [
+    "cosmos.common.mixins.json",
     {
       "config": "cosmos.mixins.json",
       "environment": "client"

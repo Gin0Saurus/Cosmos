@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:pluto",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "pluto",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "pluto"
+    }
+  }
+}

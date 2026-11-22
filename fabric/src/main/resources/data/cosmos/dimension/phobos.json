@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:phobos",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "phobos",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "phobos"
+    }
+  }
+}

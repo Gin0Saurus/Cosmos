@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:tethys",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "tethys",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "tethys"
+    }
+  }
+}

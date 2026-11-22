@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:dione",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "dione",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "dione"
+    }
+  }
+}

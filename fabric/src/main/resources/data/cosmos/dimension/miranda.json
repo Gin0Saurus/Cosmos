@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:miranda",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "miranda",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "miranda"
+    }
+  }
+}

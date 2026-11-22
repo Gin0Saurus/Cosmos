@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:moon",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "moon",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "moon"
+    }
+  }
+}

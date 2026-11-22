@@ -10,7 +10,8 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import dev.saurus.cosmos.net.CosmosPayloads;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.phys.Vec3;
@@ -30,6 +31,8 @@ public final class CosmosClient implements ClientModInitializer {
         });
 
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, ctx) -> CosmosCommands.register(dispatcher));
+        ClientPlayNetworking.registerGlobalReceiver(CosmosPayloads.Launch.TYPE, (payload, ctx) -> ctx.client().execute(() -> SurfaceLink.onLaunch(payload)));
+        ClientPlayNetworking.registerGlobalReceiver(CosmosPayloads.WorldInfo.TYPE, (payload, ctx) -> ctx.client().execute(() -> SurfaceLink.onWorldInfo(payload)));
 
         // Overworld stars and the space view are drawn from mixins (SkyRendererMixin, GameRendererMixin),
         // at points where Minecraft has no render pass open.
@@ -38,6 +41,7 @@ public final class CosmosClient implements ClientModInitializer {
         ClientTickEvents.END_CLIENT_TICK.register(mc -> {
             if (mc.player == null) { anchor = null; return; }
             if (CosmosState.spaceMode) {
+                SurfaceLink.tick();
                 if (anchor == null) anchor = mc.player.position();
                 mc.player.setDeltaMovement(Vec3.ZERO);
                 mc.player.setPos(anchor.x, anchor.y, anchor.z);

@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:charon",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "charon",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "charon"
+    }
+  }
+}

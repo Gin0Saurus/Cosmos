@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:titania",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "titania",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "titania"
+    }
+  }
+}

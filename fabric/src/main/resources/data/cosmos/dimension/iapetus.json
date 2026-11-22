@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:iapetus",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "iapetus",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "iapetus"
+    }
+  }
+}

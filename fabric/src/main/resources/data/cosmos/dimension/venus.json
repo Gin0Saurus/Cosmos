@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:venus",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "venus",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "venus"
+    }
+  }
+}

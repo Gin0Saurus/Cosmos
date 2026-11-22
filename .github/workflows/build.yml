@@ -7,7 +7,7 @@ concurrency: { group: build, cancel-in-progress: true }
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-java@v5
@@ -32,11 +32,11 @@ jobs:
         if: steps.build.outcome == 'success'
         working-directory: fabric
         continue-on-error: true
-        timeout-minutes: 25
+        timeout-minutes: 30
         env: { SDL_VIDEO_FORCE_EGL: "1", LIBGL_ALWAYS_SOFTWARE: "1", MESA_GL_VERSION_OVERRIDE: "4.5", MESA_GLSL_VERSION_OVERRIDE: "450" }
         run: |
           ( for i in $(seq 1 180); do sleep 5; if grep -q "Failed to create backend Vulkan" ../gametest.log 2>/dev/null; then echo "WATCHDOG: no graphics backend, killing"; pkill -f runClientGameTest; pkill -f KnotClient; pkill java; break; fi; done ) &
-          timeout 1200 xvfb-run -a -s "-screen 0 1280x720x24 +extension GLX +render -noreset" ./gradlew --no-daemon runClientGameTest 2>&1 | tee ../gametest.log; exit ${PIPESTATUS[0]}
+          timeout 1500 xvfb-run -a -s "-screen 0 1280x720x24 +extension GLX +render -noreset" ./gradlew --no-daemon runClientGameTest 2>&1 | tee ../gametest.log; exit ${PIPESTATUS[0]}
       - name: Debug dumps
         if: always()
         run: |
@@ -50,6 +50,8 @@ jobs:
           cp fabric/build/libs/cosmos-*.jar out/ 2>/dev/null || true
           find fabric -name '*.png' -path '*screenshot*' -newer fabric/build.gradle -exec cp {} out/screenshots/ \; 2>/dev/null || true
           find fabric -name 'latest.log' -path '*run*' -exec cp {} out/minecraft-latest.log \; 2>/dev/null || true
+          find fabric -name 'cosmos-test-results.txt' -exec cp {} out/ \; 2>/dev/null || true
+          mkdir -p out/crash && find fabric -path '*crash-reports*' -name '*.txt' -exec cp {} out/crash/ \; 2>/dev/null || true
           echo "build=${{ steps.build.outcome }} gametest=${{ steps.gametest.outcome }} sha=${{ github.sha }}" > out/STATUS.txt
           ls -la out out/screenshots
           git config user.name "cosmos-ci"; git config user.email "ci@users.noreply.github.com"

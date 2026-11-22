@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:triton",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "triton",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "triton"
+    }
+  }
+}

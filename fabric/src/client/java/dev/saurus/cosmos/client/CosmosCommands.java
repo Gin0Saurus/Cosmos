@@ -32,6 +32,12 @@ public final class CosmosCommands {
                 .then(ClientCommands.literal("help").executes(CosmosCommands::help))
                 .then(ClientCommands.literal("fly").executes(c -> { enterSpace(c, "Earth"); return 1; }))
                 .then(ClientCommands.literal("exit").executes(CosmosCommands::exit))
+                .then(ClientCommands.literal("land").then(ClientCommands.argument("body", StringArgumentType.word())
+                        .executes(c -> land(c, StringArgumentType.getString(c, "body"), Double.NaN, Double.NaN))
+                        .then(ClientCommands.argument("lat", DoubleArgumentType.doubleArg(-90, 90)).then(ClientCommands.argument("lon", DoubleArgumentType.doubleArg(-180, 360))
+                                .executes(c -> land(c, StringArgumentType.getString(c, "body"), DoubleArgumentType.getDouble(c, "lat"), DoubleArgumentType.getDouble(c, "lon")))))))
+                .then(ClientCommands.literal("where").executes(CosmosCommands::where))
+                .then(ClientCommands.literal("worlds").executes(CosmosCommands::worlds))
                 .then(ClientCommands.literal("goto").then(ClientCommands.argument("name", StringArgumentType.greedyString())
                         .executes(c -> { enterSpace(c, StringArgumentType.getString(c, "name")); return 1; })))
                 .then(ClientCommands.literal("search").then(ClientCommands.argument("query", StringArgumentType.greedyString())
@@ -63,6 +69,8 @@ public final class CosmosCommands {
         say(c, "§e/cosmos search <text>§7 / §e/cosmos info <name>§7 — look things up (with data sources)");
         say(c, "§e/cosmos speed <x>§7 — flight speed factor (default 0.5)   §e/cosmos time <x>|now§7 — time warp");
         say(c, "§e/cosmos exit§7 — back to your world   §e/cosmos sky on|off§7 — real stars in the overworld");
+        say(c, "§e/cosmos land <world> [lat lon]§7 — touch down on a planet or moon   §e/cosmos worlds§7 / §e/cosmos where");
+        say(c, "§7Fly straight up past the top of the sky to launch into space; fly down into a planet or moon to land.");
         say(c, "§7In space: WASD move, Space/Shift up/down, Sprint = x20. Speed scales with distance to the nearest object.");
         return 1;
     }
@@ -74,8 +82,46 @@ public final class CosmosCommands {
     }
 
     private static int exit(CommandContext<FabricClientCommandSource> c) {
+        boolean wasInSpace = CosmosState.spaceMode;
         CosmosState.spaceMode = false;
+        if (wasInSpace && net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.canSend(dev.saurus.cosmos.net.CosmosPayloads.Land.TYPE))
+            SurfaceLink.requestLanding("", 0, 0);
         say(c, "§bWelcome back to your world.");
+        return 1;
+    }
+
+    /** Lands on a body (the quick way; flying down into it does the same). Used by the in-game test too. */
+    public static int land(CommandContext<FabricClientCommandSource> c, String body, double lat, double lon) {
+        String id = body.toLowerCase(java.util.Locale.ROOT);
+        if (!dev.saurus.cosmos.core.terrain.PlanetTerrains.isWalkable(id)) {
+            say(c, "§c" + body + " has no solid surface to land on (or isn't a walkable world). Try /cosmos worlds");
+            return 0;
+        }
+        if (Double.isNaN(lat)) { double[] site = SurfaceLink.SITES.getOrDefault(id, new double[] { 0, 0 }); lat = site[0]; lon = site[1]; }
+        if (lon > 180) lon -= 360;
+        SurfaceLink.requestLanding(id, lat, lon);
+        return 1;
+    }
+
+    private static int where(CommandContext<FabricClientCommandSource> c) {
+        var mc = net.minecraft.client.Minecraft.getInstance();
+        String b = dev.saurus.cosmos.world.Planets.bodyOf(mc.level);
+        if (b == null || mc.player == null) { say(c, "§7You're not on a Cosmos world surface."); return 1; }
+        var proj = dev.saurus.cosmos.world.Planets.projection(b);
+        double[] ll = proj.latLon(mc.player.getX(), mc.player.getZ());
+        var terrain = dev.saurus.cosmos.world.Planets.terrain(b);
+        say(c, String.format("§b%s§7: latitude %.4f, longitude %.4f, elevation %.0f m", dev.saurus.cosmos.world.Planets.body(b).name,
+                Math.toDegrees(ll[0]), Math.toDegrees(ll[1]), dev.saurus.cosmos.core.terrain.SurfaceScale.elevationForBlockY(mc.player.getY())));
+        say(c, String.format("§7Gravity %.3f m/s² (%.2f g). Walk %,d blocks east to go all the way round.", dev.saurus.cosmos.world.Planets.surfaceGravity(b),
+                dev.saurus.cosmos.world.Planets.surfaceGravity(b) / 9.80665, proj.circumference()));
+        say(c, "§7" + terrain.provenance());
+        return 1;
+    }
+
+    private static int worlds(CommandContext<FabricClientCommandSource> c) {
+        say(c, "§bWalkable worlds§7 (/cosmos land <name> [lat lon]):");
+        say(c, "§f" + String.join(", ", dev.saurus.cosmos.core.terrain.PlanetTerrains.walkable()));
+        say(c, "§7Earth, Moon and Mars use real NASA/NOAA elevation data; the rest are procedural and labelled so.");
         return 1;
     }
 

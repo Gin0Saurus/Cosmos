@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:earth",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "earth",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "earth"
+    }
+  }
+}

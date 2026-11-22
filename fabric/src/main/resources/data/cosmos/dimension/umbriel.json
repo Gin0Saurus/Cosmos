@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:umbriel",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "umbriel",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "umbriel"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "cosmos:ariel",
+  "generator": {
+    "type": "cosmos:planet",
+    "body": "ariel",
+    "biome_source": {
+      "type": "cosmos:planet",
+      "body": "ariel"
+    }
+  }
+}
