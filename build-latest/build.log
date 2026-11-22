@@ -15,8 +15,8 @@ Fabric Loom: 1.19.4
 > Task :jar
 > Task :assemble
 > Task :build
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build-1795372896062.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build-1795374535565.json
 
-BUILD SUCCESSFUL in 19s
+BUILD SUCCESSFUL in 26s
 6 actionable tasks: 6 executed
 Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.8.2/userguide/configuration_cache_enabling.html
