@@ -1,0 +1,448 @@
+  public boolean causeFallDamage(double, float, net.minecraft.world.damagesource.DamageSource);
+    Code:
+         0: aload_0
+         1: invokevirtual #3022               // Method isIgnoringFallDamageFromCurrentImpulse:()Z
+         4: ifeq          58
+         7: dload_1
+         8: aload_0
+         9: getfield      #1416               // Field currentImpulseImpactPos:Lnet/minecraft/world/phys/Vec3;
+        12: getfield      #2378               // Field net/minecraft/world/phys/Vec3.y:D
+        15: aload_0
+        16: invokevirtual #733                // Method getY:()D
+        19: dsub
+        20: invokestatic  #762                // Method java/lang/Math.min:(DD)D
+        23: dstore        5
+        25: dload         5
+        27: dconst_0
+        28: dcmpg
+        29: ifgt          36
+        32: iconst_1
+        33: goto          37
+        36: iconst_0
+        37: istore        7
+        39: iload         7
+        41: ifeq          51
+        44: aload_0
+        45: invokevirtual #3025               // Method resetCurrentImpulseContext:()V
+        48: goto          55
+        51: aload_0
+        52: invokevirtual #3028               // Method tryResetCurrentImpulseContext:()V
+        55: goto          61
+        58: dload_1
+        59: dstore        5
+        61: aload_0
+        62: dload         5
+        64: fload_3
+        65: aload         4
+        67: invokespecial #3030               // Method net/minecraft/world/entity/Entity.causeFallDamage:(DFLnet/minecraft/world/damagesource/DamageSource;)Z
+        70: istore        7
+        72: aload_0
+        73: dload         5
+        75: fload_3
+        76: invokevirtual #3034               // Method calculateFallDamage:(DF)I
+        79: istore        8
+        81: iload         8
+        83: ifle          117
+        86: aload_0
+        87: invokevirtual #3025               // Method resetCurrentImpulseContext:()V
+        90: aload_0
+        91: aload_0
+        92: iload         8
+        94: invokevirtual #3036               // Method getFallDamageSound:(I)Lnet/minecraft/sounds/SoundEvent;
+        97: fconst_1
+        98: fconst_1
+        99: invokevirtual #2508               // Method playSound:(Lnet/minecraft/sounds/SoundEvent;FF)V
+       102: aload_0
+       103: invokevirtual #3039               // Method playBlockFallSound:()V
+       106: aload_0
+       107: aload         4
+       109: iload         8
+       111: i2f
+       112: invokevirtual #3042               // Method hurt:(Lnet/minecraft/world/damagesource/DamageSource;F)V
+       115: iconst_1
+       116: ireturn
+       117: iload         7
+       119: ireturn
+  protected int calculateFallDamage(double, float);
+    Code:
+         0: aload_0
+         1: getstatic     #3057               // Field net/minecraft/tags/EntityTypeTags.FALL_DAMAGE_IMMUNE:Lnet/minecraft/tags/TagKey;
+         4: invokevirtual #805                // Method is:(Lnet/minecraft/tags/TagKey;)Z
+         7: ifeq          12
+        10: iconst_0
+        11: ireturn
+        12: aload_0
+        13: dload_1
+        14: invokevirtual #709                // Method calculateFallPower:(D)D
+        17: dstore        4
+        19: dload         4
+        21: fload_3
+        22: f2d
+        23: dmul
+        24: aload_0
+        25: getstatic     #635                // Field net/minecraft/world/entity/ai/attributes/Attributes.FALL_DAMAGE_MULTIPLIER:Lnet/minecraft/core/Holder;
+        28: invokevirtual #1071               // Method getAttributeValue:(Lnet/minecraft/core/Holder;)D
+        31: dmul
+        32: invokestatic  #715                // Method net/minecraft/util/Mth.floor:(D)I
+        35: ireturn
+  protected double getEffectiveGravity();
+    Code:
+         0: aload_0
+         1: invokevirtual #821                // Method getDeltaMovement:()Lnet/minecraft/world/phys/Vec3;
+         4: getfield      #2378               // Field net/minecraft/world/phys/Vec3.y:D
+         7: dconst_0
+         8: dcmpg
+         9: ifgt          16
+        12: iconst_1
+        13: goto          17
+        16: iconst_0
+        17: istore_1
+        18: iload_1
+        19: ifeq          43
+        22: aload_0
+        23: getstatic     #3587               // Field net/minecraft/world/effect/MobEffects.SLOW_FALLING:Lnet/minecraft/core/Holder;
+        26: invokevirtual #1740               // Method hasEffect:(Lnet/minecraft/core/Holder;)Z
+        29: ifeq          43
+        32: aload_0
+        33: invokevirtual #3590               // Method getGravity:()D
+        36: ldc2_w        #2844               // double 0.01d
+        39: invokestatic  #762                // Method java/lang/Math.min:(DD)D
+        42: dreturn
+        43: aload_0
+        44: invokevirtual #3590               // Method getGravity:()D
+        47: dreturn
+  public void travel(net.minecraft.world.phys.Vec3);
+    Code:
+         0: aload_0
+         1: aload_0
+         2: invokevirtual #696                // Method level:()Lnet/minecraft/world/level/Level;
+         5: aload_0
+         6: invokevirtual #740                // Method blockPosition:()Lnet/minecraft/core/BlockPos;
+         9: invokevirtual #3596               // Method net/minecraft/world/level/Level.getFluidState:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/material/FluidState;
+        12: invokevirtual #3599               // Method shouldTravelInFluid:(Lnet/minecraft/world/level/material/FluidState;)Z
+        15: ifeq          26
+        18: aload_0
+        19: aload_1
+        20: invokevirtual #3602               // Method travelInFluid:(Lnet/minecraft/world/phys/Vec3;)V
+        23: goto          46
+        26: aload_0
+        27: invokevirtual #1449               // Method isFallFlying:()Z
+        30: ifeq          41
+        33: aload_0
+        34: aload_1
+        35: invokevirtual #3605               // Method travelFallFlying:(Lnet/minecraft/world/phys/Vec3;)V
+        38: goto          46
+        41: aload_0
+        42: aload_1
+        43: invokevirtual #3608               // Method travelInAir:(Lnet/minecraft/world/phys/Vec3;)V
+        46: return
+  private void travelInAir(net.minecraft.world.phys.Vec3);
+    Code:
+         0: aload_0
+         1: invokevirtual #3649               // Method getBlockPosBelowThatAffectsMyMovement:()Lnet/minecraft/core/BlockPos;
+         4: astore_2
+         5: aload_0
+         6: invokevirtual #2852               // Method onGround:()Z
+         9: ifeq          40
+        12: aload_0
+        13: invokevirtual #696                // Method level:()Lnet/minecraft/world/level/Level;
+        16: aload_2
+        17: invokevirtual #2598               // Method net/minecraft/world/level/Level.getBlockState:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+        20: invokevirtual #2948               // Method net/minecraft/world/level/block/state/BlockState.getBlock:()Lnet/minecraft/world/level/block/Block;
+        23: invokevirtual #3652               // Method net/minecraft/world/level/block/Block.getFriction:()F
+        26: aload_0
+        27: getstatic     #674                // Field net/minecraft/world/entity/ai/attributes/Attributes.FRICTION_MODIFIER:Lnet/minecraft/core/Holder;
+        30: invokevirtual #1071               // Method getAttributeValue:(Lnet/minecraft/core/Holder;)D
+        33: d2f
+        34: invokestatic  #3654               // Method computeModifiedFriction:(FF)F
+        37: goto          41
+        40: fconst_1
+        41: fstore_3
+        42: aload_0
+        43: aload_1
+        44: fload_3
+        45: invokevirtual #3658               // Method handleRelativeFrictionAndCalculateMovement:(Lnet/minecraft/world/phys/Vec3;F)Lnet/minecraft/world/phys/Vec3;
+        48: astore        4
+        50: aload         4
+        52: getfield      #2378               // Field net/minecraft/world/phys/Vec3.y:D
+        55: dstore        5
+        57: aload_0
+        58: getstatic     #3661               // Field net/minecraft/world/effect/MobEffects.LEVITATION:Lnet/minecraft/core/Holder;
+        61: invokevirtual #1892               // Method getEffect:(Lnet/minecraft/core/Holder;)Lnet/minecraft/world/effect/MobEffectInstance;
+        64: astore        7
+        66: aload         7
+        68: ifnull        101
+        71: dload         5
+        73: ldc2_w        #3662               // double 0.05d
+        76: aload         7
+        78: invokevirtual #1966               // Method net/minecraft/world/effect/MobEffectInstance.getAmplifier:()I
+        81: iconst_1
+        82: iadd
+        83: i2d
+        84: dmul
+        85: aload         4
+        87: getfield      #2378               // Field net/minecraft/world/phys/Vec3.y:D
+        90: dsub
+        91: ldc2_w        #200                // double 0.2d
+        94: dmul
+        95: dadd
+        96: dstore        5
+        98: goto          161
+       101: aload_0
+       102: invokevirtual #696                // Method level:()Lnet/minecraft/world/level/Level;
+       105: invokevirtual #1146               // Method net/minecraft/world/level/Level.isClientSide:()Z
+       108: ifeq          122
+       111: aload_0
+       112: invokevirtual #696                // Method level:()Lnet/minecraft/world/level/Level;
+       115: aload_2
+       116: invokevirtual #3667               // Method net/minecraft/world/level/Level.hasChunkAt:(Lnet/minecraft/core/BlockPos;)Z
+       119: ifeq          134
+       122: dload         5
+       124: aload_0
+       125: invokevirtual #3669               // Method getEffectiveGravity:()D
+       128: dsub
+       129: dstore        5
+       131: goto          161
+       134: aload_0
+       135: invokevirtual #733                // Method getY:()D
+       138: aload_0
+       139: invokevirtual #696                // Method level:()Lnet/minecraft/world/level/Level;
+       142: invokevirtual #3672               // Method net/minecraft/world/level/Level.getMinY:()I
+       145: i2d
+       146: dcmpl
+       147: ifle          158
+       150: ldc2_w        #3673               // double -0.1d
+       153: dstore        5
+       155: goto          161
+       158: dconst_0
+       159: dstore        5
+       161: aload_0
+       162: invokevirtual #3676               // Method shouldDiscardFriction:()Z
+       165: ifeq          187
+       168: aload_0
+       169: aload         4
+       171: getfield      #2314               // Field net/minecraft/world/phys/Vec3.x:D
+       174: dload         5
+       176: aload         4
+       178: getfield      #2316               // Field net/minecraft/world/phys/Vec3.z:D
+       181: invokevirtual #2857               // Method setDeltaMovement:(DDD)V
+       184: goto          261
+       187: aload_0
+       188: getstatic     #671                // Field net/minecraft/world/entity/ai/attributes/Attributes.AIR_DRAG_MODIFIER:Lnet/minecraft/core/Holder;
+       191: invokevirtual #1071               // Method getAttributeValue:(Lnet/minecraft/core/Holder;)D
+       194: d2f
+       195: fstore        8
+       197: ldc           #239                // float 0.91f
+       199: fload         8
+       201: invokestatic  #3654               // Method computeModifiedFriction:(FF)F
+       204: fstore        9
+       206: fload_3
+       207: fload         9
+       209: fmul
+       210: fstore        10
+       212: aload_0
+       213: invokevirtual #3679               // Method omnidirectionalAirMover:()Z
+       216: ifeq          224
+       219: fload         9
+       221: goto          231
+       224: ldc           #188                // float 0.98f
+       226: fload         8
+       228: invokestatic  #3654               // Method computeModifiedFriction:(FF)F
+       231: fstore        11
+       233: aload_0
+       234: aload         4
+       236: getfield      #2314               // Field net/minecraft/world/phys/Vec3.x:D
+       239: fload         10
+       241: f2d
+       242: dmul
+       243: dload         5
+       245: fload         11
+       247: f2d
+       248: dmul
+       249: aload         4
+       251: getfield      #2316               // Field net/minecraft/world/phys/Vec3.z:D
+       254: fload         10
+       256: f2d
+       257: dmul
+       258: invokevirtual #2857               // Method setDeltaMovement:(DDD)V
+       261: return
+        24: invokevirtual #3669               // Method getEffectiveGravity:()D
+        27: dstore        5
+        29: aload_0
+        30: invokevirtual #690                // Method isInWater:()Z
+        33: ifeq          48
+        36: aload_0
+        37: aload_1
+        38: dload         5
+        40: iload_2
+        41: dload_3
+        42: invokevirtual #3691               // Method travelInWater:(Lnet/minecraft/world/phys/Vec3;DZD)V
+        45: goto          57
+        48: aload_0
+        49: aload_1
+        50: dload         5
+        52: iload_2
+        53: dload_3
+        54: invokevirtual #3694               // Method travelInLava:(Lnet/minecraft/world/phys/Vec3;DZD)V
+        57: aload_0
+        58: getstatic     #3697               // Field net/minecraft/tags/FluidTags.ENTITY_FLOATABLE:Lnet/minecraft/tags/TagKey;
+        61: invokevirtual #3700               // Method floatInLiquidWhileRidden:(Lnet/minecraft/tags/TagKey;)V
+        64: return
+         9: invokevirtual #3608               // Method travelInAir:(Lnet/minecraft/world/phys/Vec3;)V
+        12: aload_0
+        13: invokevirtual #3769               // Method stopFallFlying:()V
+        16: return
+        17: aload_0
+        18: invokevirtual #821                // Method getDeltaMovement:()Lnet/minecraft/world/phys/Vec3;
+        21: astore_2
+        22: aload_2
+        23: invokevirtual #3772               // Method net/minecraft/world/phys/Vec3.horizontalDistance:()D
+        26: dstore_3
+        27: aload_0
+        28: aload_0
+        29: aload_2
+        30: invokevirtual #3775               // Method updateFallFlyingMovement:(Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
+        33: invokevirtual #3571               // Method setDeltaMovement:(Lnet/minecraft/world/phys/Vec3;)V
+        36: aload_0
+        37: getstatic     #3635               // Field net/minecraft/world/entity/MoverType.SELF:Lnet/minecraft/world/entity/MoverType;
+        40: aload_0
+        41: invokevirtual #821                // Method getDeltaMovement:()Lnet/minecraft/world/phys/Vec3;
+        44: invokevirtual #3639               // Method move:(Lnet/minecraft/world/entity/MoverType;Lnet/minecraft/world/phys/Vec3;)V
+        47: aload_0
+        48: invokevirtual #696                // Method level:()Lnet/minecraft/world/level/Level;
+        51: invokevirtual #1146               // Method net/minecraft/world/level/Level.isClientSide:()Z
+        54: ifne          73
+        57: aload_0
+        58: invokevirtual #821                // Method getDeltaMovement:()Lnet/minecraft/world/phys/Vec3;
+        61: invokevirtual #3772               // Method net/minecraft/world/phys/Vec3.horizontalDistance:()D
+        64: dstore        5
+        66: aload_0
+        67: dload_3
+        68: dload         5
+        70: invokevirtual #3778               // Method handleFallFlyingCollisions:(DD)V
+        73: return
+        45: invokevirtual #3669               // Method getEffectiveGravity:()D
+        48: dstore        8
+        50: fload_3
+        51: f2d
+        52: invokestatic  #3792               // Method java/lang/Math.cos:(D)D
+        55: invokestatic  #3795               // Method net/minecraft/util/Mth.square:(D)D
+        58: dstore        10
+        60: aload_1
+        61: dconst_0
+        62: dload         8
+        64: ldc2_w        #3796               // double -1.0d
+        67: dload         10
+        69: ldc2_w        #3798               // double 0.75d
+        72: dmul
+        73: dadd
+        74: dmul
+        75: dconst_0
+        76: invokevirtual #3493               // Method net/minecraft/world/phys/Vec3.add:(DDD)Lnet/minecraft/world/phys/Vec3;
+        79: astore_1
+        80: aload_1
+        81: getfield      #2378               // Field net/minecraft/world/phys/Vec3.y:D
+        84: dconst_0
+        85: dcmpg
+        86: ifge          136
+        89: dload         4
+        91: dconst_0
+        92: dcmpl
+        93: ifle          136
+        96: aload_1
+        97: getfield      #2378               // Field net/minecraft/world/phys/Vec3.y:D
+       100: ldc2_w        #3673               // double -0.1d
+       103: dmul
+       104: dload         10
+       106: dmul
+       107: dstore        12
+       109: aload_1
+       110: aload_2
+       111: getfield      #2314               // Field net/minecraft/world/phys/Vec3.x:D
+       114: dload         12
+       116: dmul
+       117: dload         4
+       119: ddiv
+       120: dload         12
+       122: aload_2
+       123: getfield      #2316               // Field net/minecraft/world/phys/Vec3.z:D
+       126: dload         12
+       128: dmul
+       129: dload         4
+       131: ddiv
+       132: invokevirtual #3493               // Method net/minecraft/world/phys/Vec3.add:(DDD)Lnet/minecraft/world/phys/Vec3;
+       135: astore_1
+       136: fload_3
+       137: fconst_0
+       138: fcmpg
+       139: ifge          198
+       142: dload         4
+       144: dconst_0
+       145: dcmpl
+       146: ifle          198
+       149: dload         6
+       151: fload_3
+       152: f2d
+       153: invokestatic  #3558               // Method net/minecraft/util/Mth.sin:(D)F
+       156: fneg
+       157: f2d
+       158: dmul
+       159: ldc2_w        #3800               // double 0.04d
+       162: dmul
+       163: dstore        12
+       165: aload_1
+       166: aload_2
+       167: getfield      #2314               // Field net/minecraft/world/phys/Vec3.x:D
+       170: dneg
+       171: dload         12
+       173: dmul
+       174: dload         4
+       176: ddiv
+       177: dload         12
+       179: ldc2_w        #3802               // double 3.2d
+       182: dmul
+       183: aload_2
+       184: getfield      #2316               // Field net/minecraft/world/phys/Vec3.z:D
+       187: dneg
+       188: dload         12
+       190: dmul
+       191: dload         4
+       193: ddiv
+       194: invokevirtual #3493               // Method net/minecraft/world/phys/Vec3.add:(DDD)Lnet/minecraft/world/phys/Vec3;
+       197: astore_1
+       198: dload         4
+       200: dconst_0
+       201: dcmpl
+       202: ifle          249
+       205: aload_1
+       206: aload_2
+       207: getfield      #2314               // Field net/minecraft/world/phys/Vec3.x:D
+       210: dload         4
+       212: ddiv
+       213: dload         6
+       215: dmul
+       216: aload_1
+       217: getfield      #2314               // Field net/minecraft/world/phys/Vec3.x:D
+       220: dsub
+       221: ldc2_w        #3804               // double 0.1d
+       224: dmul
+       225: dconst_0
+       226: aload_2
+       227: getfield      #2316               // Field net/minecraft/world/phys/Vec3.z:D
+       230: dload         4
+       232: ddiv
+       233: dload         6
+       235: dmul
+       236: aload_1
+       237: getfield      #2316               // Field net/minecraft/world/phys/Vec3.z:D
+       240: dsub
+       241: ldc2_w        #3804               // double 0.1d
+       244: dmul
+       245: invokevirtual #3493               // Method net/minecraft/world/phys/Vec3.add:(DDD)Lnet/minecraft/world/phys/Vec3;
+       248: astore_1
+       249: aload_1
+       250: ldc2_w        #3806               // double 0.9900000095367432d
+       253: ldc2_w        #3808               // double 0.9800000190734863d
+       256: ldc2_w        #3806               // double 0.9900000095367432d
+       259: invokevirtual #3719               // Method net/minecraft/world/phys/Vec3.multiply:(DDD)Lnet/minecraft/world/phys/Vec3;
+       262: areturn

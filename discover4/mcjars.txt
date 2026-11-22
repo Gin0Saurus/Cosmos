@@ -1,0 +1,2 @@
+/home/runner/work/Cosmos/Cosmos/fabric/.gradle/loom-cache/minecraftMaven/net/minecraft/minecraft-clientOnly-1b0498e74c/26.3/minecraft-clientOnly-1b0498e74c-26.3.jar
+/home/runner/work/Cosmos/Cosmos/fabric/.gradle/loom-cache/minecraftMaven/net/minecraft/minecraft-common-1b0498e74c/26.3/minecraft-common-1b0498e74c-26.3.jar

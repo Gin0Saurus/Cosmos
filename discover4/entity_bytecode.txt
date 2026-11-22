@@ -1,0 +1,35 @@
+         1: invokevirtual #1529               // Method getGravity:()D
+         4: dreturn
+  protected double getDefaultGravity();
+    Code:
+         0: dconst_0
+         1: dreturn
+  public final double getGravity();
+    Code:
+         0: aload_0
+         1: invokevirtual #2308               // Method isNoGravity:()Z
+         4: ifeq          11
+         7: dconst_0
+         8: goto          15
+        11: aload_0
+        12: invokevirtual #2310               // Method getDefaultGravity:()D
+        15: dreturn
+  protected void applyGravity();
+    Code:
+         0: aload_0
+         1: invokevirtual #1529               // Method getGravity:()D
+         4: dstore_1
+         5: dload_1
+         6: dconst_0
+         7: dcmpl
+         8: ifeq          26
+        11: aload_0
+        12: aload_0
+        13: invokevirtual #1418               // Method getDeltaMovement:()Lnet/minecraft/world/phys/Vec3;
+        16: dconst_0
+        17: dload_1
+        18: dneg
+        19: dconst_0
+        20: invokevirtual #2313               // Method net/minecraft/world/phys/Vec3.add:(DDD)Lnet/minecraft/world/phys/Vec3;
+        23: invokevirtual #1311               // Method setDeltaMovement:(Lnet/minecraft/world/phys/Vec3;)V
+        26: return
