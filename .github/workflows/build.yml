@@ -20,8 +20,12 @@ jobs:
         run: chmod +x gradlew && ./gradlew --no-daemon build -x test 2>&1 | tee ../build.log; exit ${PIPESTATUS[0]}
       - name: Install headless GL
         if: steps.build.outcome == 'success'
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq xvfb mesa-utils libgl1-mesa-dri libglx-mesa0 libegl1 libegl-mesa0 mesa-vulkan-drivers libvulkan1 vulkan-tools > /dev/null
-          xvfb-run -a -s "-screen 0 1280x720x24 +extension GLX" glxinfo -B > glinfo.txt 2>&1 || true
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb mesa-utils libgl1-mesa-dri libglx-mesa0 libegl1 libegl-mesa0 libgles2 mesa-vulkan-drivers libvulkan1 vulkan-tools > /dev/null
+          ldconfig -p | grep -E 'libEGL|libvulkan' > glinfo.txt || true
+          xvfb-run -a -s "-screen 0 1280x720x24 +extension GLX" glxinfo -B >> glinfo.txt 2>&1 || true
+          xvfb-run -a -s "-screen 0 1280x720x24" eglinfo -B >> glinfo.txt 2>&1 || true
           xvfb-run -a -s "-screen 0 1280x720x24" vulkaninfo --summary >> glinfo.txt 2>&1 || true
       - name: Run in-game test (real Minecraft client)
         id: gametest
@@ -30,7 +34,9 @@ jobs:
         continue-on-error: true
         timeout-minutes: 25
         env: { SDL_VIDEO_FORCE_EGL: "1", LIBGL_ALWAYS_SOFTWARE: "1", MESA_GL_VERSION_OVERRIDE: "4.5", MESA_GLSL_VERSION_OVERRIDE: "450" }
-        run: xvfb-run -a -s "-screen 0 1280x720x24 +extension GLX +render -noreset" ./gradlew --no-daemon runClientGameTest 2>&1 | tee ../gametest.log; exit ${PIPESTATUS[0]}
+        run: |
+          ( for i in $(seq 1 180); do sleep 5; if grep -q "Failed to create backend Vulkan" ../gametest.log 2>/dev/null; then echo "WATCHDOG: no graphics backend, killing"; pkill -f runClientGameTest; pkill -f KnotClient; pkill java; break; fi; done ) &
+          timeout 1200 xvfb-run -a -s "-screen 0 1280x720x24 +extension GLX +render -noreset" ./gradlew --no-daemon runClientGameTest 2>&1 | tee ../gametest.log; exit ${PIPESTATUS[0]}
       - name: Debug dumps
         if: always()
         run: |
