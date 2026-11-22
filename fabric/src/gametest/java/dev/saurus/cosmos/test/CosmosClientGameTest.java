@@ -77,7 +77,7 @@ public final class CosmosClientGameTest implements FabricClientGameTest {
         double x = Math.floor(proj.x(Math.toRadians(lon))) + 0.5, z = Math.floor(proj.z(Math.toRadians(lat))) + 0.5;
         int ground = ColumnSampler.surfaceY(new ColumnSampler(body).elevation(Math.floor(x), Math.floor(z)));
         int y = Math.max(ground, SurfaceScale.DATUM_Y - 1) + 2;
-        world.getServer().runCommand(String.format(java.util.Locale.ROOT, "execute as @a run tp @s %.1f %d %.1f", x, y + 1, z));
+        world.getServer().runCommand(String.format(java.util.Locale.ROOT, "execute as @a at @s run tp @s %.1f %d %.1f", x, y + 1, z));
         context.waitFor(mc -> mc.player != null && Math.abs(mc.player.getX() - x) < 2, 20 * 30);
     }
 
