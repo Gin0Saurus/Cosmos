@@ -7,43 +7,16 @@ Fabric Loom: 1.19.4
 > Task :compileJava
 > Task :processResources
 > Task :classes
+> Task :compileClientJava
+> Task :processClientResources
+> Task :processIncludeJars
+> Task :validateAccessWidener NO-SOURCE
+> Task :check
+> Task :jar
+> Task :assemble
+> Task :build
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build-1795371242657.json
 
-> Task :compileClientJava FAILED
-/home/runner/work/Cosmos/Cosmos/fabric/src/client/java/dev/saurus/cosmos/client/render/ShipMotion.java:20: error: cannot find symbol
-        if (dt <= 0 || mc.player == null || mc.screen != null) return;
-                                              ^
-  symbol:   variable screen
-  location: variable mc of type Minecraft
-/home/runner/work/Cosmos/Cosmos/fabric/src/client/java/dev/saurus/cosmos/client/CosmosClient.java:66: error: cannot find symbol
-            if (!CosmosState.spaceMode || mc.options.hideGui) return;
-                                                    ^
-  symbol:   variable hideGui
-  location: variable options of type Options
-2 errors
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build-1795371146670.json
-
-[Incubating] Problems report is available at: file:///home/runner/work/Cosmos/Cosmos/fabric/build/reports/problems/problems-report.html
-
-FAILURE: Build failed with an exception.
-
-* What went wrong:
-Execution failed for task ':compileClientJava' (registered by plugin class 'org.gradle.api.plugins.JavaBasePlugin').
-> Compilation failed; see the compiler output below.
-  /home/runner/work/Cosmos/Cosmos/fabric/src/client/java/dev/saurus/cosmos/client/render/ShipMotion.java:20: error: cannot find symbol
-          if (dt <= 0 || mc.player == null || mc.screen != null) return;
-                                                ^
-    symbol:   variable screen
-    location: variable mc of type Minecraft
-  /home/runner/work/Cosmos/Cosmos/fabric/src/client/java/dev/saurus/cosmos/client/CosmosClient.java:66: error: cannot find symbol
-              if (!CosmosState.spaceMode || mc.options.hideGui) return;
-                                                      ^
-    symbol:   variable hideGui
-    location: variable options of type Options
-  2 errors
-
-* Try:
-> Check your code and dependencies to fix the compilation error(s)
-> Run with --scan to get full insights from a Build Scan (powered by Develocity).
-
-BUILD FAILED in 40s
-3 actionable tasks: 3 executed
+BUILD SUCCESSFUL in 30s
+6 actionable tasks: 6 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.8.2/userguide/configuration_cache_enabling.html
