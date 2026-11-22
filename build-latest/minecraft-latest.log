@@ -1,6 +1,6 @@
-[20:06:06] [main/INFO] (FabricLoader/GameProvider) Loading Minecraft 26.3 with Fabric Loader 0.20.1
-[20:06:06] [main/INFO] (FabricLoader/Mappings) Mappings not present!
-[20:06:06] [main/INFO] (FabricLoader) Loading 53 mods:
+[20:19:52] [main/INFO] (FabricLoader/GameProvider) Loading Minecraft 26.3 with Fabric Loader 0.20.1
+[20:19:52] [main/INFO] (FabricLoader/Mappings) Mappings not present!
+[20:19:52] [main/INFO] (FabricLoader) Loading 53 mods:
 	- cosmos 0.1.0
 	- cosmos-test 1.0.0
 	- fabric-advancement-api-v1 1.0.1+38c7a2d55d
@@ -54,13 +54,13 @@
 	- java 25
 	- minecraft 26.3
 	- mixinextras 0.5.5
-[20:06:06] [main/INFO] (FabricLoader/Mixin) SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.17.5+mixin.0.8.7/cef8519a91129d0c21fa03bb9378f0e8ca810e5/sponge-mixin-0.17.5+mixin.0.8.7.jar Service=Knot/Fabric Env=CLIENT
-[20:06:09] [main/INFO] (FabricLoader/MixinExtras|Service) Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.5).
-[20:06:10] [Datafixer Bootstrap #0/INFO] (Minecraft) 307 Datafixer optimizations took 753 milliseconds
-[20:06:18] [Render thread/INFO] (Minecraft) Environment: Environment[discoveryUrl=https://discovery.minecraftservices.com/minecraft/client, name=PROD]
-[20:06:18] [Render thread/INFO] (Minecraft) Setting user: Player0
-[20:06:19] [Render thread/INFO] (Indigo) [Indigo] Registering Indigo renderer!
-[20:06:19] [Download-2/ERROR] (Minecraft) Failed to fetch user properties
+[20:19:53] [main/INFO] (FabricLoader/Mixin) SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.17.5+mixin.0.8.7/cef8519a91129d0c21fa03bb9378f0e8ca810e5/sponge-mixin-0.17.5+mixin.0.8.7.jar Service=Knot/Fabric Env=CLIENT
+[20:19:55] [main/INFO] (FabricLoader/MixinExtras|Service) Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.5).
+[20:19:56] [Datafixer Bootstrap #0/INFO] (Minecraft) 307 Datafixer optimizations took 762 milliseconds
+[20:20:04] [Render thread/INFO] (Minecraft) Environment: Environment[discoveryUrl=https://discovery.minecraftservices.com/minecraft/client, name=PROD]
+[20:20:04] [Render thread/INFO] (Minecraft) Setting user: Player0
+[20:20:04] [Render thread/INFO] (Indigo) [Indigo] Registering Indigo renderer!
+[20:20:04] [Download-2/ERROR] (Minecraft) Failed to fetch user properties
 com.mojang.authlib.exceptions.InvalidCredentialsException: Status: 401
 	at knot//com.mojang.authlib.exceptions.MinecraftClientHttpException.toAuthenticationException(MinecraftClientHttpException.java:70)
 	at knot//com.mojang.authlib.services.MinecraftServicesUserApiService.fetchProperties(MinecraftServicesUserApiService.java:168)
@@ -76,18 +76,18 @@ Caused by: MinecraftClientHttpException[type=HTTP_ERROR, status=401, response=Er
 	at knot//com.mojang.authlib.minecraft.client.MinecraftClient.get(MinecraftClient.java:65)
 	at knot//com.mojang.authlib.services.MinecraftServicesUserApiService.fetchProperties(MinecraftServicesUserApiService.java:118)
 	... 5 more
-[20:06:19] [Render thread/ERROR] (Minecraft) Illegal option value 0 for Anisotropic Filtering
-[20:06:19] [Render thread/INFO] (Minecraft) Backend library: LWJGL version 3.4.3-snapshot
-[20:06:20] [Render thread/INFO] (Minecraft) SDL [SYSTEM]: App name: Minecraft
-[20:06:20] [Render thread/INFO] (Minecraft) SDL [SYSTEM]: App version: 26.3
-[20:06:20] [Render thread/INFO] (Minecraft) SDL [SYSTEM]: App ID: com.mojang.minecraft
-[20:06:20] [Render thread/INFO] (Minecraft) SDL [SYSTEM]: SDL revision: SDL-3.4.14--128-NOTFOUND
-[20:06:20] [Render thread/INFO] (Minecraft) Using graphics backend OpenGL, using drivers: 4.5 (Core Profile) Mesa 26.0.8-1ubuntu0.3
-[20:06:20] [Render thread/INFO] (Minecraft) Using graphics device: llvmpipe (LLVM 21.1.8, 256 bits) (Mesa)
-[20:06:20] [Render thread/INFO] (Minecraft) Using graphics device extensions: GL_ARB_multi_draw_indirect, GL_ARB_buffer_storage, GL_ARB_shader_draw_parameters, GL_ARB_base_instance, GL_KHR_debug, GL_ARB_draw_indirect, GL_ARB_clip_control, GL_ARB_vertex_attrib_binding, GL_ARB_direct_state_access, GL_EXT_texture_filter_anisotropic
-[20:06:20] [Render thread/INFO] (Minecraft) Created window using SDL video driver: x11
-[20:06:22] [Download-2/INFO] (Minecraft) Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: FabricMC
-[20:06:22] [Download-2/ERROR] (Minecraft) Failed to fetch Realms feature flags
+[20:20:05] [Render thread/ERROR] (Minecraft) Illegal option value 0 for Anisotropic Filtering
+[20:20:05] [Render thread/INFO] (Minecraft) Backend library: LWJGL version 3.4.3-snapshot
+[20:20:05] [Render thread/INFO] (Minecraft) SDL [SYSTEM]: App name: Minecraft
+[20:20:05] [Render thread/INFO] (Minecraft) SDL [SYSTEM]: App version: 26.3
+[20:20:05] [Render thread/INFO] (Minecraft) SDL [SYSTEM]: App ID: com.mojang.minecraft
+[20:20:05] [Render thread/INFO] (Minecraft) SDL [SYSTEM]: SDL revision: SDL-3.4.14--128-NOTFOUND
+[20:20:06] [Render thread/INFO] (Minecraft) Using graphics backend OpenGL, using drivers: 4.5 (Core Profile) Mesa 26.0.8-1ubuntu0.3
+[20:20:06] [Render thread/INFO] (Minecraft) Using graphics device: llvmpipe (LLVM 21.1.8, 256 bits) (Mesa)
+[20:20:06] [Render thread/INFO] (Minecraft) Using graphics device extensions: GL_ARB_multi_draw_indirect, GL_ARB_buffer_storage, GL_ARB_shader_draw_parameters, GL_ARB_base_instance, GL_KHR_debug, GL_ARB_draw_indirect, GL_ARB_clip_control, GL_ARB_vertex_attrib_binding, GL_ARB_direct_state_access, GL_EXT_texture_filter_anisotropic
+[20:20:06] [Render thread/INFO] (Minecraft) Created window using SDL video driver: x11
+[20:20:07] [Download-2/INFO] (Minecraft) Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: FabricMC
+[20:20:07] [Download-2/ERROR] (Minecraft) Failed to fetch Realms feature flags
 com.mojang.realmsclient.exception.RealmsServiceException: Realms authentication error with message 'java.lang.RuntimeException: Failed to parse into SignedJWT: FabricMC'
 	at knot//com.mojang.realmsclient.client.RealmsClient.execute(RealmsClient.java:625)
 	at knot//com.mojang.realmsclient.client.RealmsClient.fetchFeatureFlags(RealmsClient.java:204)
@@ -95,7 +95,7 @@ com.mojang.realmsclient.exception.RealmsServiceException: Realms authentication 
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
 	at java.base/java.lang.Thread.run(Thread.java:1474)
-[20:06:22] [Render thread/ERROR] (Minecraft) Error while loading the narrator
+[20:20:08] [Render thread/ERROR] (Minecraft) Error while loading the narrator
 com.mojang.text2speech.Narrator$InitializeException: Failed to load library flite
 	at knot//com.mojang.text2speech.NarratorLinux$FliteLibrary.loadNative(NarratorLinux.java:82)
 	at knot//com.mojang.text2speech.NarratorLinux.<init>(NarratorLinux.java:19)
@@ -128,11 +128,11 @@ Native library (linux-x86-64/libflite.so) not found in resource path (/home/runn
 		at knot//com.sun.jna.Native.extractFromResourcePath(Native.java:1141)
 		at knot//com.sun.jna.NativeLibrary.loadLibrary(NativeLibrary.java:297)
 		... 12 more
-[20:06:23] [Render thread/INFO] (Minecraft) Reloading ResourceManager: vanilla, vanilla, cosmos, fabric-advancement-api-v1, fabric-api, fabric-api-base, fabric-api-lookup-api-v1, fabric-biome-api-v1, fabric-block-api-v1, fabric-block-getter-api-v2, fabric-client-gametest-api-v1, fabric-command-api-v2, fabric-content-registries-v0, fabric-convention-tags-v2, fabric-crash-report-info-v1, fabric-creative-tab-api-v1, fabric-data-attachment-api-v1, fabric-data-generation-api-v1, fabric-debug-api-v1, fabric-dimensions-v1, fabric-entity-events-v1, fabric-events-interaction-v0, fabric-game-rule-api-v1, fabric-gametest-api-v1, fabric-item-api-v1, fabric-key-mapping-api-v1, fabric-lifecycle-events-v1, fabric-loot-api-v3, fabric-menu-api-v1, fabric-message-api-v1, fabric-model-loading-api-v1, fabric-networking-api-v1, fabric-object-builder-api-v1, fabric-particles-v1, fabric-permission-api-v1, fabric-recipe-api-v1, fabric-registry-sync-v0, fabric-renderer-api-v1, fabric-renderer-indigo, fabric-rendering-fluids-v1, fabric-rendering-v1, fabric-resource-conditions-api-v1, fabric-resource-loader-v0, fabric-resource-loader-v1, fabric-screen-api-v1, fabric-serialization-api-v1, fabric-sound-api-v1, fabric-tag-api-v1, fabric-transfer-api-v1, fabric-transitive-access-wideners-v1, fabricloader
-[20:06:24] [Worker-Main-1/INFO] (Minecraft) Found unifont_all_no_pua-17.0.01.hex, loading
-[20:06:24] [Worker-Main-1/INFO] (Minecraft) Found unifont_jp_patch-17.0.01.hex, loading
-[20:06:24] [Worker-Main-1/INFO] (Minecraft) Found unifont_pua-17.0.01.hex, loading
-[20:06:28] [Render thread/ERROR] (Minecraft) Error starting SoundSystem. Turning off sounds & music
+[20:20:08] [Render thread/INFO] (Minecraft) Reloading ResourceManager: vanilla, vanilla, cosmos, fabric-advancement-api-v1, fabric-api, fabric-api-base, fabric-api-lookup-api-v1, fabric-biome-api-v1, fabric-block-api-v1, fabric-block-getter-api-v2, fabric-client-gametest-api-v1, fabric-command-api-v2, fabric-content-registries-v0, fabric-convention-tags-v2, fabric-crash-report-info-v1, fabric-creative-tab-api-v1, fabric-data-attachment-api-v1, fabric-data-generation-api-v1, fabric-debug-api-v1, fabric-dimensions-v1, fabric-entity-events-v1, fabric-events-interaction-v0, fabric-game-rule-api-v1, fabric-gametest-api-v1, fabric-item-api-v1, fabric-key-mapping-api-v1, fabric-lifecycle-events-v1, fabric-loot-api-v3, fabric-menu-api-v1, fabric-message-api-v1, fabric-model-loading-api-v1, fabric-networking-api-v1, fabric-object-builder-api-v1, fabric-particles-v1, fabric-permission-api-v1, fabric-recipe-api-v1, fabric-registry-sync-v0, fabric-renderer-api-v1, fabric-renderer-indigo, fabric-rendering-fluids-v1, fabric-rendering-v1, fabric-resource-conditions-api-v1, fabric-resource-loader-v0, fabric-resource-loader-v1, fabric-screen-api-v1, fabric-serialization-api-v1, fabric-sound-api-v1, fabric-tag-api-v1, fabric-transfer-api-v1, fabric-transitive-access-wideners-v1, fabricloader
+[20:20:09] [Worker-Main-1/INFO] (Minecraft) Found unifont_all_no_pua-17.0.01.hex, loading
+[20:20:09] [Worker-Main-1/INFO] (Minecraft) Found unifont_jp_patch-17.0.01.hex, loading
+[20:20:09] [Worker-Main-1/INFO] (Minecraft) Found unifont_pua-17.0.01.hex, loading
+[20:20:13] [Render thread/ERROR] (Minecraft) Error starting SoundSystem. Turning off sounds & music
 java.lang.IllegalStateException: Failed to open OpenAL device
 	at knot//com.mojang.blaze3d.audio.Library.openDeviceOrFallback(Library.java:274)
 	at knot//com.mojang.blaze3d.audio.Library.init(Library.java:149)
@@ -151,27 +151,27 @@ java.lang.IllegalStateException: Failed to open OpenAL device
 	at knot//net.minecraft.client.Minecraft.runTick(Minecraft.java:1240)
 	at knot//net.minecraft.client.Minecraft.run$mixinextras$wrapped$270(Minecraft.java:967)
 	at knot//net.minecraft.client.Minecraft.mixinextras$bridge$run$mixinextras$wrapped$270$271(Minecraft.java)
-	at knot//net.minecraft.client.Minecraft.wrapMethod$zlp000$fabric-client-gametest-api-v1$onRun(Minecraft.java:4728)
+	at knot//net.minecraft.client.Minecraft.wrapMethod$bfb000$fabric-client-gametest-api-v1$onRun(Minecraft.java:6728)
 	at knot//net.minecraft.client.Minecraft.run(Minecraft.java)
 	at knot//net.minecraft.client.main.Main.main(Main.java:292)
 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:517)
 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
 	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86)
-[20:06:28] [Render thread/INFO] (Minecraft) Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
-[20:06:29] [Render thread/INFO] (Minecraft) Created: 256x128x0 minecraft:textures/atlas/celestials.png-atlas
-[20:06:29] [Render thread/INFO] (Minecraft) Created: 128x128x0 minecraft:textures/atlas/decorated_pot.png-atlas
-[20:06:29] [Render thread/INFO] (Minecraft) Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
-[20:06:29] [Render thread/INFO] (Minecraft) Created: 1024x512x0 minecraft:textures/atlas/shield_patterns.png-atlas
-[20:06:29] [Render thread/INFO] (Minecraft) Created: 1024x512x0 minecraft:textures/atlas/banner_patterns.png-atlas
-[20:06:29] [Render thread/INFO] (Minecraft) Created: 2048x2048x4 minecraft:textures/atlas/blocks.png-atlas
-[20:06:29] [Render thread/INFO] (Minecraft) Created: 1024x512x0 minecraft:textures/atlas/items.png-atlas
-[20:06:29] [Render thread/INFO] (Minecraft) Created: 1024x1024x0 minecraft:textures/atlas/gui.png-atlas
-[20:06:29] [Render thread/INFO] (Minecraft) Created: 128x64x0 minecraft:textures/atlas/map_decorations.png-atlas
-[20:06:29] [Render thread/INFO] (Minecraft) Created: 512x512x0 minecraft:textures/atlas/chest.png-atlas
-[20:06:29] [Render thread/INFO] (Minecraft) Created: 512x512x0 minecraft:textures/atlas/shulker_boxes.png-atlas
-[20:06:29] [Download-2/INFO] (Minecraft) Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: FabricMC
-[20:06:29] [Download-2/ERROR] (Minecraft) Couldn't connect to realms
+[20:20:13] [Render thread/INFO] (Minecraft) Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
+[20:20:13] [Render thread/INFO] (Minecraft) Created: 256x128x0 minecraft:textures/atlas/celestials.png-atlas
+[20:20:13] [Render thread/INFO] (Minecraft) Created: 128x128x0 minecraft:textures/atlas/decorated_pot.png-atlas
+[20:20:13] [Render thread/INFO] (Minecraft) Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
+[20:20:13] [Render thread/INFO] (Minecraft) Created: 1024x512x0 minecraft:textures/atlas/shield_patterns.png-atlas
+[20:20:13] [Render thread/INFO] (Minecraft) Created: 1024x512x0 minecraft:textures/atlas/banner_patterns.png-atlas
+[20:20:13] [Render thread/INFO] (Minecraft) Created: 2048x2048x4 minecraft:textures/atlas/blocks.png-atlas
+[20:20:13] [Render thread/INFO] (Minecraft) Created: 1024x512x0 minecraft:textures/atlas/items.png-atlas
+[20:20:13] [Render thread/INFO] (Minecraft) Created: 1024x1024x0 minecraft:textures/atlas/gui.png-atlas
+[20:20:13] [Render thread/INFO] (Minecraft) Created: 128x64x0 minecraft:textures/atlas/map_decorations.png-atlas
+[20:20:13] [Render thread/INFO] (Minecraft) Created: 512x512x0 minecraft:textures/atlas/chest.png-atlas
+[20:20:13] [Render thread/INFO] (Minecraft) Created: 512x512x0 minecraft:textures/atlas/shulker_boxes.png-atlas
+[20:20:16] [Download-2/INFO] (Minecraft) Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: FabricMC
+[20:20:16] [Download-2/ERROR] (Minecraft) Couldn't connect to realms
 com.mojang.realmsclient.exception.RealmsServiceException: Realms authentication error with message 'java.lang.RuntimeException: Failed to parse into SignedJWT: FabricMC'
 	at knot//com.mojang.realmsclient.client.RealmsClient.execute(RealmsClient.java:625)
 	at knot//com.mojang.realmsclient.client.RealmsClient.clientCompatible(RealmsClient.java:354)
@@ -180,214 +180,230 @@ com.mojang.realmsclient.exception.RealmsServiceException: Realms authentication 
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
 	at java.base/java.lang.Thread.run(Thread.java:1474)
-[20:06:34] [Worker-Main-1/INFO] (Minecraft) Loaded 1866 advancements
-[20:06:34] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.GenericMessageScreen@3ff72673
-[20:06:34] [Render thread/INFO] (BiomeModificationImpl) Applied 0 biome modifications to 0 of 89 new biomes in 2.203 ms
-[20:06:34] [Server thread/INFO] (Minecraft) Starting integrated minecraft server version 26.3
-[20:06:34] [Server thread/INFO] (Minecraft) Generating keypair
-[20:06:35] [Server thread/INFO] (Minecraft) Selecting global world spawn...
-[20:06:35] [Server thread/INFO] (Minecraft) Loading 0 persistent chunks...
-[20:06:35] [Server thread/INFO] (Minecraft) Preparing spawn area: 16%
-[20:06:35] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:mercury
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:rhea
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:venus
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:mimas
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:europa
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:io
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:enceladus
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:callisto
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:dione
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:titania
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:charon
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:miranda
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:tethys
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:pluto
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:umbriel
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:ganymede
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:ariel
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:deimos
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:titan
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:oberon
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:moon
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:phobos
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:mars
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:triton
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:earth
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
-[20:08:59] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:iapetus
-[20:08:59] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:00] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:00] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:00] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:00] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:00] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:00] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:01] [Server thread/INFO] (Minecraft) Loading 48 chunks for player spawn...
-[20:09:01] [Server thread/INFO] (Minecraft) Preparing spawn area: 16%
-[20:09:01] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:01] [Server thread/INFO] (Minecraft) Preparing spawn area: 16%
-[20:09:01] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:01] [Server thread/INFO] (Minecraft) Preparing spawn area: 16%
-[20:09:01] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:01] [Server thread/INFO] (Minecraft) Preparing spawn area: 16%
-[20:09:01] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:01] [Server thread/INFO] (Minecraft) Preparing spawn area: 16%
-[20:09:01] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:01] [Server thread/INFO] (Minecraft) Preparing spawn area: 16%
-[20:09:01] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:01] [Server thread/INFO] (Minecraft) Preparing spawn area: 100%
-[20:09:01] [Server thread/INFO] (Minecraft) Time elapsed: 146765 ms
-[20:09:02] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:02] [Server thread/INFO] (Minecraft) Player0[local:E:ae87b686] logged in with entity id 1 at (0.5, -60.0, 0.5)
-[20:09:02] [Server thread/INFO] (Minecraft) System chat: Player0 joined the game
-[20:09:02] [Server thread/INFO] (Minecraft) Changing view distance to 5, from 10
-[20:09:02] [Server thread/INFO] (Minecraft) Changing simulation distance to 12, from 0
-[20:09:02] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:02] [Render thread/WARN] (Minecraft) Requested post effect does not exist: minecraft:end_of_frame
-[20:09:02] [Render thread/INFO] (Minecraft) Resizing Dynamic Transforms UBO, capacity limit of 2 reached during a single frame. New capacity will be 4.
-[20:09:02] [Render thread/INFO] (Minecraft) Loaded 2 advancements
-[20:09:02] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:02] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 2280ms or 45 ticks behind
-[20:09:03] [Render thread/INFO] (Minecraft) Resizing Dynamic Transforms UBO, capacity limit of 4 reached during a single frame. New capacity will be 8.
-[20:09:03] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:03] [Render thread/INFO] (Minecraft) Resizing Dynamic Transforms UBO, capacity limit of 8 reached during a single frame. New capacity will be 16.
-[20:09:03] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:03] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:03] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:03] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Command Buffer, capacity limit of 2 reached during a single frame. New capacity will be 8.
-[20:09:03] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Instanced, capacity limit of 2 reached during a single frame. New capacity will be 8.
-[20:09:04] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:04] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:04] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@126a8cc7
-[20:09:04] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: null
-[20:09:04] [Server thread/INFO] (Minecraft) System chat: Set minecraft:overworld to time marker minecraft:noon
-[20:09:04] [Server thread/INFO] (Minecraft) System chat: Set the weather to clear
-[20:09:04] [Server thread/INFO] (Minecraft) System chat: Incorrect argument for command
-[20:09:04] [Server thread/INFO] (Minecraft) System chat: gamerule doDaylightCycle false<--[HERE]
-[20:09:04] [Server thread/INFO] (Minecraft) System chat: Set Player0's game mode to Creative Mode
-[20:09:04] [Server thread/INFO] (Minecraft) Changing view distance to 8, from 5
-[20:09:04] [Render thread/INFO] (Minecraft) [System] [CHAT] Your game mode has been updated to Creative Mode
-[20:09:04] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Earth at 45.800, 6.800  (g = 9.82 m/s²)
-[20:09:06] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 7561.500000, 99.000000, -50929.500000
-[20:09:10] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Command Buffer, capacity limit of 8 reached during a single frame. New capacity will be 16.
-[20:09:10] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Instanced, capacity limit of 8 reached during a single frame. New capacity will be 16.
-[20:09:11] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Command Buffer, capacity limit of 16 reached during a single frame. New capacity will be 32.
-[20:09:11] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Instanced, capacity limit of 16 reached during a single frame. New capacity will be 32.
-[20:09:11] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Command Buffer, capacity limit of 32 reached during a single frame. New capacity will be 64.
-[20:09:11] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Instanced, capacity limit of 32 reached during a single frame. New capacity will be 64.
-[20:09:20] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Earth-Alps-Mont-Blanc: at lat 45.800 lon 6.800, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
-[20:09:21] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Command Buffer, capacity limit of 64 reached during a single frame. New capacity will be 128.
-[20:09:21] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Instanced, capacity limit of 64 reached during a single frame. New capacity will be 128.
-[20:09:21] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Earth at 27.900, 86.850  (g = 9.82 m/s²)
-[20:09:22] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 96577.500000, 185.000000, -31024.500000
-[20:09:25] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 7131ms or 142 ticks behind
-[20:09:37] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Earth-Himalaya-Everest: at lat 27.900 lon 86.850, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
-[20:09:37] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Earth at -3.000, -60.000  (g = 9.82 m/s²)
-[20:09:38] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to -66719.500000, 66.000000, 3336.500000
-[20:09:42] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 2413ms or 48 ticks behind
-[20:09:52] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Earth-Amazon: at lat -3.000 lon -60.000, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
-[20:09:53] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Earth at 23.000, 13.000  (g = 9.82 m/s²)
-[20:09:53] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 14456.500000, 81.000000, -25575.500000
-[20:10:07] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Earth-Sahara: at lat 23.000 lon 13.000, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
-[20:10:07] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Earth at 72.000, -40.000  (g = 9.82 m/s²)
-[20:10:08] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to -44479.500000, 122.000000, -80063.500000
-[20:10:08] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 2979ms or 59 ticks behind
-[20:10:23] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Earth-Greenland-ice: at lat 72.000 lon -40.000, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
-[20:10:23] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Earth at 50.750, 0.250  (g = 9.82 m/s²)
-[20:10:24] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 278.500000, 66.000000, -56433.500000
-[20:10:27] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 3974ms or 79 ticks behind
-[20:10:38] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Earth-English-coast: at lat 50.750 lon 0.250, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
-[20:10:39] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Moon at 0.674, 23.473  (g = 1.62 m/s²)
-[20:10:39] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 7119.500000, 65.000000, -204.500000
-[20:10:53] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Moon-Apollo-11: at lat 0.674 lon 23.474, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
-[20:10:53] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Moon at -43.300, -11.400  (g = 1.62 m/s²)
-[20:10:54] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to -3457.500000, 65.000000, 13132.500000
-[20:10:54] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 2187ms or 43 ticks behind
-[20:11:08] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Moon-Tycho-highlands: at lat -43.300 lon -11.400, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
-[20:11:08] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Mars at 18.440, 77.450  (g = 3.73 m/s²)
-[20:11:08] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 45822.500000, 65.000000, -10909.500000
-[20:11:11] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 2463ms or 49 ticks behind
-[20:11:22] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Mars-Jezero: at lat 18.439 lon 77.449, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
-[20:11:23] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Mars at -10.900, -59.200  (g = 3.73 m/s²)
-[20:11:23] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to -35025.500000, 132.000000, 6448.500000
-[20:11:37] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Mars-Valles-Marineris: at lat -10.899 lon -59.200, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
-[20:11:37] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Mars at 18.000, -131.000  (g = 3.73 m/s²)
-[20:11:37] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to -77505.500000, 341.000000, -10649.500000
-[20:11:38] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 2857ms or 57 ticks behind
-[20:11:46] [Server thread/INFO] (Minecraft) System chat: Player0 has made the advancement [Caves & Cliffs]
-[20:11:46] [Render thread/INFO] (Minecraft) [System] [CHAT] Player0 has made the advancement [Caves & Cliffs]
-[20:11:46] [Render thread/INFO] (Minecraft) Loaded 4 advancements
-[20:11:52] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Mars-Olympus-Mons-flank: at lat 18.000 lon -131.000, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
-[20:11:52] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Mars at 84.500, 0.000  (g = 3.73 m/s²)
-[20:11:52] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 0.500000, 65.000000, -49993.500000
-[20:11:56] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 2293ms or 45 ticks behind
-[20:12:07] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Mars-north-polar-cap: at lat 84.499 lon 0.001, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
-[20:12:07] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Europa at 10.000, 30.000  (g = 1.31 m/s²)
-[20:12:07] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 8170.500000, 65.000000, -2723.500000
-[20:12:21] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Europa: at lat 10.000 lon 29.999, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
-[20:12:21] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Io at 5.000, 10.000  (g = 1.80 m/s²)
-[20:12:22] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 3178.500000, 78.000000, -1589.500000
-[20:12:23] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 2474ms or 49 ticks behind
-[20:12:36] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Io: at lat 5.001 lon 9.999, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
-[20:12:36] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Titan at 70.000, -45.000  (g = 1.35 m/s²)
-[20:12:36] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to -20223.500000, 65.000000, -31459.500000
-[20:12:50] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Titan-lakes: at lat 70.000 lon -44.999, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
-[20:12:50] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Pluto at 25.000, 160.000  (g = 0.62 m/s²)
-[20:12:51] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 33194.500000, 65.000000, -5186.500000
-[20:12:52] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 2950ms or 59 ticks behind
-[20:13:06] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Pluto-Sputnik-Planitia-edge: at lat 24.999 lon 159.999, y=-60.0 (elevation ~-6150 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:plains]
-[20:13:06] [Server thread/INFO] (Minecraft) System chat: Set Player0's game mode to Survival Mode
-[20:13:06] [Render thread/INFO] (Minecraft) [System] [CHAT] Your game mode has been updated to Survival Mode
-[20:13:06] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Earth at 51.501, -0.125  (g = 9.82 m/s²)
-[20:13:08] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to -138.500000, 66.000000, -57268.500000
-[20:13:10] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 3320ms or 66 ticks behind
-[20:13:12] [Server thread/INFO] (Minecraft) System chat: Player0 fell from a high place
-[20:13:12] [Render thread/INFO] (Minecraft) [System] [CHAT] Player0 fell from a high place
-[20:13:23] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] gravity earth: per-tick gravity 0.08000 blocks/tick^2 (Earth 0.08000), ratio 1.0000, expected g/g0 = 1.0014; jump height 1.25 blocks
-[20:13:23] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Moon at 0.674, 23.473  (g = 1.62 m/s²)
-[20:14:23] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] FAIL gravity: java.lang.AssertionError: Timed out waiting for predicate
-[20:14:23] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Moon at 0.000, 179.990  (g = 1.62 m/s²)
-[20:15:23] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] FAIL wrap-around: java.lang.AssertionError: Timed out waiting for predicate
-[20:15:23] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Moon at 0.674, 23.473  (g = 1.62 m/s²)
-[20:16:23] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 2014ms or 40 ticks behind
-[20:16:26] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] FAIL launch/land: java.lang.AssertionError: Timed out waiting for predicate
-[20:16:36] [Render thread/INFO] (Minecraft) Resizing Terrain UBO, capacity limit of 1 reached during a single frame. New capacity will be 2.
-[20:17:07] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 29184ms or 583 ticks behind
-[20:17:19] [Server thread/INFO] (Minecraft) Player0 lost connection: Disconnected
-[20:17:19] [Server thread/INFO] (Minecraft) System chat: Player0 left the game
-[20:17:19] [Server thread/INFO] (Minecraft) Stopping singleplayer server as player logged out
-[20:17:19] [Server thread/INFO] (Minecraft) Stopping server
-[20:17:19] [Server thread/INFO] (Minecraft) Saving players
-[20:17:19] [Server thread/INFO] (Minecraft) Saving worlds
-[20:17:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
-[20:17:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:mercury
-[20:17:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:rhea
-[20:17:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:venus
-[20:17:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:mimas
-[20:17:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:europa
-[20:17:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:io
-[20:17:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:enceladus
-[20:17:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:callisto
-[20:17:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
-[20:17:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:dione
-[20:17:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:titania
-[20:17:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:charon
-[20:17:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:miranda
-[20:17:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:tethys
-[20:17:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:pluto
-[20:17:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:umbriel
-[20:17:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:ganymede
-[20:17:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:ariel
-[20:17:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:deimos
-[20:17:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:titan
-[20:17:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:oberon
-[20:17:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:moon
-[20:17:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:phobos
-[20:17:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:mars
-[20:17:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:triton
-[20:17:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:earth
-[20:17:29] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
-[20:17:29] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:iapetus
-[20:17:29] [Render thread/INFO] (Minecraft) Stopping!
+[20:20:19] [Worker-Main-1/INFO] (Minecraft) Loaded 1866 advancements
+[20:20:19] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.GenericMessageScreen@228f1ba7
+[20:20:19] [Render thread/INFO] (BiomeModificationImpl) Applied 0 biome modifications to 0 of 89 new biomes in 1.243 ms
+[20:20:19] [Server thread/INFO] (Minecraft) Starting integrated minecraft server version 26.3
+[20:20:19] [Server thread/INFO] (Minecraft) Generating keypair
+[20:20:19] [Server thread/INFO] (Minecraft) Selecting global world spawn...
+[20:20:20] [Server thread/INFO] (Minecraft) Loading 0 persistent chunks...
+[20:20:20] [Server thread/INFO] (Minecraft) Preparing spawn area: 16%
+[20:20:20] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:ariel
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:charon
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:titania
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:oberon
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:dione
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:rhea
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:earth
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:titan
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:enceladus
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:phobos
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:mercury
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:umbriel
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:tethys
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:io
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:deimos
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:moon
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:iapetus
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:ganymede
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:pluto
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:miranda
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:mars
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:europa
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:callisto
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:venus
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:mimas
+[20:22:24] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:triton
+[20:22:25] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:25] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:25] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:25] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:25] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:25] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:26] [Server thread/INFO] (Minecraft) Loading 48 chunks for player spawn...
+[20:22:26] [Server thread/INFO] (Minecraft) Preparing spawn area: 16%
+[20:22:26] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:26] [Server thread/INFO] (Minecraft) Preparing spawn area: 16%
+[20:22:26] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:26] [Server thread/INFO] (Minecraft) Preparing spawn area: 16%
+[20:22:26] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:26] [Server thread/INFO] (Minecraft) Preparing spawn area: 16%
+[20:22:26] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:26] [Server thread/INFO] (Minecraft) Preparing spawn area: 16%
+[20:22:26] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:26] [Server thread/INFO] (Minecraft) Preparing spawn area: 16%
+[20:22:27] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:27] [Server thread/INFO] (Minecraft) Preparing spawn area: 25%
+[20:22:27] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:27] [Server thread/INFO] (Minecraft) Preparing spawn area: 100%
+[20:22:27] [Server thread/INFO] (Minecraft) Time elapsed: 127374 ms
+[20:22:27] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:27] [Server thread/INFO] (Minecraft) Player0[local:E:d05af894] logged in with entity id 1 at (0.5, -60.0, 0.5)
+[20:22:27] [Server thread/INFO] (Minecraft) System chat: Player0 joined the game
+[20:22:27] [Server thread/INFO] (Minecraft) Changing view distance to 5, from 10
+[20:22:27] [Server thread/INFO] (Minecraft) Changing simulation distance to 12, from 0
+[20:22:27] [Render thread/INFO] (Minecraft) Loaded 2 advancements
+[20:22:27] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:27] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 2197ms or 43 ticks behind
+[20:22:28] [Render thread/WARN] (Minecraft) Requested post effect does not exist: minecraft:end_of_frame
+[20:22:28] [Render thread/INFO] (Minecraft) Resizing Dynamic Transforms UBO, capacity limit of 2 reached during a single frame. New capacity will be 4.
+[20:22:28] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:28] [Render thread/INFO] (Minecraft) Resizing Dynamic Transforms UBO, capacity limit of 4 reached during a single frame. New capacity will be 8.
+[20:22:28] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:28] [Render thread/INFO] (Minecraft) Resizing Dynamic Transforms UBO, capacity limit of 8 reached during a single frame. New capacity will be 16.
+[20:22:28] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:29] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:29] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Command Buffer, capacity limit of 2 reached during a single frame. New capacity will be 4.
+[20:22:29] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Instanced, capacity limit of 2 reached during a single frame. New capacity will be 4.
+[20:22:29] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:29] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Command Buffer, capacity limit of 4 reached during a single frame. New capacity will be 8.
+[20:22:29] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Instanced, capacity limit of 4 reached during a single frame. New capacity will be 8.
+[20:22:29] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:29] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:29] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@7061eaaf
+[20:22:29] [Render thread/INFO] (fabric-client-gametest-api-v1) World loading finished: ClientLevel screen: null
+[20:22:29] [Server thread/INFO] (Minecraft) System chat: Set minecraft:overworld to time marker minecraft:noon
+[20:22:29] [Server thread/INFO] (Minecraft) System chat: Set the weather to clear
+[20:22:29] [Server thread/INFO] (Minecraft) System chat: Incorrect argument for command
+[20:22:29] [Server thread/INFO] (Minecraft) System chat: gamerule doDaylightCycle false<--[HERE]
+[20:22:29] [Server thread/INFO] (Minecraft) System chat: Set Player0's game mode to Creative Mode
+[20:22:29] [Server thread/INFO] (Minecraft) Changing view distance to 8, from 5
+[20:22:29] [Render thread/INFO] (Minecraft) [System] [CHAT] Your game mode has been updated to Creative Mode
+[20:22:30] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Earth at 45.800, 6.800  (g = 9.82 m/s²)
+[20:22:31] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 7561.500000, 99.000000, -50929.500000
+[20:22:33] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Command Buffer, capacity limit of 8 reached during a single frame. New capacity will be 16.
+[20:22:33] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Command Buffer, capacity limit of 16 reached during a single frame. New capacity will be 32.
+[20:22:33] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Instanced, capacity limit of 8 reached during a single frame. New capacity will be 16.
+[20:22:35] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Command Buffer, capacity limit of 32 reached during a single frame. New capacity will be 64.
+[20:22:35] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Instanced, capacity limit of 16 reached during a single frame. New capacity will be 32.
+[20:22:37] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Instanced, capacity limit of 32 reached during a single frame. New capacity will be 64.
+[20:22:37] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Command Buffer, capacity limit of 64 reached during a single frame. New capacity will be 128.
+[20:22:39] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Instanced, capacity limit of 64 reached during a single frame. New capacity will be 128.
+[20:22:46] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Earth-Alps-Mont-Blanc: at lat 45.800 lon 6.800, y=97.0 (elevation ~1700 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:snowy_taiga]
+[20:22:47] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Command Buffer, capacity limit of 128 reached during a single frame. New capacity will be 256.
+[20:22:47] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Instanced, capacity limit of 128 reached during a single frame. New capacity will be 256.
+[20:22:47] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 96577.500000, 185.000000, -31024.500000
+[20:22:47] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Earth at 27.900, 86.850  (g = 9.82 m/s²)
+[20:22:49] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 6160ms or 123 ticks behind
+[20:23:01] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Earth-Himalaya-Everest: at lat 27.900 lon 86.850, y=183.0 (elevation ~6000 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:ice_spikes]
+[20:23:01] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to -66719.500000, 66.000000, 3336.500000
+[20:23:01] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Earth at -3.000, -60.000  (g = 9.82 m/s²)
+[20:23:07] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 3572ms or 71 ticks behind
+[20:23:27] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Earth-Amazon: at lat -3.000 lon -60.000, y=65.0 (elevation ~100 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:jungle]
+[20:23:27] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Command Buffer, capacity limit of 256 reached during a single frame. New capacity will be 512.
+[20:23:27] [Render thread/INFO] (Minecraft) Resizing Chunk Sections Instanced, capacity limit of 256 reached during a single frame. New capacity will be 512.
+[20:23:28] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 14456.500000, 81.000000, -25575.500000
+[20:23:28] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Earth at 23.000, 13.000  (g = 9.82 m/s²)
+[20:23:33] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 11391ms or 227 ticks behind
+[20:23:42] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Earth-Sahara: at lat 23.000 lon 13.000, y=79.0 (elevation ~800 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:desert]
+[20:23:42] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to -44479.500000, 122.000000, -80063.500000
+[20:23:42] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Earth at 72.000, -40.000  (g = 9.82 m/s²)
+[20:23:56] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Earth-Greenland-ice: at lat 72.000 lon -40.000, y=120.0 (elevation ~2850 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:ice_spikes]
+[20:23:56] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 278.500000, 66.000000, -56433.500000
+[20:23:57] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Earth at 50.750, 0.250  (g = 9.82 m/s²)
+[20:23:57] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 2153ms or 43 ticks behind
+[20:24:11] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Earth-English-coast: at lat 50.750 lon 0.250, y=64.0 (elevation ~50 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:beach]
+[20:24:11] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Moon at 0.674, 23.473  (g = 1.62 m/s²)
+[20:24:12] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 7119.500000, 65.000000, -204.500000
+[20:24:14] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 2314ms or 46 ticks behind
+[20:24:26] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Moon-Apollo-11: at lat 0.674 lon 23.474, y=24.0 (elevation ~-1950 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:lunar_ejecta]
+[20:24:26] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to -3457.500000, 65.000000, 13132.500000
+[20:24:26] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Moon at -43.300, -11.400  (g = 1.62 m/s²)
+[20:24:39] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Moon-Tycho-highlands: at lat -43.300 lon -11.400, y=25.0 (elevation ~-1900 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:lunar_highland]
+[20:24:39] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Mars at 18.440, 77.450  (g = 3.73 m/s²)
+[20:24:40] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 45822.500000, 65.000000, -10909.500000
+[20:24:41] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 2018ms or 40 ticks behind
+[20:24:55] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Mars-Jezero: at lat 18.439 lon 77.449, y=11.0 (elevation ~-2600 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:mars_rock]
+[20:24:55] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to -35025.500000, 132.000000, 6448.500000
+[20:24:55] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Mars at -10.900, -59.200  (g = 3.73 m/s²)
+[20:25:08] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Mars-Valles-Marineris: at lat -10.899 lon -59.200, y=130.0 (elevation ~3350 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:mars_dust]
+[20:25:08] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to -77505.500000, 341.000000, -10649.500000
+[20:25:08] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Mars at 18.000, -131.000  (g = 3.73 m/s²)
+[20:25:22] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Mars-Olympus-Mons-flank: at lat 18.000 lon -131.000, y=339.0 (elevation ~13800 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:mars_volcanic]
+[20:25:22] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 0.500000, 65.000000, -49993.500000
+[20:25:22] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Mars at 84.500, 0.000  (g = 3.73 m/s²)
+[20:25:22] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 2335ms or 46 ticks behind
+[20:25:37] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Mars-north-polar-cap: at lat 84.499 lon 0.001, y=-28.0 (elevation ~-4550 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:mars_polar_ice]
+[20:25:37] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Europa at 10.000, 30.000  (g = 1.31 m/s²)
+[20:25:37] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 8170.500000, 65.000000, -2723.500000
+[20:25:40] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 2285ms or 45 ticks behind
+[20:25:51] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Europa: at lat 10.000 lon 29.999, y=63.0 (elevation ~0 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:clean_ice]
+[20:25:51] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Io at 5.000, 10.000  (g = 1.80 m/s²)
+[20:25:51] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 3178.500000, 78.000000, -1589.500000
+[20:25:53] [Server thread/INFO] (Minecraft) Player Player0 standing on air - force-sending blocks below
+[20:26:05] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Io: at lat 5.001 lon 9.999, y=76.0 (elevation ~650 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:dark_regolith]
+[20:26:05] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Titan at 70.000, -45.000  (g = 1.35 m/s²)
+[20:26:06] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to -20223.500000, 65.000000, -31459.500000
+[20:26:06] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 2044ms or 40 ticks behind
+[20:26:09] [Render thread/INFO] (Minecraft) Loaded 13 advancements
+[20:26:20] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Titan-lakes: at lat 70.000 lon -44.999, y=56.4 (elevation ~-328 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:organic_shore]
+[20:26:20] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Pluto at 25.000, 160.000  (g = 0.62 m/s²)
+[20:26:20] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 33194.500000, 65.000000, -5186.500000
+[20:26:34] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] Pluto-Sputnik-Planitia-edge: at lat 24.999 lon 159.999, y=22.0 (elevation ~-2050 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:nitrogen_ice]
+[20:26:34] [Server thread/INFO] (Minecraft) System chat: Set Player0's game mode to Survival Mode
+[20:26:34] [Render thread/INFO] (Minecraft) [System] [CHAT] Your game mode has been updated to Survival Mode
+[20:26:34] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Earth at 51.501, -0.125  (g = 9.82 m/s²)
+[20:26:37] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to -138.500000, 66.000000, -57268.500000
+[20:26:37] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 4330ms or 86 ticks behind
+[20:26:40] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] gravity earth: per-tick gravity 0.08000 blocks/tick^2 (Earth 0.08000), ratio 1.0000, expected g/g0 = 1.0014; jump height 1.25 blocks
+[20:26:41] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Moon at 0.674, 23.473  (g = 1.62 m/s²)
+[20:26:41] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 7119.500000, 65.000000, -204.500000
+[20:26:50] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] gravity moon: per-tick gravity 0.01325 blocks/tick^2 (Earth 0.08000), ratio 0.1656, expected g/g0 = 0.1656; jump height 4.97 blocks
+[20:26:50] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Mars at 18.445, 77.451  (g = 3.73 m/s²)
+[20:26:50] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 45823.500000, 65.000000, -10912.500000
+[20:26:55] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 3713ms or 74 ticks behind
+[20:26:57] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] gravity mars: per-tick gravity 0.03041 blocks/tick^2 (Earth 0.08000), ratio 0.3801, expected g/g0 = 0.3801; jump height 2.69 blocks
+[20:26:57] [Server thread/INFO] (Minecraft) System chat: Set Player0's game mode to Creative Mode
+[20:26:57] [Render thread/INFO] (Minecraft) [System] [CHAT] Your game mode has been updated to Creative Mode
+[20:26:57] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Moon at 0.000, 179.990  (g = 1.62 m/s²)
+[20:26:58] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 54588.500000, 121.000000, 0.500000
+[20:26:58] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 54595.000000, 121.000000, 0.500000
+[20:27:04] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] wrap-around: x 54588.5 -> pushed to 54595.0 -> now x -54589.0 (longitude -179.990); circumference 109184 blocks
+[20:27:04] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 7119.500000, 65.000000, -204.500000
+[20:27:04] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Moon at 0.674, 23.473  (g = 1.62 m/s²)
+[20:27:06] [Server thread/INFO] (Minecraft) System chat: Teleported Player0 to 7119.500000, 745.000000, -204.500000
+[20:27:06] [Render thread/INFO] (Minecraft) [System] [CHAT] §bLeft Moon's atmosphere at 0.67, 23.47. Fly back down into any planet or moon to land.
+[20:27:15] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] launch: left the Moon's surface column, now in space mode at 1849 km from the Moon's centre
+[20:27:21] [Render thread/INFO] (Minecraft) [System] [CHAT] §bTouching down on Mars at -5.136, 95.932  (g = 3.73 m/s²)
+[20:27:24] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 13810ms or 276 ticks behind
+[20:27:38] [Test thread/INFO] (Minecraft) [STDOUT]: [cosmos-test] landing by flying down into Mars: touched down at lat -5.14 lon 95.93 y 81
+[20:27:49] [Server thread/WARN] (Minecraft) Can't keep up! Is the server overloaded? Running 2164ms or 43 ticks behind
+[20:28:19] [Server thread/INFO] (Minecraft) Player0 lost connection: Disconnected
+[20:28:19] [Server thread/INFO] (Minecraft) System chat: Player0 left the game
+[20:28:19] [Server thread/INFO] (Minecraft) Stopping singleplayer server as player logged out
+[20:28:20] [Server thread/INFO] (Minecraft) Stopping server
+[20:28:20] [Server thread/INFO] (Minecraft) Saving players
+[20:28:20] [Server thread/INFO] (Minecraft) Saving worlds
+[20:28:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[20:28:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:ariel
+[20:28:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:charon
+[20:28:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:titania
+[20:28:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:oberon
+[20:28:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:dione
+[20:28:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:rhea
+[20:28:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:earth
+[20:28:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:titan
+[20:28:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:enceladus
+[20:28:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:phobos
+[20:28:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:mercury
+[20:28:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:umbriel
+[20:28:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:tethys
+[20:28:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:io
+[20:28:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:deimos
+[20:28:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:moon
+[20:28:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:iapetus
+[20:28:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:ganymede
+[20:28:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:pluto
+[20:28:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:miranda
+[20:28:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:mars
+[20:28:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[20:28:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[20:28:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:europa
+[20:28:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:callisto
+[20:28:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:venus
+[20:28:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:mimas
+[20:28:27] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/cosmos:triton
+[20:28:28] [Render thread/INFO] (Minecraft) Stopping!
