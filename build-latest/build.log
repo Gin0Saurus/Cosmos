@@ -5,18 +5,329 @@ Daemon will be stopped at the end of the build
 Fabric Loom: 1.19.4
 
 > Task :compileJava
-> Task :processResources
-> Task :classes
-> Task :compileClientJava
-> Task :processClientResources
-> Task :processIncludeJars
-> Task :validateAccessWidener NO-SOURCE
-> Task :check
-> Task :jar
-> Task :assemble
-> Task :build
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build-1795375060845.json
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/net/CosmosPayloads.java:19: error: method type in record Launch cannot be applied to given types;
+        public static final Type<Launch> TYPE = type("launch");
+                                                ^
+  required: no arguments
+  found:    String
+  reason: actual and formal argument lists differ in length
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/net/CosmosPayloads.java:28: error: method type in record Land cannot be applied to given types;
+        public static final Type<Land> TYPE = type("land");
+                                              ^
+  required: no arguments
+  found:    String
+  reason: actual and formal argument lists differ in length
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/net/CosmosPayloads.java:36: error: method type in record WorldInfo cannot be applied to given types;
+        public static final Type<WorldInfo> TYPE = type("world_info");
+                                                   ^
+  required: no arguments
+  found:    String
+  reason: actual and formal argument lists differ in length
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:35: error: cannot find symbol
+            case LUNAR_HIGHLAND -> L(Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), 3, Blocks.CALCITE.defaultBlockState(), "cosmos:lunar_highland");
+                                           ^
+  symbol:   variable LIGHT_GRAY_CONCRETE_POWDER
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:35: error: cannot find symbol
+            case LUNAR_HIGHLAND -> L(Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), 3, Blocks.CALCITE.defaultBlockState(), "cosmos:lunar_highland");
+                                                                                                  ^
+  symbol:   variable LIGHT_GRAY_CONCRETE_POWDER
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:36: error: cannot find symbol
+            case LUNAR_MARE -> L(Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), 2, Blocks.SMOOTH_BASALT.defaultBlockState(), "cosmos:lunar_mare");
+                                       ^
+  symbol:   variable GRAY_CONCRETE_POWDER
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:36: error: cannot find symbol
+            case LUNAR_MARE -> L(Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), 2, Blocks.SMOOTH_BASALT.defaultBlockState(), "cosmos:lunar_mare");
+                                                                                        ^
+  symbol:   variable GRAY_CONCRETE_POWDER
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:37: error: cannot find symbol
+            case LUNAR_EJECTA -> L(Blocks.WHITE_CONCRETE_POWDER.defaultBlockState(), Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), 2, Blocks.CALCITE.defaultBlockState(), "cosmos:lunar_ejecta");
+                                         ^
+  symbol:   variable WHITE_CONCRETE_POWDER
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:37: error: cannot find symbol
+            case LUNAR_EJECTA -> L(Blocks.WHITE_CONCRETE_POWDER.defaultBlockState(), Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), 2, Blocks.CALCITE.defaultBlockState(), "cosmos:lunar_ejecta");
+                                                                                           ^
+  symbol:   variable LIGHT_GRAY_CONCRETE_POWDER
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:38: error: cannot find symbol
+            case LUNAR_POLAR_ICE -> L(Blocks.PACKED_ICE.defaultBlockState(), Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), 3, Blocks.CALCITE.defaultBlockState(), "cosmos:lunar_polar_ice");
+                                                                                   ^
+  symbol:   variable LIGHT_GRAY_CONCRETE_POWDER
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:41: error: cannot find symbol
+            case MARS_DARK_SAND -> L(Blocks.BROWN_CONCRETE_POWDER.defaultBlockState(), Blocks.RED_SAND.defaultBlockState(), 3, Blocks.TERRACOTTA.defaultBlockState(), "cosmos:mars_dark_sand");
+                                           ^
+  symbol:   variable BROWN_CONCRETE_POWDER
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:42: error: cannot find symbol
+            case MARS_ROCK -> L(Blocks.TERRACOTTA.defaultBlockState(), Blocks.TERRACOTTA.defaultBlockState(), 2, Blocks.RED_TERRACOTTA.defaultBlockState(), "cosmos:mars_rock");
+                                                                                                                       ^
+  symbol:   variable RED_TERRACOTTA
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:43: error: cannot find symbol
+            case MARS_VOLCANIC -> L(Blocks.RED_TERRACOTTA.defaultBlockState(), Blocks.SMOOTH_BASALT.defaultBlockState(), 3, Blocks.BASALT.defaultBlockState(), "cosmos:mars_volcanic");
+                                          ^
+  symbol:   variable RED_TERRACOTTA
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:44: error: cannot find symbol
+            case MARS_LAYERED -> L(Blocks.ORANGE_TERRACOTTA.defaultBlockState(), Blocks.WHITE_TERRACOTTA.defaultBlockState(), 2, Blocks.TERRACOTTA.defaultBlockState(), "cosmos:mars_layered");
+                                         ^
+  symbol:   variable ORANGE_TERRACOTTA
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:44: error: cannot find symbol
+            case MARS_LAYERED -> L(Blocks.ORANGE_TERRACOTTA.defaultBlockState(), Blocks.WHITE_TERRACOTTA.defaultBlockState(), 2, Blocks.TERRACOTTA.defaultBlockState(), "cosmos:mars_layered");
+                                                                                       ^
+  symbol:   variable WHITE_TERRACOTTA
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:47: error: cannot find symbol
+            case GREY_REGOLITH -> L(Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), 3, Blocks.ANDESITE.defaultBlockState(), "cosmos:grey_regolith");
+                                          ^
+  symbol:   variable LIGHT_GRAY_CONCRETE_POWDER
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:47: error: cannot find symbol
+            case GREY_REGOLITH -> L(Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), 3, Blocks.ANDESITE.defaultBlockState(), "cosmos:grey_regolith");
+                                                                                                 ^
+  symbol:   variable GRAY_CONCRETE_POWDER
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:48: error: cannot find symbol
+            case DARK_REGOLITH -> L(Blocks.TUFF.defaultBlockState(), Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), 3, Blocks.DEEPSLATE.defaultBlockState(), "cosmos:dark_regolith");
+                                                                           ^
+  symbol:   variable GRAY_CONCRETE_POWDER
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:50: error: cannot find symbol
+            case SULFUR_PLAINS -> L(Blocks.YELLOW_CONCRETE_POWDER.defaultBlockState(), Blocks.YELLOW_TERRACOTTA.defaultBlockState(), 3, Blocks.BASALT.defaultBlockState(), "cosmos:sulfur_plains");
+                                          ^
+  symbol:   variable YELLOW_CONCRETE_POWDER
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:50: error: cannot find symbol
+            case SULFUR_PLAINS -> L(Blocks.YELLOW_CONCRETE_POWDER.defaultBlockState(), Blocks.YELLOW_TERRACOTTA.defaultBlockState(), 3, Blocks.BASALT.defaultBlockState(), "cosmos:sulfur_plains");
+                                                                                             ^
+  symbol:   variable YELLOW_TERRACOTTA
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:54: error: cannot find symbol
+            case DARK_ICE -> L(Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), Blocks.PACKED_ICE.defaultBlockState(), 4, Blocks.BLUE_ICE.defaultBlockState(), "cosmos:dark_ice");
+                                     ^
+  symbol:   variable GRAY_CONCRETE_POWDER
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:55: error: cannot find symbol
+            case NITROGEN_ICE -> L(Blocks.WHITE_CONCRETE.defaultBlockState(), Blocks.PACKED_ICE.defaultBlockState(), 8, Blocks.PACKED_ICE.defaultBlockState(), "cosmos:nitrogen_ice");
+                                         ^
+  symbol:   variable WHITE_CONCRETE
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:56: error: cannot find symbol
+            case THOLIN -> L(Blocks.BROWN_TERRACOTTA.defaultBlockState(), Blocks.PACKED_ICE.defaultBlockState(), 3, Blocks.PACKED_ICE.defaultBlockState(), "cosmos:tholin");
+                                   ^
+  symbol:   variable BROWN_TERRACOTTA
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:57: error: cannot find symbol
+            case ORGANIC_DUNES -> L(Blocks.BROWN_CONCRETE_POWDER.defaultBlockState(), Blocks.BROWN_CONCRETE_POWDER.defaultBlockState(), 5, Blocks.PACKED_ICE.defaultBlockState(), "cosmos:organic_dunes");
+                                          ^
+  symbol:   variable BROWN_CONCRETE_POWDER
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:57: error: cannot find symbol
+            case ORGANIC_DUNES -> L(Blocks.BROWN_CONCRETE_POWDER.defaultBlockState(), Blocks.BROWN_CONCRETE_POWDER.defaultBlockState(), 5, Blocks.PACKED_ICE.defaultBlockState(), "cosmos:organic_dunes");
+                                                                                            ^
+  symbol:   variable BROWN_CONCRETE_POWDER
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/CosmosChunkGenerator.java:118: error: cannot find symbol
+            Blocks.WHITE_TERRACOTTA.defaultBlockState(), Blocks.ORANGE_TERRACOTTA.defaultBlockState(), Blocks.TERRACOTTA.defaultBlockState(),
+                  ^
+  symbol:   variable WHITE_TERRACOTTA
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/CosmosChunkGenerator.java:118: error: cannot find symbol
+            Blocks.WHITE_TERRACOTTA.defaultBlockState(), Blocks.ORANGE_TERRACOTTA.defaultBlockState(), Blocks.TERRACOTTA.defaultBlockState(),
+                                                               ^
+  symbol:   variable ORANGE_TERRACOTTA
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/CosmosChunkGenerator.java:119: error: cannot find symbol
+            Blocks.RED_TERRACOTTA.defaultBlockState(), Blocks.BROWN_TERRACOTTA.defaultBlockState(), Blocks.LIGHT_GRAY_TERRACOTTA.defaultBlockState() };
+                  ^
+  symbol:   variable RED_TERRACOTTA
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/CosmosChunkGenerator.java:119: error: cannot find symbol
+            Blocks.RED_TERRACOTTA.defaultBlockState(), Blocks.BROWN_TERRACOTTA.defaultBlockState(), Blocks.LIGHT_GRAY_TERRACOTTA.defaultBlockState() };
+                                                             ^
+  symbol:   variable BROWN_TERRACOTTA
+  location: class Blocks
+/home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/CosmosChunkGenerator.java:119: error: cannot find symbol
+            Blocks.RED_TERRACOTTA.defaultBlockState(), Blocks.BROWN_TERRACOTTA.defaultBlockState(), Blocks.LIGHT_GRAY_TERRACOTTA.defaultBlockState() };
+                                                                                                          ^
+  symbol:   variable LIGHT_GRAY_TERRACOTTA
+  location: class Blocks
+30 errors
 
-BUILD SUCCESSFUL in 23s
-6 actionable tasks: 6 executed
-Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.8.2/userguide/configuration_cache_enabling.html
+> Task :compileJava FAILED
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build-1795377696520.json
+
+[Incubating] Problems report is available at: file:///home/runner/work/Cosmos/Cosmos/fabric/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava' (registered by plugin class 'org.gradle.api.plugins.JavaBasePlugin').
+> Compilation failed; see the compiler output below.
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/net/CosmosPayloads.java:19: error: method type in record Launch cannot be applied to given types;
+          public static final Type<Launch> TYPE = type("launch");
+                                                  ^
+    required: no arguments
+    found:    String
+    reason: actual and formal argument lists differ in length
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/net/CosmosPayloads.java:28: error: method type in record Land cannot be applied to given types;
+          public static final Type<Land> TYPE = type("land");
+                                                ^
+    required: no arguments
+    found:    String
+    reason: actual and formal argument lists differ in length
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/net/CosmosPayloads.java:36: error: method type in record WorldInfo cannot be applied to given types;
+          public static final Type<WorldInfo> TYPE = type("world_info");
+                                                     ^
+    required: no arguments
+    found:    String
+    reason: actual and formal argument lists differ in length
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:35: error: cannot find symbol
+              case LUNAR_HIGHLAND -> L(Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), 3, Blocks.CALCITE.defaultBlockState(), "cosmos:lunar_highland");
+                                             ^
+    symbol:   variable LIGHT_GRAY_CONCRETE_POWDER
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:35: error: cannot find symbol
+              case LUNAR_HIGHLAND -> L(Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), 3, Blocks.CALCITE.defaultBlockState(), "cosmos:lunar_highland");
+                                                                                                    ^
+    symbol:   variable LIGHT_GRAY_CONCRETE_POWDER
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:36: error: cannot find symbol
+              case LUNAR_MARE -> L(Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), 2, Blocks.SMOOTH_BASALT.defaultBlockState(), "cosmos:lunar_mare");
+                                         ^
+    symbol:   variable GRAY_CONCRETE_POWDER
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:36: error: cannot find symbol
+              case LUNAR_MARE -> L(Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), 2, Blocks.SMOOTH_BASALT.defaultBlockState(), "cosmos:lunar_mare");
+                                                                                          ^
+    symbol:   variable GRAY_CONCRETE_POWDER
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:37: error: cannot find symbol
+              case LUNAR_EJECTA -> L(Blocks.WHITE_CONCRETE_POWDER.defaultBlockState(), Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), 2, Blocks.CALCITE.defaultBlockState(), "cosmos:lunar_ejecta");
+                                           ^
+    symbol:   variable WHITE_CONCRETE_POWDER
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:37: error: cannot find symbol
+              case LUNAR_EJECTA -> L(Blocks.WHITE_CONCRETE_POWDER.defaultBlockState(), Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), 2, Blocks.CALCITE.defaultBlockState(), "cosmos:lunar_ejecta");
+                                                                                             ^
+    symbol:   variable LIGHT_GRAY_CONCRETE_POWDER
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:38: error: cannot find symbol
+              case LUNAR_POLAR_ICE -> L(Blocks.PACKED_ICE.defaultBlockState(), Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), 3, Blocks.CALCITE.defaultBlockState(), "cosmos:lunar_polar_ice");
+                                                                                     ^
+    symbol:   variable LIGHT_GRAY_CONCRETE_POWDER
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:41: error: cannot find symbol
+              case MARS_DARK_SAND -> L(Blocks.BROWN_CONCRETE_POWDER.defaultBlockState(), Blocks.RED_SAND.defaultBlockState(), 3, Blocks.TERRACOTTA.defaultBlockState(), "cosmos:mars_dark_sand");
+                                             ^
+    symbol:   variable BROWN_CONCRETE_POWDER
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:42: error: cannot find symbol
+              case MARS_ROCK -> L(Blocks.TERRACOTTA.defaultBlockState(), Blocks.TERRACOTTA.defaultBlockState(), 2, Blocks.RED_TERRACOTTA.defaultBlockState(), "cosmos:mars_rock");
+                                                                                                                         ^
+    symbol:   variable RED_TERRACOTTA
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:43: error: cannot find symbol
+              case MARS_VOLCANIC -> L(Blocks.RED_TERRACOTTA.defaultBlockState(), Blocks.SMOOTH_BASALT.defaultBlockState(), 3, Blocks.BASALT.defaultBlockState(), "cosmos:mars_volcanic");
+                                            ^
+    symbol:   variable RED_TERRACOTTA
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:44: error: cannot find symbol
+              case MARS_LAYERED -> L(Blocks.ORANGE_TERRACOTTA.defaultBlockState(), Blocks.WHITE_TERRACOTTA.defaultBlockState(), 2, Blocks.TERRACOTTA.defaultBlockState(), "cosmos:mars_layered");
+                                           ^
+    symbol:   variable ORANGE_TERRACOTTA
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:44: error: cannot find symbol
+              case MARS_LAYERED -> L(Blocks.ORANGE_TERRACOTTA.defaultBlockState(), Blocks.WHITE_TERRACOTTA.defaultBlockState(), 2, Blocks.TERRACOTTA.defaultBlockState(), "cosmos:mars_layered");
+                                                                                         ^
+    symbol:   variable WHITE_TERRACOTTA
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:47: error: cannot find symbol
+              case GREY_REGOLITH -> L(Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), 3, Blocks.ANDESITE.defaultBlockState(), "cosmos:grey_regolith");
+                                            ^
+    symbol:   variable LIGHT_GRAY_CONCRETE_POWDER
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:47: error: cannot find symbol
+              case GREY_REGOLITH -> L(Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), 3, Blocks.ANDESITE.defaultBlockState(), "cosmos:grey_regolith");
+                                                                                                   ^
+    symbol:   variable GRAY_CONCRETE_POWDER
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:48: error: cannot find symbol
+              case DARK_REGOLITH -> L(Blocks.TUFF.defaultBlockState(), Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), 3, Blocks.DEEPSLATE.defaultBlockState(), "cosmos:dark_regolith");
+                                                                             ^
+    symbol:   variable GRAY_CONCRETE_POWDER
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:50: error: cannot find symbol
+              case SULFUR_PLAINS -> L(Blocks.YELLOW_CONCRETE_POWDER.defaultBlockState(), Blocks.YELLOW_TERRACOTTA.defaultBlockState(), 3, Blocks.BASALT.defaultBlockState(), "cosmos:sulfur_plains");
+                                            ^
+    symbol:   variable YELLOW_CONCRETE_POWDER
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:50: error: cannot find symbol
+              case SULFUR_PLAINS -> L(Blocks.YELLOW_CONCRETE_POWDER.defaultBlockState(), Blocks.YELLOW_TERRACOTTA.defaultBlockState(), 3, Blocks.BASALT.defaultBlockState(), "cosmos:sulfur_plains");
+                                                                                               ^
+    symbol:   variable YELLOW_TERRACOTTA
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:54: error: cannot find symbol
+              case DARK_ICE -> L(Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), Blocks.PACKED_ICE.defaultBlockState(), 4, Blocks.BLUE_ICE.defaultBlockState(), "cosmos:dark_ice");
+                                       ^
+    symbol:   variable GRAY_CONCRETE_POWDER
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:55: error: cannot find symbol
+              case NITROGEN_ICE -> L(Blocks.WHITE_CONCRETE.defaultBlockState(), Blocks.PACKED_ICE.defaultBlockState(), 8, Blocks.PACKED_ICE.defaultBlockState(), "cosmos:nitrogen_ice");
+                                           ^
+    symbol:   variable WHITE_CONCRETE
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:56: error: cannot find symbol
+              case THOLIN -> L(Blocks.BROWN_TERRACOTTA.defaultBlockState(), Blocks.PACKED_ICE.defaultBlockState(), 3, Blocks.PACKED_ICE.defaultBlockState(), "cosmos:tholin");
+                                     ^
+    symbol:   variable BROWN_TERRACOTTA
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:57: error: cannot find symbol
+              case ORGANIC_DUNES -> L(Blocks.BROWN_CONCRETE_POWDER.defaultBlockState(), Blocks.BROWN_CONCRETE_POWDER.defaultBlockState(), 5, Blocks.PACKED_ICE.defaultBlockState(), "cosmos:organic_dunes");
+                                            ^
+    symbol:   variable BROWN_CONCRETE_POWDER
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/SurfacePalette.java:57: error: cannot find symbol
+              case ORGANIC_DUNES -> L(Blocks.BROWN_CONCRETE_POWDER.defaultBlockState(), Blocks.BROWN_CONCRETE_POWDER.defaultBlockState(), 5, Blocks.PACKED_ICE.defaultBlockState(), "cosmos:organic_dunes");
+                                                                                              ^
+    symbol:   variable BROWN_CONCRETE_POWDER
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/CosmosChunkGenerator.java:118: error: cannot find symbol
+              Blocks.WHITE_TERRACOTTA.defaultBlockState(), Blocks.ORANGE_TERRACOTTA.defaultBlockState(), Blocks.TERRACOTTA.defaultBlockState(),
+                    ^
+    symbol:   variable WHITE_TERRACOTTA
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/CosmosChunkGenerator.java:118: error: cannot find symbol
+              Blocks.WHITE_TERRACOTTA.defaultBlockState(), Blocks.ORANGE_TERRACOTTA.defaultBlockState(), Blocks.TERRACOTTA.defaultBlockState(),
+                                                                 ^
+    symbol:   variable ORANGE_TERRACOTTA
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/CosmosChunkGenerator.java:119: error: cannot find symbol
+              Blocks.RED_TERRACOTTA.defaultBlockState(), Blocks.BROWN_TERRACOTTA.defaultBlockState(), Blocks.LIGHT_GRAY_TERRACOTTA.defaultBlockState() };
+                    ^
+    symbol:   variable RED_TERRACOTTA
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/CosmosChunkGenerator.java:119: error: cannot find symbol
+              Blocks.RED_TERRACOTTA.defaultBlockState(), Blocks.BROWN_TERRACOTTA.defaultBlockState(), Blocks.LIGHT_GRAY_TERRACOTTA.defaultBlockState() };
+                                                               ^
+    symbol:   variable BROWN_TERRACOTTA
+    location: class Blocks
+  /home/runner/work/Cosmos/Cosmos/fabric/src/main/java/dev/saurus/cosmos/world/CosmosChunkGenerator.java:119: error: cannot find symbol
+              Blocks.RED_TERRACOTTA.defaultBlockState(), Blocks.BROWN_TERRACOTTA.defaultBlockState(), Blocks.LIGHT_GRAY_TERRACOTTA.defaultBlockState() };
+                                                                                                            ^
+    symbol:   variable LIGHT_GRAY_TERRACOTTA
+    location: class Blocks
+  30 errors
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 21s
+1 actionable task: 1 executed
