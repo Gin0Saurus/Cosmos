@@ -115,8 +115,8 @@ public final class CosmosChunkGenerator extends ChunkGenerator {
     }
 
     private static final BlockState[] BANDS = {
-            Blocks.WHITE_TERRACOTTA.defaultBlockState(), Blocks.ORANGE_TERRACOTTA.defaultBlockState(), Blocks.TERRACOTTA.defaultBlockState(),
-            Blocks.RED_TERRACOTTA.defaultBlockState(), Blocks.BROWN_TERRACOTTA.defaultBlockState(), Blocks.LIGHT_GRAY_TERRACOTTA.defaultBlockState() };
+            SurfacePalette.b("white_terracotta"), SurfacePalette.b("orange_terracotta"), Blocks.TERRACOTTA.defaultBlockState(),
+            SurfacePalette.b("red_terracotta"), SurfacePalette.b("brown_terracotta"), SurfacePalette.b("light_gray_terracotta") };
     private static BlockState layered(int y) { return BANDS[Math.floorMod(y * 7 / 5 + (y >> 4), BANDS.length)]; }
 
     private static void set(ChunkAccess chunk, int x, int y, int z, BlockState st) {

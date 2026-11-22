@@ -9,6 +9,11 @@ public final class SurfacePalette {
     private SurfacePalette() {}
     public record Layers(BlockState top, BlockState under, int underDepth, BlockState rock, String biome) {}
 
+    /** Looks a vanilla block up by id (26.3 keeps coloured blocks in ColorCollections, so ids are the stable handle). */
+    public static BlockState b(String id) {
+        return net.minecraft.core.registries.BuiltInRegistries.BLOCK.getValue(net.minecraft.resources.Identifier.fromNamespaceAndPath("minecraft", id)).defaultBlockState();
+    }
+
     private static Layers L(BlockState top, BlockState under, int d, BlockState rock, String biome) { return new Layers(top, under, d, rock, biome); }
 
     public static Layers of(Surface s, double tempC) {
@@ -32,29 +37,29 @@ public final class SurfacePalette {
             case MOUNTAIN -> L(stone, stone, 1, stone, "minecraft:stony_peaks");
             case SNOWY_PEAKS -> L(Blocks.SNOW_BLOCK.defaultBlockState(), stone, 1, stone, "minecraft:frozen_peaks");
 
-            case LUNAR_HIGHLAND -> L(Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), 3, Blocks.CALCITE.defaultBlockState(), "cosmos:lunar_highland");
-            case LUNAR_MARE -> L(Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), 2, Blocks.SMOOTH_BASALT.defaultBlockState(), "cosmos:lunar_mare");
-            case LUNAR_EJECTA -> L(Blocks.WHITE_CONCRETE_POWDER.defaultBlockState(), Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), 2, Blocks.CALCITE.defaultBlockState(), "cosmos:lunar_ejecta");
-            case LUNAR_POLAR_ICE -> L(Blocks.PACKED_ICE.defaultBlockState(), Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), 3, Blocks.CALCITE.defaultBlockState(), "cosmos:lunar_polar_ice");
+            case LUNAR_HIGHLAND -> L(b("light_gray_concrete_powder"), b("light_gray_concrete_powder"), 3, Blocks.CALCITE.defaultBlockState(), "cosmos:lunar_highland");
+            case LUNAR_MARE -> L(b("gray_concrete_powder"), b("gray_concrete_powder"), 2, Blocks.SMOOTH_BASALT.defaultBlockState(), "cosmos:lunar_mare");
+            case LUNAR_EJECTA -> L(b("white_concrete_powder"), b("light_gray_concrete_powder"), 2, Blocks.CALCITE.defaultBlockState(), "cosmos:lunar_ejecta");
+            case LUNAR_POLAR_ICE -> L(Blocks.PACKED_ICE.defaultBlockState(), b("light_gray_concrete_powder"), 3, Blocks.CALCITE.defaultBlockState(), "cosmos:lunar_polar_ice");
 
             case MARS_DUST -> L(Blocks.RED_SAND.defaultBlockState(), Blocks.RED_SANDSTONE.defaultBlockState(), 3, Blocks.TERRACOTTA.defaultBlockState(), "cosmos:mars_dust");
-            case MARS_DARK_SAND -> L(Blocks.BROWN_CONCRETE_POWDER.defaultBlockState(), Blocks.RED_SAND.defaultBlockState(), 3, Blocks.TERRACOTTA.defaultBlockState(), "cosmos:mars_dark_sand");
-            case MARS_ROCK -> L(Blocks.TERRACOTTA.defaultBlockState(), Blocks.TERRACOTTA.defaultBlockState(), 2, Blocks.RED_TERRACOTTA.defaultBlockState(), "cosmos:mars_rock");
-            case MARS_VOLCANIC -> L(Blocks.RED_TERRACOTTA.defaultBlockState(), Blocks.SMOOTH_BASALT.defaultBlockState(), 3, Blocks.BASALT.defaultBlockState(), "cosmos:mars_volcanic");
-            case MARS_LAYERED -> L(Blocks.ORANGE_TERRACOTTA.defaultBlockState(), Blocks.WHITE_TERRACOTTA.defaultBlockState(), 2, Blocks.TERRACOTTA.defaultBlockState(), "cosmos:mars_layered");
+            case MARS_DARK_SAND -> L(b("brown_concrete_powder"), Blocks.RED_SAND.defaultBlockState(), 3, Blocks.TERRACOTTA.defaultBlockState(), "cosmos:mars_dark_sand");
+            case MARS_ROCK -> L(Blocks.TERRACOTTA.defaultBlockState(), Blocks.TERRACOTTA.defaultBlockState(), 2, b("red_terracotta"), "cosmos:mars_rock");
+            case MARS_VOLCANIC -> L(b("red_terracotta"), Blocks.SMOOTH_BASALT.defaultBlockState(), 3, Blocks.BASALT.defaultBlockState(), "cosmos:mars_volcanic");
+            case MARS_LAYERED -> L(b("orange_terracotta"), b("white_terracotta"), 2, Blocks.TERRACOTTA.defaultBlockState(), "cosmos:mars_layered");
             case MARS_POLAR_ICE -> L(Blocks.SNOW_BLOCK.defaultBlockState(), Blocks.PACKED_ICE.defaultBlockState(), 40, Blocks.TERRACOTTA.defaultBlockState(), "cosmos:mars_polar_ice");
 
-            case GREY_REGOLITH -> L(Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState(), Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), 3, Blocks.ANDESITE.defaultBlockState(), "cosmos:grey_regolith");
-            case DARK_REGOLITH -> L(Blocks.TUFF.defaultBlockState(), Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), 3, Blocks.DEEPSLATE.defaultBlockState(), "cosmos:dark_regolith");
+            case GREY_REGOLITH -> L(b("light_gray_concrete_powder"), b("gray_concrete_powder"), 3, Blocks.ANDESITE.defaultBlockState(), "cosmos:grey_regolith");
+            case DARK_REGOLITH -> L(Blocks.TUFF.defaultBlockState(), b("gray_concrete_powder"), 3, Blocks.DEEPSLATE.defaultBlockState(), "cosmos:dark_regolith");
             case BASALT_PLAINS -> L(Blocks.SMOOTH_BASALT.defaultBlockState(), Blocks.BASALT.defaultBlockState(), 4, Blocks.BLACKSTONE.defaultBlockState(), "cosmos:basalt_plains");
-            case SULFUR_PLAINS -> L(Blocks.YELLOW_CONCRETE_POWDER.defaultBlockState(), Blocks.YELLOW_TERRACOTTA.defaultBlockState(), 3, Blocks.BASALT.defaultBlockState(), "cosmos:sulfur_plains");
+            case SULFUR_PLAINS -> L(b("yellow_concrete_powder"), b("yellow_terracotta"), 3, Blocks.BASALT.defaultBlockState(), "cosmos:sulfur_plains");
             case VOLCANIC_VENT -> L(Blocks.BLACKSTONE.defaultBlockState(), Blocks.MAGMA_BLOCK.defaultBlockState(), 2, Blocks.BASALT.defaultBlockState(), "cosmos:volcanic_vent");
             case CLEAN_ICE -> L(Blocks.SNOW_BLOCK.defaultBlockState(), Blocks.PACKED_ICE.defaultBlockState(), 6, Blocks.BLUE_ICE.defaultBlockState(), "cosmos:clean_ice");
             case DIRTY_ICE -> L(Blocks.PACKED_ICE.defaultBlockState(), Blocks.PACKED_ICE.defaultBlockState(), 6, Blocks.BLUE_ICE.defaultBlockState(), "cosmos:dirty_ice");
-            case DARK_ICE -> L(Blocks.GRAY_CONCRETE_POWDER.defaultBlockState(), Blocks.PACKED_ICE.defaultBlockState(), 4, Blocks.BLUE_ICE.defaultBlockState(), "cosmos:dark_ice");
-            case NITROGEN_ICE -> L(Blocks.WHITE_CONCRETE.defaultBlockState(), Blocks.PACKED_ICE.defaultBlockState(), 8, Blocks.PACKED_ICE.defaultBlockState(), "cosmos:nitrogen_ice");
-            case THOLIN -> L(Blocks.BROWN_TERRACOTTA.defaultBlockState(), Blocks.PACKED_ICE.defaultBlockState(), 3, Blocks.PACKED_ICE.defaultBlockState(), "cosmos:tholin");
-            case ORGANIC_DUNES -> L(Blocks.BROWN_CONCRETE_POWDER.defaultBlockState(), Blocks.BROWN_CONCRETE_POWDER.defaultBlockState(), 5, Blocks.PACKED_ICE.defaultBlockState(), "cosmos:organic_dunes");
+            case DARK_ICE -> L(b("gray_concrete_powder"), Blocks.PACKED_ICE.defaultBlockState(), 4, Blocks.BLUE_ICE.defaultBlockState(), "cosmos:dark_ice");
+            case NITROGEN_ICE -> L(b("white_concrete"), Blocks.PACKED_ICE.defaultBlockState(), 8, Blocks.PACKED_ICE.defaultBlockState(), "cosmos:nitrogen_ice");
+            case THOLIN -> L(b("brown_terracotta"), Blocks.PACKED_ICE.defaultBlockState(), 3, Blocks.PACKED_ICE.defaultBlockState(), "cosmos:tholin");
+            case ORGANIC_DUNES -> L(b("brown_concrete_powder"), b("brown_concrete_powder"), 5, Blocks.PACKED_ICE.defaultBlockState(), "cosmos:organic_dunes");
             case ORGANIC_SHORE -> L(Blocks.MUD.defaultBlockState(), Blocks.PACKED_MUD.defaultBlockState(), 3, Blocks.PACKED_ICE.defaultBlockState(), "cosmos:organic_shore");
         };
     }
