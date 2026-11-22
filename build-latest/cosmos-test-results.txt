@@ -1,22 +1,22 @@
-Earth-Alps-Mont-Blanc: at lat 45.800 lon 6.800, y=97.0 (elevation ~1700 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:snowy_taiga]
-Earth-Himalaya-Everest: at lat 27.900 lon 86.850, y=183.0 (elevation ~6000 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:ice_spikes]
-Earth-Amazon: at lat -3.000 lon -60.000, y=65.0 (elevation ~100 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:jungle]
+Earth-Alps-Mont-Blanc: at lat 45.800 lon 6.800, y=97.0 (elevation ~1700 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:taiga]
+Earth-Himalaya-Everest: at lat 27.900 lon 86.850, y=183.0 (elevation ~6000 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:frozen_peaks]
+Earth-Amazon: at lat -3.000 lon -60.000, y=72.0 (elevation ~450 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:jungle]
 Earth-Sahara: at lat 23.000 lon 13.000, y=79.0 (elevation ~800 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:desert]
-Earth-Greenland-ice: at lat 72.000 lon -40.000, y=120.0 (elevation ~2850 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:ice_spikes]
+Earth-Greenland-ice: at lat 72.000 lon -40.000, y=120.0 (elevation ~2850 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:snowy_plains]
 Earth-English-coast: at lat 50.750 lon 0.250, y=64.0 (elevation ~50 m), biome ResourceKey[minecraft:worldgen/biome / minecraft:beach]
 Moon-Apollo-11: at lat 0.674 lon 23.474, y=24.0 (elevation ~-1950 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:lunar_ejecta]
-Moon-Tycho-highlands: at lat -43.300 lon -11.400, y=25.0 (elevation ~-1900 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:lunar_highland]
-Mars-Jezero: at lat 18.439 lon 77.449, y=11.0 (elevation ~-2600 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:mars_rock]
-Mars-Valles-Marineris: at lat -10.899 lon -59.200, y=130.0 (elevation ~3350 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:mars_dust]
+Moon-Tycho-highlands: at lat -43.300 lon -11.400, y=24.0 (elevation ~-1950 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:lunar_highland]
+Mars-Jezero: at lat 18.439 lon 77.449, y=14.0 (elevation ~-2450 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:mars_dust]
+Mars-Valles-Marineris: at lat -10.899 lon -59.200, y=129.0 (elevation ~3300 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:mars_dust]
 Mars-Olympus-Mons-flank: at lat 18.000 lon -131.000, y=339.0 (elevation ~13800 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:mars_volcanic]
 Mars-north-polar-cap: at lat 84.499 lon 0.001, y=-28.0 (elevation ~-4550 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:mars_polar_ice]
 Europa: at lat 10.000 lon 29.999, y=63.0 (elevation ~0 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:clean_ice]
-Io: at lat 5.001 lon 9.999, y=76.0 (elevation ~650 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:dark_regolith]
+Io: at lat 5.001 lon 9.999, y=76.0 (elevation ~650 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:sulfur_plains]
 Titan-lakes: at lat 70.000 lon -44.999, y=56.4 (elevation ~-328 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:organic_shore]
-Pluto-Sputnik-Planitia-edge: at lat 24.999 lon 159.999, y=22.0 (elevation ~-2050 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:nitrogen_ice]
+Pluto-Sputnik-Planitia-edge: at lat 24.999 lon 159.999, y=21.0 (elevation ~-2100 m), biome ResourceKey[minecraft:worldgen/biome / cosmos:nitrogen_ice]
 gravity earth: per-tick gravity 0.08000 blocks/tick^2 (Earth 0.08000), ratio 1.0000, expected g/g0 = 1.0014; jump height 1.25 blocks
 gravity moon: per-tick gravity 0.01325 blocks/tick^2 (Earth 0.08000), ratio 0.1656, expected g/g0 = 0.1656; jump height 4.97 blocks
 gravity mars: per-tick gravity 0.03041 blocks/tick^2 (Earth 0.08000), ratio 0.3801, expected g/g0 = 0.3801; jump height 2.69 blocks
 wrap-around: x 54588.5 -> pushed to 54595.0 -> now x -54589.0 (longitude -179.990); circumference 109184 blocks
 launch: left the Moon's surface column, now in space mode at 1849 km from the Moon's centre
-landing by flying down into Mars: touched down at lat -5.14 lon 95.93 y 81
+landing by flying down into Mars: touched down at lat -4.84 lon 73.63 y 91
