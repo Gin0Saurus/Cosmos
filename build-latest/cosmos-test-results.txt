@@ -19,4 +19,4 @@ gravity moon: per-tick gravity 0.01325 blocks/tick^2 (Earth 0.08000), ratio 0.16
 gravity mars: per-tick gravity 0.03041 blocks/tick^2 (Earth 0.08000), ratio 0.3801, expected g/g0 = 0.3801; jump height 2.69 blocks
 wrap-around: x 54588.5 -> pushed to 54595.0 -> now x -54589.0 (longitude -179.990); circumference 109184 blocks
 launch: left the Moon's surface column, now in space mode at 1849 km from the Moon's centre
-landing by flying down into Mars: touched down at lat -4.84 lon 73.63 y 91
+landing by flying down into Mars: touched down at lat -4.90 lon 70.17 y 87
