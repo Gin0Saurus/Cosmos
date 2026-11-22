@@ -31,25 +31,8 @@ public final class CosmosClient implements ClientModInitializer {
 
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, ctx) -> CosmosCommands.register(dispatcher));
 
-        // Real stars in the overworld: drawn at the start of the main pass, before terrain.
-        LevelRenderEvents.START_MAIN.register(ctx -> {
-            Minecraft mc = Minecraft.getInstance();
-            if (mc.level == null) return;
-            var cam = ctx.levelState().cameraRenderState;
-            if (cam == null || cam.projectionMatrix == null || cam.viewRotationMatrix == null) return;
-            if (!mc.level.dimensionType().hasSkyLight()) return;
-            CosmosRenderer.INSTANCE.renderOverworldSky(ctx.gameRenderer().mainRenderTarget(), cam.projectionMatrix, cam.viewRotationMatrix,
-                    mc.level.getOverworldClockTime(), mc.level.getRainLevel(1.0f));
-        });
-
-        // Space mode replaces the whole frame after the world has been drawn.
-        LevelRenderEvents.END_MAIN.register(ctx -> {
-            if (!CosmosState.spaceMode) return;
-            Minecraft mc = Minecraft.getInstance();
-            if (mc.player == null) return;
-            CosmosRenderer.INSTANCE.renderSpace(ctx.gameRenderer().mainRenderTarget(), mc.player.getYRot(), mc.player.getXRot(),
-                    ctx.gameRenderer().mainCamera().getFov());
-        });
+        // Overworld stars and the space view are drawn from mixins (SkyRendererMixin, GameRendererMixin),
+        // at points where Minecraft has no render pass open.
 
         // While flying in space the Minecraft body stays parked where it was.
         ClientTickEvents.END_CLIENT_TICK.register(mc -> {
