@@ -1,0 +1,19 @@
+  public static java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> generateSpawn(net.minecraft.world.level.chunk.status.WorldGenContext, net.minecraft.world.level.chunk.status.ChunkStep, net.minecraft.util.StaticCache2D<net.minecraft.server.level.GenerationChunkHolder>, net.minecraft.world.level.chunk.ChunkAccess);
+    Code:
+         0: aload_3
+         1: invokevirtual #216                // Method net/minecraft/world/level/chunk/ChunkAccess.isUpgrading:()Z
+         4: ifne          28
+         7: aload_0
+         8: invokevirtual #62                 // Method net/minecraft/world/level/chunk/status/WorldGenContext.generator:()Lnet/minecraft/world/level/chunk/ChunkGenerator;
+        11: new           #101                // class net/minecraft/server/level/WorldGenRegion
+        14: dup
+        15: aload_0
+        16: invokevirtual #33                 // Method net/minecraft/world/level/chunk/status/WorldGenContext.level:()Lnet/minecraft/server/level/ServerLevel;
+        19: aload_2
+        20: aload_1
+        21: aload_3
+        22: invokespecial #103                // Method net/minecraft/server/level/WorldGenRegion."<init>":(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/util/StaticCache2D;Lnet/minecraft/world/level/chunk/status/ChunkStep;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+        25: invokevirtual #219                // Method net/minecraft/world/level/chunk/ChunkGenerator.spawnOriginalMobs:(Lnet/minecraft/server/level/WorldGenRegion;)V
+        28: aload_3
+        29: invokestatic  #27                 // Method java/util/concurrent/CompletableFuture.completedFuture:(Ljava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
+        32: areturn

@@ -1,0 +1,41 @@
+  public void spawnOriginalMobs(net.minecraft.server.level.WorldGenRegion);
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field settings:Lnet/minecraft/core/Holder;
+         4: invokeinterface #91,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+         9: checkcast     #45                 // class net/minecraft/world/level/levelgen/NoiseGeneratorSettings
+        12: invokevirtual #723                // Method net/minecraft/world/level/levelgen/NoiseGeneratorSettings.disableMobGeneration:()Z
+        15: ifeq          19
+        18: return
+        19: aload_1
+        20: invokevirtual #726                // Method net/minecraft/server/level/WorldGenRegion.getCenter:()Lnet/minecraft/world/level/ChunkPos;
+        23: astore_2
+        24: aload_2
+        25: invokevirtual #729                // Method net/minecraft/world/level/ChunkPos.getWorldPosition:()Lnet/minecraft/core/BlockPos;
+        28: aload_1
+        29: invokevirtual #733                // Method net/minecraft/server/level/WorldGenRegion.getMaxY:()I
+        32: invokevirtual #736                // Method net/minecraft/core/BlockPos.atY:(I)Lnet/minecraft/core/BlockPos;
+        35: astore_3
+        36: new           #445                // class net/minecraft/world/level/levelgen/WorldgenRandom
+        39: dup
+        40: new           #447                // class net/minecraft/world/level/levelgen/LegacyRandomSource
+        43: dup
+        44: invokestatic  #449                // Method net/minecraft/world/level/levelgen/RandomSupport.generateUniqueSeed:()J
+        47: invokespecial #455                // Method net/minecraft/world/level/levelgen/LegacyRandomSource."<init>":(J)V
+        50: invokespecial #458                // Method net/minecraft/world/level/levelgen/WorldgenRandom."<init>":(Lnet/minecraft/util/RandomSource;)V
+        53: astore        4
+        55: aload         4
+        57: aload_1
+        58: invokevirtual #740                // Method net/minecraft/server/level/WorldGenRegion.getSeed:()J
+        61: aload_2
+        62: invokevirtual #119                // Method net/minecraft/world/level/ChunkPos.getMinBlockX:()I
+        65: aload_2
+        66: invokevirtual #127                // Method net/minecraft/world/level/ChunkPos.getMinBlockZ:()I
+        69: invokevirtual #743                // Method net/minecraft/world/level/levelgen/WorldgenRandom.setDecorationSeed:(JII)J
+        72: pop2
+        73: aload_1
+        74: aload_3
+        75: aload_2
+        76: aload         4
+        78: invokestatic  #747                // Method net/minecraft/world/level/NaturalSpawner.spawnMobsForChunkGeneration:(Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/util/RandomSource;)V
+        81: return
