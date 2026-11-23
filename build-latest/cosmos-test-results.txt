@@ -1,1 +1,0 @@
-landmark Eiffel Tower: viewed from 140 blocks south; client census: loaded columns 1849, solid samples 1273/247766; leg-corner column: 43-43:stone 44-44:copper_ore 45-58:stone 59-63:dirt 64-64:stone 65-65:air 66-66:brown_terracotta 67+:air
