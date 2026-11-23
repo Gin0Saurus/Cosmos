@@ -1,7 +1,7 @@
 name: build-and-test
 # Compiles the mod against the real Minecraft 26.3, launches the client headless (xvfb + Mesa),
 # runs the Cosmos in-game tour, and publishes jar + screenshots + logs to the ci-results branch.
-on: { workflow_dispatch: {}, push: { branches: [main], paths: ['fabric/**', 'core/**', '.github/workflows/build.yml'] } }
+on: { workflow_dispatch: { inputs: { only: { description: 'comma-separated landmark ids for a quick test', required: false, default: '' } } }, push: { branches: [main], paths: ['fabric/**', 'core/**', '.github/workflows/build.yml'] } }
 permissions: { contents: write }
 concurrency: { group: build, cancel-in-progress: true }
 jobs:
@@ -33,7 +33,7 @@ jobs:
         working-directory: fabric
         continue-on-error: true
         timeout-minutes: 45
-        env: { SDL_VIDEO_FORCE_EGL: "1", LIBGL_ALWAYS_SOFTWARE: "1", MESA_GL_VERSION_OVERRIDE: "4.5", MESA_GLSL_VERSION_OVERRIDE: "450" }
+        env: { COSMOS_TEST_ONLY: "${{ github.event.inputs.only }}", SDL_VIDEO_FORCE_EGL: "1", LIBGL_ALWAYS_SOFTWARE: "1", MESA_GL_VERSION_OVERRIDE: "4.5", MESA_GLSL_VERSION_OVERRIDE: "450" }
         run: |
           ( for i in $(seq 1 180); do sleep 5; if grep -q "Failed to create backend Vulkan" ../gametest.log 2>/dev/null; then echo "WATCHDOG: no graphics backend, killing"; pkill -f runClientGameTest; pkill -f KnotClient; pkill java; break; fi; done ) &
           timeout 2400 xvfb-run -a -s "-screen 0 1280x720x24 +extension GLX +render -noreset" ./gradlew --no-daemon runClientGameTest 2>&1 | tee ../gametest.log; exit ${PIPESTATUS[0]}

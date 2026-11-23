@@ -56,6 +56,13 @@ public final class CosmosClientGameTest implements FabricClientGameTest {
             world.getServer().runCommand("gamerule spawn_mobs true");
             world.getServer().runCommand("gamerule doMobSpawning true");
 
+            String only = System.getenv("COSMOS_TEST_ONLY");
+            if (only != null && !only.isBlank()) {          // quick mode for checking specific landmarks
+                for (String lm : only.split(",")) {
+                    try { landmark(context, world, lm.trim()); } catch (Throwable t) { log("FAIL landmark " + lm + ": " + t); }
+                }
+                return;
+            }
             int i = 0;
             for (Stop s : SURFACE_TOUR) {
                 try { visit(context, world, s, i++); }
@@ -104,9 +111,9 @@ public final class CosmosClientGameTest implements FabricClientGameTest {
     private void landmark(ClientGameTestContext context, TestSingleplayerContext world, String id) {
         var l = dev.saurus.cosmos.core.terrain.Landmarks.find(id);
         int C = Planets.projection(l.body()).circumference();
-        double back = l.radius() + Math.max(20, l.height() * 0.35);
+        double back = Math.min(140, l.radius() + Math.max(20, l.height() * 0.35));
         land(context, world, l.body(), l.lat() - back / C * 360.0, l.lon());
-        float pitch = (float) -Math.toDegrees(Math.atan2(l.height() * 0.45, back));
+        float pitch = (float) -Math.toDegrees(Math.atan2(l.height() * 0.5, back));
         context.runOnClient(mc -> { mc.player.setYRot(180f); mc.player.setXRot(pitch); });
         context.waitTicks(320);
         log("landmark " + l.name() + ": viewed from " + Math.round(back) + " blocks south");
