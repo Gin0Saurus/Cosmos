@@ -1,2 +1,0 @@
-landmark Eiffel Tower: viewed from 140 blocks south
-landmark Great Pyramid of Giza: viewed from 140 blocks south
