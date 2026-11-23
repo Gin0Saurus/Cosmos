@@ -1,0 +1,310 @@
+=== net.minecraft.world.level.NaturalSpawner
+Compiled from "NaturalSpawner.java"
+public final class net.minecraft.world.level.NaturalSpawner {
+  private static final org.slf4j.Logger LOGGER;
+  private static final int MIN_SPAWN_DISTANCE;
+  public static final int SPAWN_DISTANCE_CHUNK;
+  public static final int SPAWN_DISTANCE_BLOCK;
+  public static final int INSCRIBED_SQUARE_SPAWN_DISTANCE_CHUNK;
+  private static final int MAGIC_NUMBER;
+  private static final net.minecraft.world.entity.MobCategory[] SPAWNING_CATEGORIES;
+  private net.minecraft.world.level.NaturalSpawner();
+  public static net.minecraft.world.level.NaturalSpawner$SpawnState createState(int, net.minecraft.server.level.ServerLevel, net.minecraft.world.level.NaturalSpawner$ChunkGetter, net.minecraft.world.level.LocalMobCapCalculator);
+  public static java.util.List<net.minecraft.world.entity.MobCategory> getFilteredSpawningCategories(net.minecraft.world.level.NaturalSpawner$SpawnState, boolean, boolean);
+  public static void spawnForChunk(net.minecraft.server.level.ServerLevel, net.minecraft.world.level.chunk.LevelChunk, net.minecraft.world.level.NaturalSpawner$SpawnState, java.util.List<net.minecraft.world.entity.MobCategory>);
+  public static void spawnCategoryForChunk(net.minecraft.world.entity.MobCategory, net.minecraft.server.level.ServerLevel, net.minecraft.world.level.chunk.LevelChunk, net.minecraft.world.level.NaturalSpawner$SpawnPredicate, net.minecraft.world.level.NaturalSpawner$AfterSpawnCallback);
+  public static void spawnCategoryForPosition(net.minecraft.world.entity.MobCategory, net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos);
+  public static void spawnCategoryForPosition(net.minecraft.world.entity.MobCategory, net.minecraft.server.level.ServerLevel, net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.core.BlockPos, net.minecraft.world.level.NaturalSpawner$SpawnPredicate, net.minecraft.world.level.NaturalSpawner$AfterSpawnCallback);
+  private static boolean isRightDistanceToPlayerAndSpawnPoint(net.minecraft.server.level.ServerLevel, net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.core.BlockPos$MutableBlockPos, double);
+  private static boolean isValidSpawnPostitionForType(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.MobCategory, net.minecraft.world.level.StructureManager, net.minecraft.world.level.chunk.ChunkGenerator, net.minecraft.world.level.biome.MobSpawnSettings$SpawnerData, net.minecraft.core.BlockPos$MutableBlockPos, double);
+  private static net.minecraft.world.entity.Mob getMobForSpawn(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.EntityType<?>);
+  private static boolean isValidPositionForMob(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Mob, double);
+  private static java.util.Optional<net.minecraft.world.level.biome.MobSpawnSettings$SpawnerData> getRandomSpawnMobAt(net.minecraft.server.level.ServerLevel, net.minecraft.world.level.StructureManager, net.minecraft.world.level.chunk.ChunkGenerator, net.minecraft.world.entity.MobCategory, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  private static boolean canSpawnMobAt(net.minecraft.server.level.ServerLevel, net.minecraft.world.level.StructureManager, net.minecraft.world.level.chunk.ChunkGenerator, net.minecraft.world.entity.MobCategory, net.minecraft.world.level.biome.MobSpawnSettings$SpawnerData, net.minecraft.core.BlockPos);
+  private static net.minecraft.util.random.WeightedList<net.minecraft.world.level.biome.MobSpawnSettings$SpawnerData> mobsAt(net.minecraft.server.level.ServerLevel, net.minecraft.world.level.StructureManager, net.minecraft.world.level.chunk.ChunkGenerator, net.minecraft.world.entity.MobCategory, net.minecraft.core.BlockPos);
+  public static boolean isInNetherFortressBounds(net.minecraft.core.BlockPos, net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.MobCategory, net.minecraft.world.level.StructureManager);
+  private static net.minecraft.core.BlockPos getRandomPosWithin(net.minecraft.world.level.Level, net.minecraft.world.level.chunk.LevelChunk);
+  public static boolean isValidEmptySpawnBlock(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.material.FluidState, net.minecraft.world.entity.EntityType<?>);
+  public static void spawnMobsForChunkGeneration(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.core.BlockPos, net.minecraft.world.level.ChunkPos, net.minecraft.util.RandomSource);
+  private static net.minecraft.core.BlockPos getTopNonCollidingPos(net.minecraft.world.level.LevelReader, net.minecraft.world.entity.EntityType<?>, int, int);
+  static {};
+}
+=== net.minecraft.world.level.levelgen.WorldgenRandom
+Compiled from "WorldgenRandom.java"
+public class net.minecraft.world.level.levelgen.WorldgenRandom extends net.minecraft.world.level.levelgen.LegacyRandomSource {
+  private final net.minecraft.util.RandomSource randomSource;
+  private int count;
+  public net.minecraft.world.level.levelgen.WorldgenRandom(net.minecraft.util.RandomSource);
+  public int getCount();
+  public net.minecraft.util.RandomSource fork();
+  public net.minecraft.world.level.levelgen.PositionalRandomFactory forkPositional();
+  public int next(int);
+  public synchronized void setSeed(long);
+  public long setDecorationSeed(long, int, int);
+  public void setFeatureSeed(long, int, int);
+  public void setLargeFeatureSeed(long, int, int);
+  public void setLargeFeatureWithSalt(long, int, int, int);
+  public static net.minecraft.util.RandomSource seedSlimeChunk(int, int, long, long);
+}
+=== net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator
+Compiled from "NoiseBasedChunkGenerator.java"
+public final class net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator extends net.minecraft.world.level.chunk.ChunkGenerator {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator> CODEC;
+  private static final net.minecraft.world.level.block.state.BlockState AIR;
+  private static final java.text.DecimalFormat DEBUG_DENSITY_FORMAT;
+  private final net.minecraft.core.Holder<net.minecraft.world.level.levelgen.NoiseGeneratorSettings> settings;
+  private final java.util.function.Supplier<net.minecraft.world.level.levelgen.Aquifer$FluidPicker> globalFluidPicker;
+  public net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator(net.minecraft.world.level.biome.BiomeSource, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.NoiseGeneratorSettings>);
+  private static net.minecraft.world.level.levelgen.Aquifer$FluidPicker createFluidPicker(net.minecraft.world.level.levelgen.NoiseGeneratorSettings);
+  protected net.minecraft.world.level.biome.BiomeResolver decorateBiomeResolver(net.minecraft.world.level.levelgen.blending.Blender, net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.biome.BiomeResolver);
+  private net.minecraft.world.level.levelgen.NoiseChunk createNoiseChunk(net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.StructureManager, net.minecraft.world.level.levelgen.blending.Blender, net.minecraft.world.level.levelgen.RandomState, net.minecraft.world.level.levelgen.NoiseSettings);
+  private static net.minecraft.world.level.levelgen.densityfunction.DensityVolume chunkVolume(net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.levelgen.NoiseSettings);
+  public net.minecraft.world.level.ChunkPos getOrigin(net.minecraft.world.level.levelgen.RandomState);
+  protected com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.chunk.ChunkGenerator> codec();
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.NoiseGeneratorSettings> generatorSettings();
+  public boolean stable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.NoiseGeneratorSettings>);
+  public int getBaseHeight(int, int, net.minecraft.world.level.levelgen.Heightmap$Types, net.minecraft.world.level.LevelHeightAccessor, net.minecraft.world.level.levelgen.RandomState);
+  public net.minecraft.world.level.NoiseColumn getBaseColumn(int, int, net.minecraft.world.level.LevelHeightAccessor, net.minecraft.world.level.levelgen.RandomState);
+  public void addDebugScreenInfo(java.util.List<java.lang.String>, net.minecraft.world.level.levelgen.RandomState, net.minecraft.core.BlockPos, net.minecraft.world.level.levelgen.densityfunction.SamplerContext);
+  private java.util.OptionalInt iterateNoiseColumn(net.minecraft.world.level.LevelHeightAccessor, net.minecraft.world.level.levelgen.RandomState, int, int, org.apache.commons.lang3.mutable.MutableObject<net.minecraft.world.level.NoiseColumn>, java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState>);
+  private void buildSurface(net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.levelgen.NoiseChunk, net.minecraft.world.level.levelgen.RandomState, net.minecraft.world.level.biome.BiomeManager, java.util.Set<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>, net.minecraft.world.level.levelgen.material.rule.MaterialRule);
+  private void generateCarvers(net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.levelgen.blending.Blender, net.minecraft.world.level.levelgen.NoiseChunk, net.minecraft.world.level.levelgen.RandomState, net.minecraft.world.level.biome.BiomeManager, net.minecraft.server.level.WorldGenRegion, net.minecraft.world.level.levelgen.material.rule.MaterialRule);
+  private void applyCarvingMask(net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.chunk.CarvingMask, net.minecraft.world.level.levelgen.RandomState, net.minecraft.world.level.levelgen.material.rule.MaterialRule, net.minecraft.world.level.levelgen.WorldGenerationContext, net.minecraft.world.level.levelgen.NoiseChunk, java.util.function.Function<net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>, net.minecraft.world.level.chunk.CarvingMask$Filter);
+  private net.minecraft.world.level.biome.BiomeGenerationSettings getBiomeGenerationSettingsForCarver(net.minecraft.world.level.biome.BiomeResolver, net.minecraft.world.level.ChunkPos);
+  public java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> buildTerrain(net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.levelgen.blending.Blender, net.minecraft.world.level.levelgen.RandomState, net.minecraft.world.level.StructureManager, net.minecraft.world.level.biome.BiomeManager, net.minecraft.server.level.WorldGenRegion, java.util.Set<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>);
+  private void doFill(net.minecraft.world.level.levelgen.NoiseChunk, net.minecraft.world.level.chunk.ChunkAccess);
+  private net.minecraft.world.level.block.state.BlockState debugPreliminarySurfaceLevel(net.minecraft.world.level.levelgen.NoiseChunk, int, int, int, net.minecraft.world.level.block.state.BlockState);
+  public int getGenDepth();
+  public int getSeaLevel();
+  public int getMinY();
+  public void spawnOriginalMobs(net.minecraft.server.level.WorldGenRegion);
+  static {};
+}
+=== net.minecraft.world.level.ServerLevelAccessor
+Compiled from "ServerLevelAccessor.java"
+public interface net.minecraft.world.level.ServerLevelAccessor extends net.minecraft.world.level.LevelAccessor {
+  public abstract net.minecraft.server.level.ServerLevel getLevel();
+  public abstract net.minecraft.world.DifficultyInstance getCurrentDifficultyAt(net.minecraft.core.BlockPos);
+  public default void addFreshEntityWithPassengers(net.minecraft.world.entity.Entity);
+}
+=== net.minecraft.world.level.WorldGenLevel
+Compiled from "WorldGenLevel.java"
+public interface net.minecraft.world.level.WorldGenLevel extends net.minecraft.world.level.ServerLevelAccessor {
+  public abstract long getSeed();
+  public default boolean ensureCanWrite(net.minecraft.core.BlockPos);
+  public default void setCurrentlyGenerating(java.util.function.Supplier<java.lang.String>);
+}
+=== net.minecraft.world.level.levelgen.XoroshiroRandomSource
+Compiled from "XoroshiroRandomSource.java"
+public class net.minecraft.world.level.levelgen.XoroshiroRandomSource implements net.minecraft.util.RandomSource {
+  private static final float FLOAT_UNIT;
+  private static final double DOUBLE_UNIT;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.XoroshiroRandomSource> CODEC;
+  private net.minecraft.world.level.levelgen.Xoroshiro128PlusPlus randomNumberGenerator;
+  private final net.minecraft.world.level.levelgen.MarsagliaPolarGaussian gaussianSource;
+  public net.minecraft.world.level.levelgen.XoroshiroRandomSource(long);
+  public net.minecraft.world.level.levelgen.XoroshiroRandomSource(net.minecraft.world.level.levelgen.RandomSupport$Seed128bit);
+  public net.minecraft.world.level.levelgen.XoroshiroRandomSource(long, long);
+  private net.minecraft.world.level.levelgen.XoroshiroRandomSource(net.minecraft.world.level.levelgen.Xoroshiro128PlusPlus);
+  public net.minecraft.util.RandomSource fork();
+  public net.minecraft.world.level.levelgen.PositionalRandomFactory forkPositional();
+  public void setSeed(long);
+  public int nextInt();
+  public int nextInt(int);
+  public long nextLong();
+  public boolean nextBoolean();
+  public float nextFloat();
+  public double nextDouble();
+  public double nextGaussian();
+  public void consumeCount(int);
+  private long nextBits(int);
+  static {};
+}
+=== net.minecraft.util.RandomSource
+Compiled from "RandomSource.java"
+public interface net.minecraft.util.RandomSource {
+  public static final double GAUSSIAN_SPREAD_FACTOR;
+  public static net.minecraft.util.RandomSource create();
+  public static net.minecraft.util.RandomSource createThreadSafe();
+  public static net.minecraft.util.RandomSource create(long);
+  public static net.minecraft.util.RandomSource createThreadLocalInstance();
+  public static net.minecraft.util.RandomSource createThreadLocalInstance(long);
+  public abstract net.minecraft.util.RandomSource fork();
+  public abstract net.minecraft.world.level.levelgen.PositionalRandomFactory forkPositional();
+  public abstract void setSeed(long);
+  public abstract int nextInt();
+  public abstract int nextInt(int);
+  public default int nextIntBetweenInclusive(int, int);
+  public abstract long nextLong();
+  public abstract boolean nextBoolean();
+  public abstract float nextFloat();
+  public abstract double nextDouble();
+  public abstract double nextGaussian();
+  public default double triangle(double, double);
+  public default float triangle(float, float);
+  public default void consumeCount(int);
+  public default int nextInt(int, int);
+}
+=== net.minecraft.world.level.levelgen.LegacyRandomSource
+Compiled from "LegacyRandomSource.java"
+public class net.minecraft.world.level.levelgen.LegacyRandomSource implements net.minecraft.world.level.levelgen.BitRandomSource {
+  private static final int MODULUS_BITS;
+  private static final long MODULUS_MASK;
+  private static final long MULTIPLIER;
+  private static final long INCREMENT;
+  private final java.util.concurrent.atomic.AtomicLong seed;
+  private final net.minecraft.world.level.levelgen.MarsagliaPolarGaussian gaussianSource;
+  public net.minecraft.world.level.levelgen.LegacyRandomSource(long);
+  public net.minecraft.util.RandomSource fork();
+  public net.minecraft.world.level.levelgen.PositionalRandomFactory forkPositional();
+  public void setSeed(long);
+  public int next(int);
+  public double nextGaussian();
+}
+=== net.minecraft.world.level.block.state.properties.BlockStateProperties
+Compiled from "BlockStateProperties.java"
+public class net.minecraft.world.level.block.state.properties.BlockStateProperties {
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty ATTACHED;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty BERRIES;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty BLOOM;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty BOTTOM;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty CAN_SUMMON;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty CONDITIONAL;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty DISARMED;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty DRAG;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty ENABLED;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty EXTENDED;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty EYE;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty FALLING;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty HANGING;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty HAS_BOTTLE_0;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty HAS_BOTTLE_1;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty HAS_BOTTLE_2;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty HAS_RECORD;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty HAS_BOOK;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty INVERTED;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty IN_WALL;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty LIT;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty LOCKED;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty NATURAL;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty OCCUPIED;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty OPEN;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty PERSISTENT;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty POWERED;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty SHORT;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty SHRIEKING;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty SIGNAL_FIRE;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty SNOWY;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty TIP;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty TRIGGERED;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty UNSTABLE;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty WATERLOGGED;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.core.Direction$Axis> HORIZONTAL_AXIS;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.core.Direction$Axis> AXIS;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty UP;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty DOWN;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty NORTH;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty EAST;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty SOUTH;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty WEST;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.core.Direction> FACING;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.core.Direction> FACING_HOPPER;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.core.Direction> HORIZONTAL_FACING;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty FLOWER_AMOUNT;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty SEGMENT_AMOUNT;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.core.FrontAndTop> ORIENTATION;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.AttachFace> ATTACH_FACE;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.BellAttachType> BELL_ATTACHMENT;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.WallSide> EAST_WALL;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.WallSide> NORTH_WALL;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.WallSide> SOUTH_WALL;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.WallSide> WEST_WALL;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.RedstoneSide> EAST_REDSTONE;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.RedstoneSide> NORTH_REDSTONE;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.RedstoneSide> SOUTH_REDSTONE;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.RedstoneSide> WEST_REDSTONE;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.DoubleBlockHalf> DOUBLE_BLOCK_HALF;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.Half> HALF;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.SideChainPart> SIDE_CHAIN_PART;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.RailShape> RAIL_SHAPE;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.RailShape> RAIL_SHAPE_STRAIGHT;
+  public static final int MAX_AGE_1;
+  public static final int MAX_AGE_2;
+  public static final int MAX_AGE_3;
+  public static final int MAX_AGE_4;
+  public static final int MAX_AGE_5;
+  public static final int MAX_AGE_7;
+  public static final int MAX_AGE_15;
+  public static final int MAX_AGE_25;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty AGE_1;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty AGE_2;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty AGE_3;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty AGE_4;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty AGE_5;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty AGE_7;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty AGE_15;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty AGE_25;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty BITES;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty CANDLES;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty DELAY;
+  public static final int MAX_DISTANCE;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty DISTANCE;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty EGGS;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty HATCH;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty LAYERS;
+  public static final int MIN_LEVEL;
+  public static final int MIN_LEVEL_CAULDRON;
+  public static final int MAX_LEVEL_3;
+  public static final int MAX_LEVEL_8;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty LEVEL_CAULDRON;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty LEVEL_COMPOSTER;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty LEVEL_FLOWING;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty LEVEL_HONEY;
+  public static final int MAX_LEVEL_15;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty LEVEL;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty MOISTURE;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty NOTE;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty PICKLES;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty POWER;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty STAGE;
+  public static final int STABILITY_MAX_DISTANCE;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty STABILITY_DISTANCE;
+  public static final int MIN_RESPAWN_ANCHOR_CHARGES;
+  public static final int MAX_RESPAWN_ANCHOR_CHARGES;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty RESPAWN_ANCHOR_CHARGES;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty DRIED_GHAST_HYDRATION_LEVELS;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty ROTATION_16;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.BedPart> BED_PART;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.ChestType> CHEST_TYPE;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.ComparatorMode> MODE_COMPARATOR;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.DoorHingeSide> DOOR_HINGE;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.NoteBlockInstrument> NOTEBLOCK_INSTRUMENT;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.PistonType> PISTON_TYPE;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.SlabType> SLAB_TYPE;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.StairsShape> STAIRS_SHAPE;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.StructureMode> STRUCTUREBLOCK_MODE;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.BambooLeaves> BAMBOO_LEAVES;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.Tilt> TILT;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.core.Direction> VERTICAL_DIRECTION;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.SpeleothemThickness> SPELEOTHEM_THICKNESS;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.SculkSensorPhase> SCULK_SENSOR_PHASE;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty SLOT_0_OCCUPIED;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty SLOT_1_OCCUPIED;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty SLOT_2_OCCUPIED;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty SLOT_3_OCCUPIED;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty SLOT_4_OCCUPIED;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty SLOT_5_OCCUPIED;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty DUSTED;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty CRACKED;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty CRAFTING;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.entity.trialspawner.TrialSpawnerState> TRIAL_SPAWNER_STATE;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.entity.vault.VaultState> VAULT_STATE;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.CreakingHeartState> CREAKING_HEART_STATE;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty OMINOUS;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.TestBlockMode> TEST_BLOCK_MODE;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty MAP;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.CopperGolemStatueBlock$Pose> COPPER_GOLEM_POSE;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.PotentSulfurState> POTENT_SULFUR_STATE;
+  public net.minecraft.world.level.block.state.properties.BlockStateProperties();
+  static {};
+}

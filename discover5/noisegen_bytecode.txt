@@ -1,0 +1,449 @@
+  public java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> buildTerrain(net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.levelgen.blending.Blender, net.minecraft.world.level.levelgen.RandomState, net.minecraft.world.level.StructureManager, net.minecraft.world.level.biome.BiomeManager, net.minecraft.server.level.WorldGenRegion, java.util.Set<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>);
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field settings:Lnet/minecraft/core/Holder;
+         4: invokeinterface #91,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+         9: checkcast     #45                 // class net/minecraft/world/level/levelgen/NoiseGeneratorSettings
+        12: invokevirtual #303                // Method net/minecraft/world/level/levelgen/NoiseGeneratorSettings.noiseSettings:()Lnet/minecraft/world/level/levelgen/NoiseSettings;
+        15: aload_1
+        16: invokevirtual #415                // Method net/minecraft/world/level/chunk/ChunkAccess.getHeightAccessorForGeneration:()Lnet/minecraft/world/level/LevelHeightAccessor;
+        19: invokevirtual #307                // Method net/minecraft/world/level/levelgen/NoiseSettings.clampToHeightAccessor:(Lnet/minecraft/world/level/LevelHeightAccessor;)Lnet/minecraft/world/level/levelgen/NoiseSettings;
+        22: astore        8
+        24: aload         8
+        26: invokevirtual #114                // Method net/minecraft/world/level/levelgen/NoiseSettings.height:()I
+        29: ifle          42
+        32: aload_1
+        33: invokevirtual #77                 // Method net/minecraft/world/level/chunk/ChunkAccess.getPos:()Lnet/minecraft/world/level/ChunkPos;
+        36: invokestatic  #403                // Method net/minecraft/SharedConstants.debugVoidTerrain:(Lnet/minecraft/world/level/ChunkPos;)Z
+        39: ifeq          47
+        42: aload_1
+        43: invokestatic  #591                // Method java/util/concurrent/CompletableFuture.completedFuture:(Ljava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
+        46: areturn
+        47: aload_0
+        48: aload_1
+        49: aload         4
+        51: aload_2
+        52: aload_3
+        53: aload         8
+        55: aload         5
+        57: aload         7
+        59: aload         6
+        61: invokedynamic #597,  0            // InvokeDynamic #5:get:(Lnet/minecraft/world/level/levelgen/NoiseBasedChunkGenerator;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/levelgen/blending/Blender;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/levelgen/NoiseSettings;Lnet/minecraft/world/level/biome/BiomeManager;Ljava/util/Set;Lnet/minecraft/server/level/WorldGenRegion;)Ljava/util/function/Supplier;
+        66: invokestatic  #600                // Method net/minecraft/util/Util.backgroundExecutor:()Lnet/minecraft/TracingExecutor;
+        69: ldc_w         #606                // String buildTerrain
+        72: invokevirtual #608                // Method net/minecraft/TracingExecutor.forName:(Ljava/lang/String;)Ljava/util/concurrent/Executor;
+        75: invokestatic  #614                // Method java/util/concurrent/CompletableFuture.supplyAsync:(Ljava/util/function/Supplier;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
+        78: areturn
+  private void doFill(net.minecraft.world.level.levelgen.NoiseChunk, net.minecraft.world.level.chunk.ChunkAccess);
+    Code:
+         0: aload_2
+         1: getstatic     #618                // Field net/minecraft/world/level/levelgen/Heightmap$Types.OCEAN_FLOOR_WG:Lnet/minecraft/world/level/levelgen/Heightmap$Types;
+         4: invokevirtual #622                // Method net/minecraft/world/level/chunk/ChunkAccess.getOrCreateHeightmapUnprimed:(Lnet/minecraft/world/level/levelgen/Heightmap$Types;)Lnet/minecraft/world/level/levelgen/Heightmap;
+         7: astore_3
+         8: aload_2
+         9: getstatic     #626                // Field net/minecraft/world/level/levelgen/Heightmap$Types.WORLD_SURFACE_WG:Lnet/minecraft/world/level/levelgen/Heightmap$Types;
+        12: invokevirtual #622                // Method net/minecraft/world/level/chunk/ChunkAccess.getOrCreateHeightmapUnprimed:(Lnet/minecraft/world/level/levelgen/Heightmap$Types;)Lnet/minecraft/world/level/levelgen/Heightmap;
+        15: astore        4
+        17: aload_1
+        18: invokevirtual #333                // Method net/minecraft/world/level/levelgen/NoiseChunk.aquifer:()Lnet/minecraft/world/level/levelgen/Aquifer;
+        21: astore        5
+        23: new           #565                // class net/minecraft/core/BlockPos$MutableBlockPos
+        26: dup
+        27: invokespecial #567                // Method net/minecraft/core/BlockPos$MutableBlockPos."<init>":()V
+        30: astore        6
+        32: aload_1
+        33: invokevirtual #356                // Method net/minecraft/world/level/levelgen/NoiseChunk.volume:()Lnet/minecraft/world/level/levelgen/densityfunction/DensityVolume;
+        36: astore        7
+        38: aload_1
+        39: invokevirtual #340                // Method net/minecraft/world/level/levelgen/NoiseChunk.cachingSamplers:()Lnet/minecraft/world/level/levelgen/densityfunction/DensitySamplerSet;
+        42: aload_0
+        43: getfield      #7                  // Field settings:Lnet/minecraft/core/Holder;
+        46: invokeinterface #91,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+        51: checkcast     #45                 // class net/minecraft/world/level/levelgen/NoiseGeneratorSettings
+        54: invokevirtual #344                // Method net/minecraft/world/level/levelgen/NoiseGeneratorSettings.noiseRouter:()Lnet/minecraft/world/level/levelgen/NoiseRouter;
+        57: invokevirtual #348                // Method net/minecraft/world/level/levelgen/NoiseRouter.finalDensity:()Lnet/minecraft/world/level/levelgen/densityfunction/DensityFunction;
+        60: invokeinterface #353,  2          // InterfaceMethod net/minecraft/world/level/levelgen/densityfunction/DensitySamplerSet.get:(Lnet/minecraft/world/level/levelgen/densityfunction/DensityFunction;)Lnet/minecraft/world/level/levelgen/densityfunction/DensitySampler$Bound;
+        65: astore        8
+        67: aload         8
+        69: aload         7
+        71: invokevirtual #360                // Method net/minecraft/world/level/levelgen/densityfunction/DensitySampler$Bound.sampleVolume:(Lnet/minecraft/world/level/levelgen/densityfunction/DensityVolume;)Lnet/minecraft/world/level/levelgen/densityfunction/ScopedDensityBuffer;
+        74: astore        9
+        76: iconst_0
+        77: istore        10
+        79: iload         10
+        81: aload         7
+        83: invokevirtual #629                // Method net/minecraft/world/level/levelgen/densityfunction/DensityVolume.sizeZ:()I
+        86: if_icmpge     341
+        89: aload         7
+        91: iload         10
+        93: invokevirtual #632                // Method net/minecraft/world/level/levelgen/densityfunction/DensityVolume.blockZ:(I)I
+        96: istore        11
+        98: iconst_0
+        99: istore        12
+       101: iload         12
+       103: aload         7
+       105: invokevirtual #635                // Method net/minecraft/world/level/levelgen/densityfunction/DensityVolume.sizeX:()I
+       108: if_icmpge     335
+       111: aload         7
+       113: iload         12
+       115: invokevirtual #638                // Method net/minecraft/world/level/levelgen/densityfunction/DensityVolume.blockX:(I)I
+       118: istore        13
+       120: aload         7
+       122: invokevirtual #315                // Method net/minecraft/world/level/levelgen/densityfunction/DensityVolume.sizeY:()I
+       125: iconst_1
+       126: isub
+       127: istore        14
+       129: iload         14
+       131: iflt          329
+       134: aload         7
+       136: iload         14
+       138: invokevirtual #375                // Method net/minecraft/world/level/levelgen/densityfunction/DensityVolume.blockY:(I)I
+       141: istore        15
+       143: aload_2
+       144: aload_2
+       145: iload         15
+       147: invokevirtual #641                // Method net/minecraft/world/level/chunk/ChunkAccess.getSectionIndex:(I)I
+       150: invokevirtual #644                // Method net/minecraft/world/level/chunk/ChunkAccess.getSection:(I)Lnet/minecraft/world/level/chunk/LevelChunkSection;
+       153: astore        16
+       155: aload         9
+       157: aload         7
+       159: iload         12
+       161: iload         14
+       163: iload         10
+       165: invokevirtual #366                // Method net/minecraft/world/level/levelgen/densityfunction/DensityVolume.indexUnchecked:(III)I
+       168: invokevirtual #370                // Method net/minecraft/world/level/levelgen/densityfunction/ScopedDensityBuffer.get:(I)F
+       171: fstore        17
+       173: aload         5
+       175: iload         13
+       177: iload         15
+       179: iload         11
+       181: fload         17
+       183: f2d
+       184: invokeinterface #378,  6          // InterfaceMethod net/minecraft/world/level/levelgen/Aquifer.computeSubstance:(IIID)Lnet/minecraft/world/level/block/state/BlockState;
+       189: astore        18
+       191: aload         18
+       193: ifnonnull     213
+       196: aload_0
+       197: getfield      #7                  // Field settings:Lnet/minecraft/core/Holder;
+       200: invokeinterface #91,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+       205: checkcast     #45                 // class net/minecraft/world/level/levelgen/NoiseGeneratorSettings
+       208: invokevirtual #337                // Method net/minecraft/world/level/levelgen/NoiseGeneratorSettings.defaultBlock:()Lnet/minecraft/world/level/block/state/BlockState;
+       211: astore        18
+       213: aload_0
+       214: aload_1
+       215: iload         13
+       217: iload         15
+       219: iload         11
+       221: aload         18
+       223: invokevirtual #648                // Method debugPreliminarySurfaceLevel:(Lnet/minecraft/world/level/levelgen/NoiseChunk;IIILnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockState;
+       226: astore        18
+       228: aload         18
+       230: getstatic     #652                // Field AIR:Lnet/minecraft/world/level/block/state/BlockState;
+       233: if_acmpne     239
+       236: goto          323
+       239: aload         16
+       241: iload         12
+       243: iload         15
+       245: invokestatic  #655                // Method net/minecraft/core/SectionPos.sectionRelative:(I)I
+       248: iload         10
+       250: aload         18
+       252: iconst_0
+       253: invokevirtual #658                // Method net/minecraft/world/level/chunk/LevelChunkSection.setBlockState:(IIILnet/minecraft/world/level/block/state/BlockState;Z)Lnet/minecraft/world/level/block/state/BlockState;
+       256: pop
+       257: aload_3
+       258: iload         12
+       260: iload         15
+       262: iload         10
+       264: aload         18
+       266: invokevirtual #664                // Method net/minecraft/world/level/levelgen/Heightmap.update:(IIILnet/minecraft/world/level/block/state/BlockState;)Z
+       269: pop
+       270: aload         4
+       272: iload         12
+       274: iload         15
+       276: iload         10
+       278: aload         18
+       280: invokevirtual #664                // Method net/minecraft/world/level/levelgen/Heightmap.update:(IIILnet/minecraft/world/level/block/state/BlockState;)Z
+       283: pop
+       284: aload         5
+       286: invokeinterface #670,  1          // InterfaceMethod net/minecraft/world/level/levelgen/Aquifer.shouldScheduleFluidUpdate:()Z
+       291: ifeq          323
+       294: aload         18
+       296: invokevirtual #673                // Method net/minecraft/world/level/block/state/BlockState.getFluidState:()Lnet/minecraft/world/level/material/FluidState;
+       299: invokevirtual #677                // Method net/minecraft/world/level/material/FluidState.isEmpty:()Z
+       302: ifne          323
+       305: aload         6
+       307: iload         13
+       309: iload         15
+       311: iload         11
+       313: invokevirtual #680                // Method net/minecraft/core/BlockPos$MutableBlockPos.set:(III)Lnet/minecraft/core/BlockPos$MutableBlockPos;
+       316: pop
+       317: aload_2
+       318: aload         6
+       320: invokevirtual #684                // Method net/minecraft/world/level/chunk/ChunkAccess.markPosForPostProcessing:(Lnet/minecraft/core/BlockPos;)V
+       323: iinc          14, -1
+       326: goto          129
+       329: iinc          12, 1
+       332: goto          101
+       335: iinc          10, 1
+       338: goto          79
+       341: aload         9
+       343: ifnull        381
+       346: aload         9
+       348: invokevirtual #393                // Method net/minecraft/world/level/levelgen/densityfunction/ScopedDensityBuffer.close:()V
+       351: goto          381
+       354: astore        10
+       356: aload         9
+       358: ifnull        378
+       361: aload         9
+       363: invokevirtual #393                // Method net/minecraft/world/level/levelgen/densityfunction/ScopedDensityBuffer.close:()V
+       366: goto          378
+       369: astore        11
+       371: aload         10
+       373: aload         11
+       375: invokevirtual #399                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       378: aload         10
+       380: athrow
+       381: return
+      Exception table:
+         from    to  target type
+            76   341   354   Class java/lang/Throwable
+           361   366   369   Class java/lang/Throwable
+  public void spawnOriginalMobs(net.minecraft.server.level.WorldGenRegion);
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field settings:Lnet/minecraft/core/Holder;
+         4: invokeinterface #91,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+         9: checkcast     #45                 // class net/minecraft/world/level/levelgen/NoiseGeneratorSettings
+        12: invokevirtual #723                // Method net/minecraft/world/level/levelgen/NoiseGeneratorSettings.disableMobGeneration:()Z
+        15: ifeq          19
+        18: return
+        19: aload_1
+        20: invokevirtual #726                // Method net/minecraft/server/level/WorldGenRegion.getCenter:()Lnet/minecraft/world/level/ChunkPos;
+        23: astore_2
+        24: aload_2
+        25: invokevirtual #729                // Method net/minecraft/world/level/ChunkPos.getWorldPosition:()Lnet/minecraft/core/BlockPos;
+        28: aload_1
+        29: invokevirtual #733                // Method net/minecraft/server/level/WorldGenRegion.getMaxY:()I
+        32: invokevirtual #736                // Method net/minecraft/core/BlockPos.atY:(I)Lnet/minecraft/core/BlockPos;
+        35: astore_3
+        36: new           #445                // class net/minecraft/world/level/levelgen/WorldgenRandom
+        39: dup
+        40: new           #447                // class net/minecraft/world/level/levelgen/LegacyRandomSource
+        43: dup
+        44: invokestatic  #449                // Method net/minecraft/world/level/levelgen/RandomSupport.generateUniqueSeed:()J
+        47: invokespecial #455                // Method net/minecraft/world/level/levelgen/LegacyRandomSource."<init>":(J)V
+        50: invokespecial #458                // Method net/minecraft/world/level/levelgen/WorldgenRandom."<init>":(Lnet/minecraft/util/RandomSource;)V
+        53: astore        4
+        55: aload         4
+        57: aload_1
+        58: invokevirtual #740                // Method net/minecraft/server/level/WorldGenRegion.getSeed:()J
+        61: aload_2
+        62: invokevirtual #119                // Method net/minecraft/world/level/ChunkPos.getMinBlockX:()I
+        65: aload_2
+        66: invokevirtual #127                // Method net/minecraft/world/level/ChunkPos.getMinBlockZ:()I
+        69: invokevirtual #743                // Method net/minecraft/world/level/levelgen/WorldgenRandom.setDecorationSeed:(JII)J
+        72: pop2
+        73: aload_1
+        74: aload_3
+        75: aload_2
+        76: aload         4
+        78: invokestatic  #747                // Method net/minecraft/world/level/NaturalSpawner.spawnMobsForChunkGeneration:(Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/util/RandomSource;)V
+        81: return
+  private net.minecraft.world.level.chunk.ChunkAccess lambda$buildTerrain$0(net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.StructureManager, net.minecraft.world.level.levelgen.blending.Blender, net.minecraft.world.level.levelgen.RandomState, net.minecraft.world.level.levelgen.NoiseSettings, net.minecraft.world.level.biome.BiomeManager, java.util.Set, net.minecraft.server.level.WorldGenRegion);
+    Code:
+         0: invokestatic  #526                // Method net/minecraft/util/profiling/Profiler.get:()Lnet/minecraft/util/profiling/ProfilerFiller;
+         3: astore        9
+         5: aload_0
+         6: aload_1
+         7: aload_2
+         8: aload_3
+         9: aload         4
+        11: aload         5
+        13: invokevirtual #753                // Method createNoiseChunk:(Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/levelgen/blending/Blender;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/levelgen/NoiseSettings;)Lnet/minecraft/world/level/levelgen/NoiseChunk;
+        16: astore        10
+        18: aload         10
+        20: invokevirtual #356                // Method net/minecraft/world/level/levelgen/NoiseChunk.volume:()Lnet/minecraft/world/level/levelgen/densityfunction/DensityVolume;
+        23: astore        11
+        25: aload_1
+        26: aload         11
+        28: invokevirtual #757                // Method net/minecraft/world/level/levelgen/densityfunction/DensityVolume.maxBlockY:()I
+        31: invokevirtual #641                // Method net/minecraft/world/level/chunk/ChunkAccess.getSectionIndex:(I)I
+        34: istore        12
+        36: aload_1
+        37: aload         11
+        39: invokevirtual #320                // Method net/minecraft/world/level/levelgen/densityfunction/DensityVolume.minBlockY:()I
+        42: invokevirtual #641                // Method net/minecraft/world/level/chunk/ChunkAccess.getSectionIndex:(I)I
+        45: istore        13
+        47: invokestatic  #760                // Method com/google/common/collect/Sets.newHashSet:()Ljava/util/HashSet;
+        50: astore        14
+        52: iload         12
+        54: istore        15
+        56: iload         15
+        58: iload         13
+        60: if_icmplt     92
+        63: aload_1
+        64: iload         15
+        66: invokevirtual #644                // Method net/minecraft/world/level/chunk/ChunkAccess.getSection:(I)Lnet/minecraft/world/level/chunk/LevelChunkSection;
+        69: astore        16
+        71: aload         16
+        73: invokevirtual #766                // Method net/minecraft/world/level/chunk/LevelChunkSection.acquire:()V
+        76: aload         14
+        78: aload         16
+        80: invokeinterface #769,  2          // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+        85: pop
+        86: iinc          15, -1
+        89: goto          56
+        92: aload         9
+        94: ldc_w         #772                // String doFill
+        97: invokeinterface #533,  2          // InterfaceMethod net/minecraft/util/profiling/ProfilerFiller.zone:(Ljava/lang/String;)Lnet/minecraft/util/profiling/Zone;
+       102: astore        15
+       104: aload_0
+       105: aload         10
+       107: aload_1
+       108: invokevirtual #774                // Method doFill:(Lnet/minecraft/world/level/levelgen/NoiseChunk;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+       111: aload         15
+       113: ifnull        151
+       116: aload         15
+       118: invokevirtual #562                // Method net/minecraft/util/profiling/Zone.close:()V
+       121: goto          151
+       124: astore        16
+       126: aload         15
+       128: ifnull        148
+       131: aload         15
+       133: invokevirtual #562                // Method net/minecraft/util/profiling/Zone.close:()V
+       136: goto          148
+       139: astore        17
+       141: aload         16
+       143: aload         17
+       145: invokevirtual #399                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       148: aload         16
+       150: athrow
+       151: aload         14
+       153: invokeinterface #777,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+       158: astore        15
+       160: aload         15
+       162: invokeinterface #235,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+       167: ifeq          190
+       170: aload         15
+       172: invokeinterface #240,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       177: checkcast     #659                // class net/minecraft/world/level/chunk/LevelChunkSection
+       180: astore        16
+       182: aload         16
+       184: invokevirtual #778                // Method net/minecraft/world/level/chunk/LevelChunkSection.release:()V
+       187: goto          160
+       190: goto          237
+       193: astore        18
+       195: aload         14
+       197: invokeinterface #777,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+       202: astore        19
+       204: aload         19
+       206: invokeinterface #235,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+       211: ifeq          234
+       214: aload         19
+       216: invokeinterface #240,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       221: checkcast     #659                // class net/minecraft/world/level/chunk/LevelChunkSection
+       224: astore        20
+       226: aload         20
+       228: invokevirtual #778                // Method net/minecraft/world/level/chunk/LevelChunkSection.release:()V
+       231: goto          204
+       234: aload         18
+       236: athrow
+       237: aload_0
+       238: getfield      #7                  // Field settings:Lnet/minecraft/core/Holder;
+       241: invokeinterface #91,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+       246: checkcast     #45                 // class net/minecraft/world/level/levelgen/NoiseGeneratorSettings
+       249: invokevirtual #781                // Method net/minecraft/world/level/levelgen/NoiseGeneratorSettings.materialRule:()Lnet/minecraft/core/Holder;
+       252: invokeinterface #91,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+       257: checkcast     #785                // class net/minecraft/world/level/levelgen/material/rule/MaterialRule
+       260: astore        15
+       262: aload         9
+       264: ldc_w         #787                // String buildSurface
+       267: invokeinterface #533,  2          // InterfaceMethod net/minecraft/util/profiling/ProfilerFiller.zone:(Ljava/lang/String;)Lnet/minecraft/util/profiling/Zone;
+       272: astore        16
+       274: aload_0
+       275: aload_1
+       276: aload         10
+       278: aload         4
+       280: aload         6
+       282: aload         7
+       284: aload         15
+       286: invokevirtual #788                // Method buildSurface:(Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/levelgen/NoiseChunk;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/biome/BiomeManager;Ljava/util/Set;Lnet/minecraft/world/level/levelgen/material/rule/MaterialRule;)V
+       289: aload         16
+       291: ifnull        329
+       294: aload         16
+       296: invokevirtual #562                // Method net/minecraft/util/profiling/Zone.close:()V
+       299: goto          329
+       302: astore        17
+       304: aload         16
+       306: ifnull        326
+       309: aload         16
+       311: invokevirtual #562                // Method net/minecraft/util/profiling/Zone.close:()V
+       314: goto          326
+       317: astore        18
+       319: aload         17
+       321: aload         18
+       323: invokevirtual #399                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       326: aload         17
+       328: athrow
+       329: aload         9
+       331: ldc_w         #791                // String generateCarvers
+       334: invokeinterface #533,  2          // InterfaceMethod net/minecraft/util/profiling/ProfilerFiller.zone:(Ljava/lang/String;)Lnet/minecraft/util/profiling/Zone;
+       339: astore        16
+       341: aload_0
+       342: aload_1
+       343: aload_3
+       344: aload         10
+       346: aload         4
+       348: aload         6
+       350: aload         8
+       352: aload         15
+       354: invokevirtual #793                // Method generateCarvers:(Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/levelgen/blending/Blender;Lnet/minecraft/world/level/levelgen/NoiseChunk;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/biome/BiomeManager;Lnet/minecraft/server/level/WorldGenRegion;Lnet/minecraft/world/level/levelgen/material/rule/MaterialRule;)V
+       357: aload         16
+       359: ifnull        397
+       362: aload         16
+       364: invokevirtual #562                // Method net/minecraft/util/profiling/Zone.close:()V
+       367: goto          397
+       370: astore        17
+       372: aload         16
+       374: ifnull        394
+       377: aload         16
+       379: invokevirtual #562                // Method net/minecraft/util/profiling/Zone.close:()V
+       382: goto          394
+       385: astore        18
+       387: aload         17
+       389: aload         18
+       391: invokevirtual #399                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       394: aload         17
+       396: athrow
+       397: aload_1
+       398: astore        16
+       400: aload         10
+       402: ifnull        410
+       405: aload         10
+       407: invokevirtual #396                // Method net/minecraft/world/level/levelgen/NoiseChunk.close:()V
+       410: aload         16
+       412: areturn
+       413: astore        11
+       415: aload         10
+       417: ifnull        437
+       420: aload         10
+       422: invokevirtual #396                // Method net/minecraft/world/level/levelgen/NoiseChunk.close:()V
+       425: goto          437
+       428: astore        12
+       430: aload         11
+       432: aload         12
+       434: invokevirtual #399                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       437: aload         11
+       439: athrow
+      Exception table:
+         from    to  target type
+           104   111   124   Class java/lang/Throwable
+           131   136   139   Class java/lang/Throwable
+            92   151   193   any
+           193   195   193   any
+           274   289   302   Class java/lang/Throwable
+           309   314   317   Class java/lang/Throwable
+           341   357   370   Class java/lang/Throwable
+           377   382   385   Class java/lang/Throwable
+            18   400   413   Class java/lang/Throwable
+           420   425   428   Class java/lang/Throwable
