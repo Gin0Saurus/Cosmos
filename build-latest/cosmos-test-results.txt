@@ -1,0 +1,7 @@
+  t+320 ticks: centre ground block on client = Block{minecraft:void_air}; server has chunk: true
+  t+620 ticks: centre ground block on client = Block{minecraft:void_air}; server has chunk: true
+  t+920 ticks: centre ground block on client = Block{minecraft:void_air}; server has chunk: true
+  t+1220 ticks: centre ground block on client = Block{minecraft:void_air}; server has chunk: true
+  t+1520 ticks: centre ground block on client = Block{minecraft:void_air}; server has chunk: true
+  t+1820 ticks: centre ground block on client = Block{minecraft:void_air}; server has chunk: true
+landmark Eiffel Tower: viewed from 140 blocks south; client census: loaded columns 1849, solid samples 1273/247766; centre column: 58+:void_air
