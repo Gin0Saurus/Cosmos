@@ -1,1 +1,0 @@
-landmark Eiffel Tower: viewed from 140 blocks south; client census: loaded columns 1849, solid samples 1273/247766; centre column: 58+:void_air
