@@ -61,11 +61,33 @@ public final class CosmosBiomeSource extends BiomeSource {
         if (ks[slot] == key && vs[slot] != null) return vs[slot];
         ColumnSampler s = sampler();
         int bx = (qx << 2) + 2, bz = (qz << 2) + 2;
+        String near = nearLandmark(s, bx, bz);
+        if (near != null) { Holder<Biome> h = biomes.getOrDefault(near, fallback); ks[slot] = key; vs[slot] = h; return h; }
         TerrainColumn c = s.columnAt(bx, bz);
         String id = SurfacePalette.of(c.surface(), s.temperature(bx, bz, c.elevationM())).biome();
         Holder<Biome> h = biomes.getOrDefault(id, fallback);
         ks[slot] = key; vs[slot] = h;
         return h;
+    }
+
+    /** Monuments stand in open ground (city parks, fields, the Giza plateau) so forests don't swallow them. */
+    private volatile int[][] landmarkBoxes;
+    private String nearLandmark(ColumnSampler s, int bx, int bz) {
+        if (!body.equals("earth")) return null;
+        int[][] boxes = landmarkBoxes;
+        if (boxes == null) {
+            var list = dev.saurus.cosmos.core.terrain.Landmarks.on("earth");
+            boxes = new int[list.size()][];
+            for (int i = 0; i < boxes.length; i++) {
+                var l = list.get(i);
+                boxes[i] = new int[] { (int) Math.floor(s.proj.x(Math.toRadians(l.lon()))), (int) Math.floor(s.proj.z(Math.toRadians(l.lat()))),
+                        l.radius() + 60, l.kind() == dev.saurus.cosmos.core.terrain.Landmarks.Kind.PYRAMID ? 1 : 0 };
+            }
+            landmarkBoxes = boxes;
+        }
+        for (int[] b : boxes)
+            if (Math.abs(bx - b[0]) <= b[2] && Math.abs(bz - b[1]) <= b[2]) return b[3] == 1 ? "minecraft:desert" : "minecraft:plains";
+        return null;
     }
 
     @Override public BiomeResolver createResolver(Climate.Sampler climate) {

@@ -52,6 +52,9 @@ public final class CosmosClientGameTest implements FabricClientGameTest {
             world.getServer().runCommand("weather clear");
             world.getServer().runCommand("gamerule doDaylightCycle false");
             world.getServer().runCommand("gamemode creative @a");
+            // Fabric's test worlds disable mob spawning for repeatability; Earth's wildlife needs it on
+            world.getServer().runCommand("gamerule spawn_mobs true");
+            world.getServer().runCommand("gamerule doMobSpawning true");
 
             int i = 0;
             for (Stop s : SURFACE_TOUR) {
@@ -129,8 +132,8 @@ public final class CosmosClientGameTest implements FabricClientGameTest {
                 double[] u = PlanetProjection.unit(ll[0], ll[1]);
                 for (int d = 8; d < 30; d++) {
                     int y = top - d;
-                    if (caves.carve(u, y, d, col.surface()) < -0.3 && caves.carve(u, y + 1, d - 1, col.surface()) < -0.3
-                            && caves.carve(u, y + 2, d - 2, col.surface()) < -0.3 && caves.carve(u, y - 1, d + 1, col.surface()) >= 0) {
+                    if (caves.carve(u, y, d, col.surface()) < -0.05 && caves.carve(u, y + 1, d - 1, col.surface()) < -0.05
+                            && caves.carve(u, y + 2, d - 2, col.surface()) < -0.05 && caves.carve(u, y - 1, d + 1, col.surface()) >= 0) {
                         hit = new double[] { x, y, z, Math.toDegrees(ll[0]), Math.toDegrees(ll[1]) }; break search;
                     }
                 }

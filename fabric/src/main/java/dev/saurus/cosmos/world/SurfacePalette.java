@@ -28,7 +28,7 @@ public final class SurfacePalette {
             case BEACH -> L(Blocks.SAND.defaultBlockState(), Blocks.SAND.defaultBlockState(), 4, Blocks.SANDSTONE.defaultBlockState(), "minecraft:beach");
             case ICE_SHEET -> L(Blocks.SNOW_BLOCK.defaultBlockState(), Blocks.PACKED_ICE.defaultBlockState(), 40, stone, "minecraft:snowy_plains");
             case SNOW -> L(grass, dirt, 3, stone, "minecraft:snowy_plains");
-            case TUNDRA -> L(grass, dirt, 2, stone, "minecraft:snowy_plains");
+            case TUNDRA -> L(grass, dirt, 2, stone, tempC < 0 ? "minecraft:snowy_plains" : "minecraft:plains");   // cold steppe above freezing
             case TAIGA -> L(grass, dirt, 3, stone, tempC < 2 ? "minecraft:snowy_taiga" : "minecraft:taiga");
             case FOREST -> L(grass, dirt, 4, stone, tempC > 14 ? "minecraft:birch_forest" : "minecraft:forest");
             case GRASSLAND -> L(grass, dirt, 4, stone, tempC > 12 ? "minecraft:sunflower_plains" : "minecraft:plains");

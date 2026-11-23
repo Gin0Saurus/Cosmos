@@ -115,7 +115,7 @@ public final class EarthTerrain implements PlanetTerrain {
         Surface s;
         if (T < -8) s = Math.abs(Math.toDegrees(lat)) > 55 ? Surface.ICE_SHEET : T < -11 ? Surface.SNOWY_PEAKS : Surface.TUNDRA;  // ice sheets / glaciers / alpine steppe
         else if (T < 0) s = M > 0.45 ? Surface.SNOW : Surface.TUNDRA;
-        else if (T < 6) s = M > 0.32 ? Surface.TAIGA : Surface.TUNDRA;
+        else if (T < 6) s = M > 0.32 ? Surface.TAIGA : M < 0.15 ? Surface.DESERT : Surface.TUNDRA;   // cold deserts (Gobi, Colorado Plateau)
         else if (M < 0.2) s = Surface.DESERT;
         else if (M < 0.33) s = T > 18 ? Surface.SAVANNA : Surface.GRASSLAND;
         else if (T > 21 && M > 0.62) s = Surface.JUNGLE;

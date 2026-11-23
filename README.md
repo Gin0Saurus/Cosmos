@@ -12,6 +12,7 @@ is tagged **Measured**, **Scientific estimate** or **Procedural**.
 | `core/` engine (coordinates, orbits, catalogues, terrain models, real elevation data, flight physics, black-hole geodesics) | **Built and tested**: 168 automated checks, incl. JPL Horizons positions and real landmarks (Everest, Mariana Trench, Olympus Mons, Hellas, Valles Marineris, South Pole–Aitken, Sahara, Amazon…) |
 | `fabric/` mod for Minecraft 26.3 | **Built by CI and run in a real Minecraft client**: lands on Earth/Moon/Mars/Europa/Io/Titan/Pluto at real coordinates, measures gravity by jumping, wraps round a planet, launches to space and lands again; screenshots inspected every build |
 | Phases 1–2 (walkable spherical worlds, launch/land) | Working, with the engine limitations listed in `docs/ARCHITECTURE_V2.md` |
+| v0.3: caves & lava tubes, resources, Earth wildlife, life-size landmarks, landmark terrain, 9 real black holes | Working — see `docs/ROADMAP_END_GOAL.md` |
 | Phases 3–6 (momentum flight & orbits in space, asteroids, exoplanet surfaces, black-hole effects on entities) | Not built yet |
 
 ## Playing it
@@ -26,7 +27,8 @@ is tagged **Measured**, **Scientific estimate** or **Procedural**.
 5. **Fly down into a planet or moon to land** where you're pointing. `/cosmos land <world> [lat lon]` is the shortcut
    (e.g. `/cosmos land moon` = Apollo 11 site, `/cosmos land mars` = Jezero crater).
 6. `/cosmos where` shows latitude, longitude, elevation, gravity and the data source of the ground under you.
-   `/cosmos worlds` lists all 26 walkable worlds. `/cosmos help` lists everything.
+   `/cosmos worlds` lists all 26 walkable worlds. `/cosmos landmarks` lists real places; `/cosmos visit stonehenge`
+   (or `great_pyramid`, `eiffel_tower`, `apollo_11`, `perseverance`…) lands you next to one. `/cosmos help` lists everything.
 
 Scale: 1 block = 100 m across a planet's surface, relief ×2, you and gravity at 1 block = 1 m (see `docs/SCALE.md`).
 
