@@ -1,0 +1,16 @@
+name: landmark-patches
+on: { workflow_dispatch: {}, push: { paths: ['.github/workflows/patches.yml', 'tools/fetch_patches.py'] } }
+permissions: { contents: write }
+jobs:
+  patches:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v5
+      - run: pip install --quiet numpy netCDF4 && python3 tools/fetch_patches.py out/patches && ls -la out/patches
+      - name: Publish
+        if: always()
+        run: |
+          git config user.name "cosmos-ci"; git config user.email "ci@users.noreply.github.com"
+          git fetch origin ci-results && git checkout -B r origin/ci-results
+          rm -rf patches && mkdir patches && cp -r out/patches/* patches/ 2>/dev/null; git add -A patches && git commit -qm "landmark patches" && git push origin r:ci-results
