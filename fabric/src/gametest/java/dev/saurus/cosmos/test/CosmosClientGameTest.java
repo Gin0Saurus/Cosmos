@@ -113,11 +113,15 @@ public final class CosmosClientGameTest implements FabricClientGameTest {
         int C = Planets.projection(l.body()).circumference();
         double back = Math.min(140, l.radius() + Math.max(20, l.height() * 0.35));
         land(context, world, l.body(), l.lat() - back / C * 360.0, l.lon());
-        float pitch = (float) -Math.toDegrees(Math.atan2(l.height() * 0.5, back));
+        int lift = l.height() > 40 ? 30 : 6;      // camera raised a little, like standing on a rise
+        world.getServer().runCommand("gamemode spectator @a");
+        world.getServer().runCommand("execute as @a at @s run tp @s ~ ~" + lift + " ~");
+        float pitch = (float) -Math.toDegrees(Math.atan2(l.height() * 0.5 - lift, back));
         context.runOnClient(mc -> { mc.player.setYRot(180f); mc.player.setXRot(pitch); });
         context.waitTicks(320);
         log("landmark " + l.name() + ": viewed from " + Math.round(back) + " blocks south");
         context.takeScreenshot("cosmos-m-" + id);
+        world.getServer().runCommand("gamemode creative @a");
     }
 
     /** Finds a void the generator will carve (same model) near (lat, lon), stands in it with night vision. */

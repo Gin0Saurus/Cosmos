@@ -81,7 +81,7 @@ public final class CosmosBiomeSource extends BiomeSource {
             for (int i = 0; i < boxes.length; i++) {
                 var l = list.get(i);
                 boxes[i] = new int[] { (int) Math.floor(s.proj.x(Math.toRadians(l.lon()))), (int) Math.floor(s.proj.z(Math.toRadians(l.lat()))),
-                        l.radius() + 60, l.kind() == dev.saurus.cosmos.core.terrain.Landmarks.Kind.PYRAMID ? 1 : 0 };
+                        l.radius() + Math.max(60, (int) (l.height() * 0.6)), l.kind() == dev.saurus.cosmos.core.terrain.Landmarks.Kind.PYRAMID ? 1 : 0 };
             }
             landmarkBoxes = boxes;
         }
