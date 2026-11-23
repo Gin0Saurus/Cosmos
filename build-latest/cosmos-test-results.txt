@@ -1,0 +1,7 @@
+  t+320 ticks: centre ground block on client = Block{minecraft:dirt}; server has chunk: true
+  t+620 ticks: centre ground block on client = Block{minecraft:dirt}; server has chunk: true
+  t+920 ticks: centre ground block on client = Block{minecraft:dirt}; server has chunk: true
+  t+1220 ticks: centre ground block on client = Block{minecraft:dirt}; server has chunk: true
+  t+1520 ticks: centre ground block on client = Block{minecraft:dirt}; server has chunk: true
+  t+1820 ticks: centre ground block on client = Block{minecraft:dirt}; server has chunk: true
+landmark Eiffel Tower: viewed from 72 blocks south; client census: loaded columns 1849, solid samples 6828/247766; centre column: 58-59:stone 60-63:dirt 64-64:stone 65-121:air 122-122:brown_terracotta 123-123:dark_oak_planks 124-179:air 180-180:brown_terracotta 181-181:dark_oak_planks 182-340:air 341-341:dark_oak_planks 342-351:air 352-365:brown_terracotta 366-395:iron_bars 396+:air
