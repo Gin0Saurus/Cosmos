@@ -1,0 +1,27 @@
+name: discover-api-5
+on: { workflow_dispatch: {}, push: { paths: ['.github/workflows/discover5.yml'] } }
+permissions: { contents: write }
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with: { distribution: temurin, java-version: '25' }
+      - uses: gradle/actions/setup-gradle@v4
+      - working-directory: fabric
+        run: chmod +x gradlew && ./gradlew --no-daemon printClasspath
+      - name: Dump worldgen / entity / networking API
+        run: |
+          set +e; mkdir -p out; CP=$(tr '\n' ':' < fabric/build/classpath.txt)
+          for c in net.minecraft.world.level.NaturalSpawner net.minecraft.world.level.levelgen.WorldgenRandom net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator net.minecraft.world.level.ServerLevelAccessor net.minecraft.world.level.WorldGenLevel net.minecraft.world.level.levelgen.XoroshiroRandomSource net.minecraft.util.RandomSource net.minecraft.world.level.levelgen.LegacyRandomSource net.minecraft.world.level.block.state.properties.BlockStateProperties; do echo "=== $c"; javap -p -cp "$CP" "$c" 2>&1 | grep -v 'lambda\$'; done > out/api5.txt
+          javap -c -p -cp "$CP" net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator | awk '/spawnOriginalMobs|buildTerrain|applyCarvers|doFill/{p=1} /^$/{p=0} p' > out/noisegen_bytecode.txt 2>&1
+          ls out
+      - name: Publish
+        if: always()
+        run: |
+          git config user.name "cosmos-ci"; git config user.email "ci@users.noreply.github.com"
+          git fetch origin ci-results && git checkout -B r origin/ci-results
+          rm -rf discover5 && mkdir discover5 && cp -r out/* discover5/
+          git add discover5 && git commit -qm "API discovery 5" && git push origin r:ci-results
