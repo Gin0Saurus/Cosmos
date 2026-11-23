@@ -135,15 +135,15 @@ public final class CosmosClientGameTest implements FabricClientGameTest {
                 }
             }
             StringBuilder prof = new StringBuilder();
-            int px = ox + r - 4, pz = oz + r - 4;
+            int px = ox, pz = oz;
             String last = ""; int run = 0, y0 = 0;
-            for (int y = SurfaceScale.DATUM_Y - 20; y < SurfaceScale.DATUM_Y + 80; y++) {
+            for (int y = SurfaceScale.DATUM_Y - 5; y < SurfaceScale.DATUM_Y + l.height() + 20; y++) {
                 String n = mc.level.getBlockState(new net.minecraft.core.BlockPos(px, y, pz)).getBlock().toString().replace("Block{minecraft:", "").replace("}", "");
                 if (!n.equals(last)) { if (run > 0) prof.append(y0).append("-").append(y - 1).append(":").append(last).append(" "); last = n; run = 0; y0 = y; }
                 run++;
             }
             prof.append(y0).append("+:").append(last);
-            return "loaded columns " + loaded + ", solid samples " + solid + "/" + checked + "; leg-corner column: " + prof;
+            return "loaded columns " + loaded + ", solid samples " + solid + "/" + checked + "; centre column: " + prof;
         });
         log("landmark " + l.name() + ": viewed from " + Math.round(back) + " blocks south; client census: " + census);
         context.takeScreenshot("cosmos-m-" + id);
