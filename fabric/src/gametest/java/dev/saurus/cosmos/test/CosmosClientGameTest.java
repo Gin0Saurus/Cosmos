@@ -124,11 +124,12 @@ public final class CosmosClientGameTest implements FabricClientGameTest {
         context.waitTicks(320);
         if (l.height() > 200) for (int k = 0; k < 6; k++) {
             int[] o = { (int) Math.floor(lp.x(Math.toRadians(l.lon()))), (int) Math.floor(lp.z(Math.toRadians(l.lat()))) };
-            String st = context.computeOnClient(mc -> mc.level.getBlockState(new net.minecraft.core.BlockPos(o[0], SurfaceScale.DATUM_Y - 3, o[1])).getBlock().toString()
-                    + " server-chunk-status " + world.getServer().computeOnServer(srv -> {
-                        var lvl = srv.getLevel(mc.level.dimension());
-                        return lvl == null ? "?" : String.valueOf(lvl.hasChunk(o[0] >> 4, o[1] >> 4));
-                    }));
+            String st = context.computeOnClient(mc -> mc.level.getBlockState(new net.minecraft.core.BlockPos(o[0], SurfaceScale.DATUM_Y - 3, o[1])).getBlock().toString());
+            var dimKey = context.computeOnClient(mc -> mc.level.dimension());
+            st += "; server has chunk: " + world.getServer().computeOnServer(srv -> {
+                var lvl = srv.getLevel(dimKey);
+                return lvl == null ? "?" : String.valueOf(lvl.hasChunk(o[0] >> 4, o[1] >> 4));
+            });
             log("  t+" + (320 + k * 300) + " ticks: centre ground block on client = " + st);
             context.waitTicks(300);
         }
