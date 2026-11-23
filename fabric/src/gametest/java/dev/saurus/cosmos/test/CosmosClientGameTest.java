@@ -111,15 +111,16 @@ public final class CosmosClientGameTest implements FabricClientGameTest {
     private void landmark(ClientGameTestContext context, TestSingleplayerContext world, String id) {
         var l = dev.saurus.cosmos.core.terrain.Landmarks.find(id);
         int C = Planets.projection(l.body()).circumference();
-        double back = Math.min(140, l.radius() + Math.max(20, l.height() * 0.35));
+        // the test server only sends chunks 5 chunks (80 blocks) out, so stay within that of the landmark's centre
+        double back = l.height() > 200 ? 72 : Math.min(140, l.radius() + Math.max(20, l.height() * 0.35));
         land(context, world, l.body(), l.lat() - back / C * 360.0, l.lon());
-        int lift = l.height() > 40 ? 30 : 6;      // camera raised a little, like standing on a rise
+        int lift = l.height() > 200 ? 12 : l.height() > 40 ? 30 : 6;      // camera raised a little, like standing on a rise
         world.getServer().runCommand("gamemode spectator @a");
         PlanetProjection lp = Planets.projection(l.body());
         double cx = Math.floor(lp.x(Math.toRadians(l.lon()))) + 0.5, cz = Math.floor(lp.z(Math.toRadians(l.lat()))) + 0.5 + back;
         int groundY = Math.max(ColumnSampler.surfaceY(new ColumnSampler(l.body()).elevation(Math.floor(cx), Math.floor(cz))), SurfaceScale.DATUM_Y);
         world.getServer().runCommand(String.format(java.util.Locale.ROOT, "execute as @a at @s run tp @s %.1f %d %.1f", cx, groundY + lift, cz));
-        float pitch = (float) -Math.toDegrees(Math.atan2(l.height() * 0.5 - lift, back));
+        float pitch = (float) Math.max(-60, -Math.toDegrees(Math.atan2(l.height() * 0.5 - lift, back)));
         context.runOnClient(mc -> { mc.player.setYRot(180f); mc.player.setXRot(pitch); });
         context.waitTicks(320);
         if (l.height() > 200) for (int k = 0; k < 6; k++) {
