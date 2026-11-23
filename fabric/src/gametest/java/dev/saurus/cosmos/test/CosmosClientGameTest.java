@@ -121,7 +121,17 @@ public final class CosmosClientGameTest implements FabricClientGameTest {
         world.getServer().runCommand(String.format(java.util.Locale.ROOT, "execute as @a at @s run tp @s %.1f %d %.1f", cx, groundY + lift, cz));
         float pitch = (float) -Math.toDegrees(Math.atan2(l.height() * 0.5 - lift, back));
         context.runOnClient(mc -> { mc.player.setYRot(180f); mc.player.setXRot(pitch); });
-        context.waitTicks(l.height() > 200 ? 900 : 320);
+        context.waitTicks(320);
+        if (l.height() > 200) for (int k = 0; k < 6; k++) {
+            int[] o = { (int) Math.floor(lp.x(Math.toRadians(l.lon()))), (int) Math.floor(lp.z(Math.toRadians(l.lat()))) };
+            String st = context.computeOnClient(mc -> mc.level.getBlockState(new net.minecraft.core.BlockPos(o[0], SurfaceScale.DATUM_Y - 3, o[1])).getBlock().toString()
+                    + " server-chunk-status " + world.getServer().computeOnServer(srv -> {
+                        var lvl = srv.getLevel(mc.level.dimension());
+                        return lvl == null ? "?" : String.valueOf(lvl.hasChunk(o[0] >> 4, o[1] >> 4));
+                    }));
+            log("  t+" + (320 + k * 300) + " ticks: centre ground block on client = " + st);
+            context.waitTicks(300);
+        }
         int ox = (int) Math.floor(lp.x(Math.toRadians(l.lon()))), oz = (int) Math.floor(lp.z(Math.toRadians(l.lat())));
         String census = context.computeOnClient(mc -> {
             int solid = 0, loaded = 0, checked = 0, r = l.radius();
