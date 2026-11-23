@@ -1,0 +1,28 @@
+name: discover-api-6
+on: { workflow_dispatch: {}, push: { paths: ['.github/workflows/discover6.yml'] } }
+permissions: { contents: write }
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with: { distribution: temurin, java-version: '25' }
+      - uses: gradle/actions/setup-gradle@v4
+      - working-directory: fabric
+        run: chmod +x gradlew && ./gradlew --no-daemon printClasspath
+      - name: Dump worldgen / entity / networking API
+        run: |
+          set +e; mkdir -p out; CP=$(tr '\n' ':' < fabric/build/classpath.txt)
+          javap -c -p -cp "$CP" net.minecraft.world.level.NaturalSpawner | awk '/spawnMobsForChunkGeneration|isValidSpawnPostitionForType|isValidPositionForMob|getCreatureProbability/{p=1} /^$/{p=0} p' > out/spawner_bytecode.txt 2>&1
+          javap -c -p -cp "$CP" net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator | awk '/spawnOriginalMobs/{p=1} /^$/{p=0} p' > out/noise_spawn.txt 2>&1
+          for c in net.minecraft.world.level.chunk.status.ChunkStatusTasks; do javap -c -p -cp "$CP" $c | awk '/generateSpawn|spawnOriginalMobs/{p=1} /^$/{p=0} p'; done > out/status_spawn.txt 2>&1
+          ls out
+      - name: Publish
+        if: always()
+        run: |
+          git config user.name "cosmos-ci"; git config user.email "ci@users.noreply.github.com"
+          git fetch origin ci-results && git checkout -B r origin/ci-results
+          rm -rf discover6 && mkdir discover6 && cp -r out/* discover6/
+          git add discover6 && git commit -qm "API discovery 6" && git push origin r:ci-results
