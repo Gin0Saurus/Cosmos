@@ -1,0 +1,1 @@
+FAIL landmark eiffel_tower: java.lang.IllegalStateException: computeOnServer can only be called from the client gametest thread or the server thread
