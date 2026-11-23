@@ -122,7 +122,21 @@ public final class CosmosClientGameTest implements FabricClientGameTest {
         float pitch = (float) -Math.toDegrees(Math.atan2(l.height() * 0.5 - lift, back));
         context.runOnClient(mc -> { mc.player.setYRot(180f); mc.player.setXRot(pitch); });
         context.waitTicks(320);
-        log("landmark " + l.name() + ": viewed from " + Math.round(back) + " blocks south");
+        int ox = (int) Math.floor(lp.x(Math.toRadians(l.lon()))), oz = (int) Math.floor(lp.z(Math.toRadians(l.lat())));
+        String census = context.computeOnClient(mc -> {
+            int solid = 0, loaded = 0, checked = 0, r = l.radius();
+            for (int dx = -r; dx <= r; dx += 3) for (int dz = -r; dz <= r; dz += 3) {
+                net.minecraft.core.BlockPos p0 = new net.minecraft.core.BlockPos(ox + dx, 0, oz + dz);
+                if (!mc.level.hasChunkAt(p0)) continue;
+                loaded++;
+                for (int y = SurfaceScale.DATUM_Y - 10; y < SurfaceScale.DATUM_Y + l.height() + 60; y += 3) {
+                    checked++;
+                    if (!mc.level.getBlockState(new net.minecraft.core.BlockPos(ox + dx, y, oz + dz)).isAir()) solid++;
+                }
+            }
+            return "loaded columns " + loaded + ", solid samples " + solid + "/" + checked;
+        });
+        log("landmark " + l.name() + ": viewed from " + Math.round(back) + " blocks south; client census: " + census);
         context.takeScreenshot("cosmos-m-" + id);
         world.getServer().runCommand("gamemode creative @a");
     }
