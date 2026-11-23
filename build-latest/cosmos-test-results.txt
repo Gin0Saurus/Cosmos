@@ -1,0 +1,3 @@
+landmark Eiffel Tower: viewed from 140 blocks south
+landmark Colosseum: viewed from 116 blocks south
+landmark Elizabeth Tower (Big Ben): viewed from 42 blocks south
