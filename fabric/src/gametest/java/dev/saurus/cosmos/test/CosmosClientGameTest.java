@@ -121,7 +121,7 @@ public final class CosmosClientGameTest implements FabricClientGameTest {
         world.getServer().runCommand(String.format(java.util.Locale.ROOT, "execute as @a at @s run tp @s %.1f %d %.1f", cx, groundY + lift, cz));
         float pitch = (float) -Math.toDegrees(Math.atan2(l.height() * 0.5 - lift, back));
         context.runOnClient(mc -> { mc.player.setYRot(180f); mc.player.setXRot(pitch); });
-        context.waitTicks(320);
+        context.waitTicks(l.height() > 200 ? 900 : 320);
         int ox = (int) Math.floor(lp.x(Math.toRadians(l.lon()))), oz = (int) Math.floor(lp.z(Math.toRadians(l.lat())));
         String census = context.computeOnClient(mc -> {
             int solid = 0, loaded = 0, checked = 0, r = l.radius();
@@ -134,7 +134,16 @@ public final class CosmosClientGameTest implements FabricClientGameTest {
                     if (!mc.level.getBlockState(new net.minecraft.core.BlockPos(ox + dx, y, oz + dz)).isAir()) solid++;
                 }
             }
-            return "loaded columns " + loaded + ", solid samples " + solid + "/" + checked;
+            StringBuilder prof = new StringBuilder();
+            int px = ox + r - 4, pz = oz + r - 4;
+            String last = ""; int run = 0, y0 = 0;
+            for (int y = SurfaceScale.DATUM_Y - 20; y < SurfaceScale.DATUM_Y + 80; y++) {
+                String n = mc.level.getBlockState(new net.minecraft.core.BlockPos(px, y, pz)).getBlock().toString().replace("Block{minecraft:", "").replace("}", "");
+                if (!n.equals(last)) { if (run > 0) prof.append(y0).append("-").append(y - 1).append(":").append(last).append(" "); last = n; run = 0; y0 = y; }
+                run++;
+            }
+            prof.append(y0).append("+:").append(last);
+            return "loaded columns " + loaded + ", solid samples " + solid + "/" + checked + "; leg-corner column: " + prof;
         });
         log("landmark " + l.name() + ": viewed from " + Math.round(back) + " blocks south; client census: " + census);
         context.takeScreenshot("cosmos-m-" + id);
