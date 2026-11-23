@@ -10,7 +10,8 @@ public final class EarthTerrain implements PlanetTerrain {
     private final ElevationGrid dem;
     private final Noise n;
     private final double radius;
-    private final float[] moisture;        // 1-degree grid, built once from the DEM
+    private final float[] moisture;
+    private final ElevationPatches patches = ElevationPatches.bundled("earth");        // 1-degree grid, built once from the DEM
     private static final int MW = 360, MH = 180;
 
     public EarthTerrain(ElevationGrid dem, double radiusM, long seed) {
@@ -22,19 +23,20 @@ public final class EarthTerrain implements PlanetTerrain {
     @Override public double radiusM() { return radius; }
     @Override public boolean measured() { return true; }
     @Override public String provenance() {
-        return "Elevation: NOAA NCEI ETOPO 2022 (measured, 1/6 deg); detail < 18 km and surface types: procedural (climate model)";
+        return "Elevation: NOAA NCEI ETOPO 2022 (measured, 1/6 deg; 1 arc-minute around landmarks); finer detail and surface types: procedural (climate model)";
     }
 
     @Override public double elevation(double lat, double lon) {
-        double e0 = dem.sample(lat, lon);
+        double[] pb = patches.blend(lat, lon, dem.sample(lat, lon));
+        double e0 = pb[0], detail = 1 - 0.75 * pb[1];      // sharper measured data -> less invented detail
         double[] u = PlanetProjection.unit(lat, lon);
         double x = u[0] * radius, y = u[1] * radius, z = u[2] * radius;
         double coast = smooth(Math.abs(e0) / 150.0);
-        double hills = n.fbm(x, y, z, 3_000, 5, 0.5) * 140 * coast;
+        double hills = n.fbm(x, y, z, 3_000, 5, 0.5) * 140 * coast * (0.4 + 0.6 * detail);
         double e = e0 + hills;
         if (e0 > 0) {
             double rough = clamp((e0 - 300) / 2500, 0, 1);
-            e += rough * (n.ridged(x, y, z, 9_000, 5) - 0.35) * 2_200;
+            e += rough * (n.ridged(x, y, z, 9_000, 5) - 0.35) * 2_200 * detail;
             e = Math.max(e, e0 * 0.5);              // coastlines stay where ETOPO puts them
         } else {
             e += n.fbm(x, y, z, 12_000, 3, 0.5) * 120 * coast;

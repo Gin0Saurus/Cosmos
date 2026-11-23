@@ -68,8 +68,13 @@ public final class SurfaceLink {
         }
     }
 
+    /** View direction to apply once a landing completes (e.g. face the landmark you came to see). */
+    public static volatile float pendingYaw = Float.NaN, pendingPitch = 0;
+
     public static void onWorldInfo(CosmosPayloads.WorldInfo p) {
         currentBody = p.body();
+        Minecraft mc = Minecraft.getInstance();
+        if (!Float.isNaN(pendingYaw) && mc.player != null) { mc.player.setYRot(pendingYaw); mc.player.setXRot(pendingPitch); pendingYaw = Float.NaN; }
         Planets.overworldIsEarth = p.overworldIsEarth();
         if (!p.body().isEmpty()) CosmosState.spaceMode = false;
     }

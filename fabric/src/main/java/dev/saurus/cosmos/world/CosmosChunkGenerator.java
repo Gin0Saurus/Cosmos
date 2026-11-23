@@ -60,6 +60,32 @@ public final class CosmosChunkGenerator extends ChunkGenerator {
         return s;
     }
 
+    private volatile dev.saurus.cosmos.core.terrain.Caves caves;
+    private dev.saurus.cosmos.core.terrain.Caves caves() {
+        dev.saurus.cosmos.core.terrain.Caves c = caves;
+        if (c == null) caves = c = new dev.saurus.cosmos.core.terrain.Caves(body, Planets.PLANET_SEED, sampler().proj.circumference());
+        return c;
+    }
+
+    /** How deep below the surface each cave style is evaluated (cost control). */
+    private static int caveDepth(dev.saurus.cosmos.core.terrain.Caves.Style st) {
+        return switch (st) { case EARTH -> CRUST; case LAVA_TUBES -> 40; case ICE -> 60; case SPARSE -> 50; case NONE -> 0; };
+    }
+
+    private static boolean falls(BlockState st) { return st.getBlock() instanceof net.minecraft.world.level.block.FallingBlock; }
+
+    /** Resources in body rock (deterministic per block). Moon: ilmenite (FeTiO3) in mare basalt; Mars: iron oxides. */
+    private BlockState resource(int x, int y, int z, Surface s, BlockState rock) {
+        double h = dev.saurus.cosmos.core.terrain.Noise.hash01(0x0E5L, x >> 1, y >> 1, z >> 1);
+        switch (body) {
+            case "moon": if (s == Surface.LUNAR_MARE && h < 0.012) return Blocks.IRON_ORE.defaultBlockState(); break;
+            case "mars": if (h < 0.008) return Blocks.IRON_ORE.defaultBlockState(); break;
+            case "mercury": if (h < 0.006) return Blocks.IRON_ORE.defaultBlockState(); break;
+            default: break;
+        }
+        return rock;
+    }
+
     @Override protected MapCodec<? extends ChunkGenerator> codec() { return CODEC; }
 
     /** A fully resolved column: block Y of the top solid block, liquid top (or Integer.MIN_VALUE), layers. */
@@ -90,28 +116,92 @@ public final class CosmosChunkGenerator extends ChunkGenerator {
         int minY = chunk.getMinY();
         BlockState bedrock = Blocks.BEDROCK.defaultBlockState(), deepslate = Blocks.DEEPSLATE.defaultBlockState();
         boolean earth = body.equals("earth");
+        int[] tops = new int[256], solidTops = new int[256];
+        BlockState[] topStates = new BlockState[256], solidStates = new BlockState[256];
+        dev.saurus.cosmos.core.terrain.Caves cv = caves();
+        int cdepth = caveDepth(cv.style);
+        BlockState air = Blocks.AIR.defaultBlockState(), lava = Blocks.LAVA.defaultBlockState(), packedIce = Blocks.PACKED_ICE.defaultBlockState();
         for (int dz = 0; dz < 16; dz++) for (int dx = 0; dx < 16; dx++) {
+            int bx = x0 + dx, bz = z0 + dz;
             double e = g[(dz + 1) * 18 + dx + 1];
             double ex = g[(dz + 1) * 18 + dx + 2] - g[(dz + 1) * 18 + dx], ez = g[(dz + 2) * 18 + dx + 1] - g[dz * 18 + dx + 1];
             double slope = Math.hypot(ex, ez) / (2 * SurfaceScale.METRES_PER_BLOCK_H);
-            Col c = resolve(s, x0 + dx, z0 + dz, e, slope);
+            Col c = resolve(s, bx, bz, e, slope);
+            double[] ll = s.proj.latLon(bx + 0.5, bz + 0.5);
+            double[] u = dev.saurus.cosmos.core.terrain.PlanetProjection.unit(ll[0], ll[1]);
+            boolean underLiquid = c.liquidTop > c.top;
+            boolean groundIce = body.equals("mars") && Math.abs(Math.toDegrees(ll[0])) > 50;   // SHARAD/Phoenix: buried water ice
             int floor = Math.max(minY, c.top - CRUST);
             int topWithLiquid = Math.max(c.top, c.liquidTop);
+            boolean carvedBelow = false;
             for (int y = floor; y <= topWithLiquid; y++) {
                 BlockState st;
+                int depth = c.top - y;
                 if (y <= floor + 1) st = bedrock;
                 else if (y > c.top) st = (c.frozen && y == c.liquidTop) ? Blocks.ICE.defaultBlockState() : c.liquid;
                 else if (y == c.top) st = c.layers.top();
-                else if (y > c.top - 1 - c.layers.underDepth()) st = c.layers.under();
+                else if (depth <= c.layers.underDepth()) st = c.layers.under();
+                else if (groundIce && depth <= c.layers.underDepth() + 10) st = packedIce;
                 else if (c.surface == Surface.MARS_LAYERED) st = layered(y);
-                else st = earth && y < SurfaceScale.DATUM_Y - 70 ? deepslate : c.layers.rock();
+                else st = resource(bx, y, bz, c.surface, earth && y < SurfaceScale.DATUM_Y - 70 ? deepslate : c.layers.rock());
                 if (st == null) continue;
+                // caves: never within 8 blocks of a sea/lake bed, never through the bedrock floor
+                if (y > floor + 3 && depth < cdepth && y <= c.top && !(underLiquid && depth < 8)
+                        && cv.carve(u, y, depth, c.surface) < 0) {
+                    carvedBelow = true;
+                    if (earth && depth > 70) set(chunk, dx, y, dz, lava);
+                    continue;                      // leave air
+                }
+                if (carvedBelow && falls(st)) st = c.layers.rock();   // no sand/regolith hanging over a void
+                carvedBelow = false;
                 set(chunk, dx, y, dz, st);
             }
-            ocean.update(dx, c.top, dz, c.layers.top());
-            surface.update(dx, topWithLiquid, dz, topWithLiquid > c.top ? c.liquid == null ? c.layers.top() : c.liquid : c.layers.top());
+            int ci = dz * 16 + dx;
+            tops[ci] = topWithLiquid; solidTops[ci] = c.top; solidStates[ci] = c.layers.top();
+            topStates[ci] = topWithLiquid > c.top && c.liquid != null ? c.liquid : c.layers.top();
+        }
+        placeLandmarks(chunk, x0, z0, tops, solidTops, topStates, solidStates);
+        for (int i = 0; i < 256; i++) {
+            ocean.update(i & 15, solidTops[i], i >> 4, solidStates[i]);
+            surface.update(i & 15, tops[i], i >> 4, topStates[i]);
         }
         return CompletableFuture.completedFuture(chunk);
+    }
+
+    /** Ground level of each landmark (computed once from the terrain model, so every chunk agrees). */
+    private final java.util.Map<String, Integer> landmarkBase = new java.util.concurrent.ConcurrentHashMap<>();
+
+    private void placeLandmarks(ChunkAccess chunk, int x0, int z0, int[] tops, int[] solidTops, BlockState[] topStates, BlockState[] solidStates) {
+        ColumnSampler s = sampler();
+        for (dev.saurus.cosmos.core.terrain.Landmarks.Landmark l : dev.saurus.cosmos.core.terrain.Landmarks.on(body)) {
+            int ox = (int) Math.floor(s.proj.x(Math.toRadians(l.lon()))), oz = (int) Math.floor(s.proj.z(Math.toRadians(l.lat())));
+            int pad = l.radius() + 3;
+            if (ox + pad < x0 || ox - pad > x0 + 15 || oz + pad < z0 || oz - pad > z0 + 15) continue;
+            int base = landmarkBase.computeIfAbsent(l.id(), k -> {
+                // level the pad at the median ground height of the footprint, at least at sea level
+                int[] hs = new int[25]; int n = 0;
+                for (int i = -2; i <= 2; i++) for (int k2 = -2; k2 <= 2; k2++)
+                    hs[n++] = ColumnSampler.surfaceY(s.elevation(ox + i * l.radius() / 2.0, oz + k2 * l.radius() / 2.0));
+                java.util.Arrays.sort(hs);
+                return Math.max(hs[12], body.equals("earth") ? SurfaceScale.DATUM_Y - 1 : Integer.MIN_VALUE) + 1;
+            });
+            BlockState found = LandmarkPainter.foundation(l);
+            for (int dz = 0; dz < 16; dz++) for (int dx = 0; dx < 16; dx++) {
+                int lx = x0 + dx - ox, lz = z0 + dz - oz;
+                if (Math.abs(lx) > pad || Math.abs(lz) > pad) continue;
+                int top = tops[dz * 16 + dx];
+                for (int y = Math.min(top, base - 1) + 1; y <= base - 1; y++) set(chunk, dx, y, dz, found);        // fill up to the pad
+                for (int y = base; y <= Math.min(top, base + l.height() + 2); y++) set(chunk, dx, y, dz, Blocks.AIR.defaultBlockState()); // cut down to it
+                set(chunk, dx, base - 1, dz, found);
+                int hi = base - 1;
+                for (int ly = 0; ly <= l.height(); ly++) {
+                    BlockState st = LandmarkPainter.at(l, lx, ly, lz);
+                    if (st != null) { set(chunk, dx, base + ly, dz, st); hi = base + ly; }
+                }
+                int ci = dz * 16 + dx;
+                tops[ci] = solidTops[ci] = hi; topStates[ci] = solidStates[ci] = found;
+            }
+        }
     }
 
     private static final BlockState[] BANDS = {
@@ -157,7 +247,16 @@ public final class CosmosChunkGenerator extends ChunkGenerator {
         info.add("Cosmos terrain: " + s.terrain.provenance());
     }
 
-    @Override public void spawnOriginalMobs(WorldGenRegion region) {}
+    /** Earth gets its biomes' animals as terrain generates, like vanilla. Nowhere else has known life. */
+    @Override public void spawnOriginalMobs(WorldGenRegion region) {
+        if (!body.equals("earth")) return;
+        net.minecraft.world.level.ChunkPos pos = region.getCenter();
+        BlockPos at = pos.getWorldPosition().atY(region.getMaxY());
+        net.minecraft.world.level.levelgen.WorldgenRandom r = new net.minecraft.world.level.levelgen.WorldgenRandom(
+                new net.minecraft.world.level.levelgen.LegacyRandomSource(net.minecraft.world.level.levelgen.RandomSupport.generateUniqueSeed()));
+        r.setDecorationSeed(region.getSeed(), pos.getMinBlockX(), pos.getMinBlockZ());
+        net.minecraft.world.level.NaturalSpawner.spawnMobsForChunkGeneration(region, at, pos, r);
+    }
     @Override public int getGenDepth() { return SurfaceScale.HEIGHT; }
     @Override public int getSeaLevel() { return SurfaceScale.DATUM_Y; }
     @Override public int getMinY() { return SurfaceScale.MIN_Y; }

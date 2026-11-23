@@ -18,6 +18,7 @@ public final class MoonTerrain implements PlanetTerrain {
         {56.0, -40.0, 420}, {57.0, -10.0, 420}, {56.0, 20.0, 420}, {55.0, 40.0, 380}, {38.0, -32.0, 600}, {-3.0, -40.0, 900}
     };
     private final double[][] mariaUnit;
+    private final ElevationPatches patches = ElevationPatches.bundled("moon");
 
     public MoonTerrain(ElevationGrid dem, double radiusM, long seed) {
         this.dem = dem; this.radius = radiusM; this.n = new Noise(seed ^ 0x300L);
@@ -33,7 +34,7 @@ public final class MoonTerrain implements PlanetTerrain {
     @Override public double radiusM() { return radius; }
     @Override public boolean measured() { return true; }
     @Override public String provenance() {
-        return "Elevation: NASA LRO LOLA LDEM (measured, 1/4 deg); craters < 24 km and regolith detail: procedural; mare outlines: IAU (approx.)";
+        return "Elevation: NASA LRO LOLA LDEM (measured, 1/4 deg; 1/16 deg around Apollo sites, Tycho, Copernicus, Shackleton...); craters < 24 km and regolith detail: procedural; mare outlines: IAU (approx.)";
     }
 
     /** 0 = highlands, 1 = deep inside a mare (soft edge). */
@@ -50,7 +51,7 @@ public final class MoonTerrain implements PlanetTerrain {
 
     @Override public double elevation(double lat, double lon) {
         double[] u = PlanetProjection.unit(lat, lon);
-        double e0 = dem.sample(lat, lon);
+        double e0 = patches.blend(lat, lon, dem.sample(lat, lon))[0];
         double mare = mare(u);
         double density = 1.0 - 0.7 * mare;
         double c = craters.height(u[0], u[1], u[2], density, null);

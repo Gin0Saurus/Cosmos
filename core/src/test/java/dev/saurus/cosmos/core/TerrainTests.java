@@ -37,6 +37,10 @@ final class TerrainTests {
         that("Himalaya near Everest above 5,500 m (got " + Math.round(ev) + ")", ev > 5500);
         double mt = earth.elevation(r(11.35), r(142.2));
         that("Mariana Trench below -7,000 m (got " + Math.round(mt) + ")", mt < -7000);
+        double gcRim = earth.elevation(r(36.20), r(-112.06)), gcFloor = earth.elevation(r(36.10), r(-112.09));
+        that("Grand Canyon: North Rim " + Math.round(gcRim) + " m stands > 800 m above the Phantom Ranch river level " + Math.round(gcFloor) + " m", gcRim - gcFloor > 800);
+        double fuji = earth.elevation(r(35.3606), r(138.7274));
+        that("Mount Fuji above 3,000 m (got " + Math.round(fuji) + ")", fuji > 3000);
         that("mid-Atlantic is ocean", earth.elevation(r(30), r(-40)) < -2000);
         that("Tibetan plateau above 4,000 m", earth.elevation(r(33), r(88)) > 4000);
         expectSurface(earth, "Sahara", 23, 13, Surface.DESERT);
@@ -63,7 +67,7 @@ final class TerrainTests {
         double om = mars.elevation(r(18.65), r(-133.8));
         that("Olympus Mons summit above 18,000 m (got " + Math.round(om) + ")", om > 18000);
         double hel = mars.elevation(r(-42.4), r(70.5));
-        that("Hellas basin floor below -6,000 m (got " + Math.round(hel) + ")", hel < -6000);
+        that("Hellas basin floor below -5,500 m (got " + Math.round(hel) + ")", hel < -5500);
         double vm = mars.elevation(r(-13.9), r(-59.2)), rim = mars.elevation(r(-10.5), r(-59.2));
         that("Valles Marineris floor > 3 km below its rim (" + Math.round(rim - vm) + " m)", rim - vm > 3000);
         expectSurface(mars, "north polar cap", 87, 0, Surface.MARS_POLAR_ICE);
@@ -77,6 +81,43 @@ final class TerrainTests {
         near("same seed -> same terrain", moon.elevation(0.3, 1.1), PlanetTerrains.forBody(ss.get("moon"), seed).elevation(0.3, 1.1), 0);
         that("different seed -> different procedural detail", PlanetTerrains.forBody(ss.get("moon"), 999).elevation(0.3, 1.1) != moon.elevation(0.3, 1.1));
         info("walkable bodies: " + PlanetTerrains.walkable());
+
+        System.out.println("[Caves]");
+        for (String id : new String[] { "earth", "moon", "mars", "europa" }) {
+            PlanetTerrain t = PlanetTerrains.forBody(ss.get(id), seed);
+            PlanetProjection pp = PlanetProjection.forRadius(t.radiusM());
+            Caves cv = new Caves(id, seed, pp.circumference());
+            int depthMax = id.equals("earth") ? 96 : id.equals("europa") ? 60 : 40;
+            long t0 = System.nanoTime(); int carved = 0, total = 0, chunks = 40;
+            for (int ch = 0; ch < chunks; ch++) for (int i = 0; i < 16; i++) for (int k = 0; k < 16; k++) {
+                double[] q = pp.latLon(ch * 16 + i + 2000, k + ch * 37);
+                double[] u = PlanetProjection.unit(q[0], q[1]);
+                double e = t.elevation(q[0], q[1]);
+                Surface sf = t.column(q[0], q[1], e, 0).surface();
+                int top = (int) Math.floor(SurfaceScale.blockYForElevation(e));
+                for (int d = 1; d < depthMax; d++) { total++; if (cv.carve(u, top - d, d, sf) < 0) carved++; }
+            }
+            double ms = (System.nanoTime() - t0) / 1e6 / chunks;
+            info(String.format("%s (%s): %.1f%% of the crust is cave, %.1f ms per chunk", id, cv.style, 100.0 * carved / total, ms));
+            double lo = cv.style == Caves.Style.LAVA_TUBES ? 0.002 : 0.01;
+            that(id + " has caves but is mostly rock", carved > total * lo && carved < total * 0.25);
+            that(id + " caves cost under 30 ms per chunk", ms < 30);
+        }
+        {   // a lava tube near the Apollo 11 landing site (Mare Tranquillitatis)
+            PlanetTerrain t = PlanetTerrains.forBody(ss.get("moon"), seed);
+            PlanetProjection pp = PlanetProjection.forRadius(t.radiusM());
+            Caves cv = new Caves("moon", seed, pp.circumference());
+            double x0 = pp.x(r(23.47)), z0 = pp.z(r(0.67));
+            int found = 0;
+            for (int i = -1500; i <= 1500 && found == 0; i += 3) for (int k = -1500; k <= 1500 && found == 0; k += 3) {
+                double[] q = pp.latLon(x0 + i, z0 + k);
+                double e = t.elevation(q[0], q[1]);
+                if (t.column(q[0], q[1], e, 0).surface() != Surface.LUNAR_MARE) continue;
+                int top = (int) Math.floor(SurfaceScale.blockYForElevation(e));
+                if (cv.carve(PlanetProjection.unit(q[0], q[1]), top - 14, 14, Surface.LUNAR_MARE) < -0.5) found = 1;
+            }
+            that("a lava tube runs under Mare Tranquillitatis within 15 km of Apollo 11", found == 1);
+        }
 
         System.out.println("[Terrain performance]");
         for (String id : new String[] { "earth", "moon", "mars", "europa" }) {

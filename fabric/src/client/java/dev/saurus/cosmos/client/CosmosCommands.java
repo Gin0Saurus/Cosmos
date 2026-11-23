@@ -37,6 +37,10 @@ public final class CosmosCommands {
                         .then(ClientCommands.argument("lat", DoubleArgumentType.doubleArg(-90, 90)).then(ClientCommands.argument("lon", DoubleArgumentType.doubleArg(-180, 360))
                                 .executes(c -> land(c, StringArgumentType.getString(c, "body"), DoubleArgumentType.getDouble(c, "lat"), DoubleArgumentType.getDouble(c, "lon")))))))
                 .then(ClientCommands.literal("where").executes(CosmosCommands::where))
+                .then(ClientCommands.literal("landmarks").executes(c -> landmarks(c, null))
+                        .then(ClientCommands.argument("world", StringArgumentType.word()).executes(c -> landmarks(c, StringArgumentType.getString(c, "world")))))
+                .then(ClientCommands.literal("visit").then(ClientCommands.argument("landmark", StringArgumentType.greedyString())
+                        .executes(c -> { say(c, visit(StringArgumentType.getString(c, "landmark"))); return 1; })))
                 .then(ClientCommands.literal("worlds").executes(CosmosCommands::worlds))
                 .then(ClientCommands.literal("goto").then(ClientCommands.argument("name", StringArgumentType.greedyString())
                         .executes(c -> { enterSpace(c, StringArgumentType.getString(c, "name")); return 1; })))
@@ -70,6 +74,7 @@ public final class CosmosCommands {
         say(c, "§e/cosmos speed <x>§7 — flight speed factor (default 0.5)   §e/cosmos time <x>|now§7 — time warp");
         say(c, "§e/cosmos exit§7 — back to your world   §e/cosmos sky on|off§7 — real stars in the overworld");
         say(c, "§e/cosmos land <world> [lat lon]§7 — touch down on a planet or moon   §e/cosmos worlds§7 / §e/cosmos where");
+        say(c, "§e/cosmos landmarks§7 / §e/cosmos visit <name>§7 — the Pyramids, Stonehenge, Eiffel Tower, Apollo 11, Mars rovers...");
         say(c, "§7Fly straight up past the top of the sky to launch into space; fly down into a planet or moon to land.");
         say(c, "§7In space: WASD move, Space/Shift up/down, Sprint = x20. Speed scales with distance to the nearest object.");
         return 1;
@@ -116,6 +121,27 @@ public final class CosmosCommands {
                 dev.saurus.cosmos.world.Planets.surfaceGravity(b) / 9.80665, proj.circumference()));
         say(c, "§7" + terrain.provenance());
         return 1;
+    }
+
+    private static int landmarks(CommandContext<FabricClientCommandSource> c, String world) {
+        say(c, "§bLandmarks§7 (life-size, at their real coordinates) — §e/cosmos visit <name>");
+        for (var l : dev.saurus.cosmos.core.terrain.Landmarks.ALL)
+            if (world == null || l.body().equalsIgnoreCase(world))
+                say(c, String.format("§f%s§7 (%s, %s) %.4f, %.4f — %s", l.id(), l.name(), l.body(), l.lat(), l.lon(), l.note()));
+        return 1;
+    }
+
+    /** Lands just south of a landmark, facing it. Returns the chat line (also used by the in-game test). */
+    public static String visit(String q) {
+        var l = dev.saurus.cosmos.core.terrain.Landmarks.find(q);
+        if (l == null) return "§cNo landmark called '" + q + "'. Try /cosmos landmarks";
+        int C = dev.saurus.cosmos.world.Planets.projection(l.body()).circumference();
+        double back = l.radius() * 1.4 + 14;                         // blocks south of the centre
+        double lat = l.lat() - back / C * 360.0;
+        SurfaceLink.pendingYaw = 180f;                              // face north, toward it
+        SurfaceLink.pendingPitch = l.height() > 40 ? -18f : 8f;
+        SurfaceLink.requestLanding(l.body(), lat, l.lon());
+        return "§bHeading to §f" + l.name() + "§b — " + l.note();
     }
 
     private static int worlds(CommandContext<FabricClientCommandSource> c) {

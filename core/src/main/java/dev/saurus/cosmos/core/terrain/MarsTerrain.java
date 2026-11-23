@@ -10,6 +10,7 @@ public final class MarsTerrain implements PlanetTerrain {
     private final Noise n;
     private final Craters craters;
     private final double radius;
+    private final ElevationPatches patches = ElevationPatches.bundled("mars");
     private static final double[] SOUTH_CAP = PlanetProjection.unit(Math.toRadians(-87.0), Math.toRadians(-45));
 
     public MarsTerrain(ElevationGrid dem, double radiusM, long seed) {
@@ -21,7 +22,7 @@ public final class MarsTerrain implements PlanetTerrain {
     @Override public double radiusM() { return radius; }
     @Override public boolean measured() { return true; }
     @Override public String provenance() {
-        return "Elevation: NASA MGS MOLA MEGDR (measured, 1/4 deg); craters < 24 km, dunes, dust and cap edges: procedural";
+        return "Elevation: NASA MGS MOLA MEGDR (measured, 1/4 deg; 1/16 deg around Olympus Mons, Jezero, Gale, Valles Marineris...); craters < 24 km, dunes, dust and cap edges: procedural";
     }
 
     double craterDensity(double e0, double latDeg) {
@@ -33,7 +34,7 @@ public final class MarsTerrain implements PlanetTerrain {
 
     @Override public double elevation(double lat, double lon) {
         double[] u = PlanetProjection.unit(lat, lon);
-        double e0 = dem.sample(lat, lon);
+        double e0 = patches.blend(lat, lon, dem.sample(lat, lon))[0];
         double c = craters.height(u[0], u[1], u[2], craterDensity(e0, Math.toDegrees(lat)), null);
         double x = u[0] * radius, y = u[1] * radius, z = u[2] * radius;
         double dust = n.fbm(x, y, z, 2_500, 4, 0.5) * 80 + n.fbm(x, y, z, 20_000, 3, 0.5) * 250;

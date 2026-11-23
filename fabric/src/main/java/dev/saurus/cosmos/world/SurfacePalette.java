@@ -10,8 +10,9 @@ public final class SurfacePalette {
     public record Layers(BlockState top, BlockState under, int underDepth, BlockState rock, String biome) {}
 
     /** Looks a vanilla block up by id (26.3 keeps coloured blocks in ColorCollections, so ids are the stable handle). */
+    private static final java.util.Map<String, BlockState> BY_ID = new java.util.concurrent.ConcurrentHashMap<>();
     public static BlockState b(String id) {
-        return net.minecraft.core.registries.BuiltInRegistries.BLOCK.getValue(net.minecraft.resources.Identifier.fromNamespaceAndPath("minecraft", id)).defaultBlockState();
+        return BY_ID.computeIfAbsent(id, k -> net.minecraft.core.registries.BuiltInRegistries.BLOCK.getValue(net.minecraft.resources.Identifier.fromNamespaceAndPath("minecraft", k)).defaultBlockState());
     }
 
     private static Layers L(BlockState top, BlockState under, int d, BlockState rock, String biome) { return new Layers(top, under, d, rock, biome); }

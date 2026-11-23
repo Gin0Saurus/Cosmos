@@ -29,17 +29,15 @@ public final class CosmosClientGameTest implements FabricClientGameTest {
             new Stop("Earth-Himalaya-Everest", "earth", 27.90, 86.85, 30, 6),
             new Stop("Earth-Amazon", "earth", -3.0, -60.0, 0, 12),
             new Stop("Earth-Sahara", "earth", 23.0, 13.0, 0, 10),
-            new Stop("Earth-Greenland-ice", "earth", 72.0, -40.0, 0, 10),
-            new Stop("Earth-English-coast", "earth", 50.75, 0.25, 180, 10),
+            new Stop("Earth-Grand-Canyon", "earth", 36.06, -112.12, 0, 12),
+            new Stop("Earth-Mount-Fuji", "earth", 35.25, 138.73, 180, -12),
             new Stop("Moon-Apollo-11", "moon", 0.674, 23.473, 90, 6),
             new Stop("Moon-Tycho-highlands", "moon", -43.3, -11.4, 0, 8),
             new Stop("Mars-Jezero", "mars", 18.44, 77.45, 270, 6),
             new Stop("Mars-Valles-Marineris", "mars", -10.9, -59.2, 0, 22),
             new Stop("Mars-Olympus-Mons-flank", "mars", 18.0, -131.0, 270, 4),
-            new Stop("Mars-north-polar-cap", "mars", 84.5, 0.0, 0, 8),
             new Stop("Europa", "europa", 10.0, 30.0, 0, 8),
             new Stop("Io", "io", 5.0, 10.0, 0, 10),
-            new Stop("Titan-lakes", "titan", 70.0, -45.0, 0, 10),
             new Stop("Pluto-Sputnik-Planitia-edge", "pluto", 25.0, 160.0, 90, 8),
     };
     private final List<String> results = new ArrayList<>();
@@ -49,7 +47,7 @@ public final class CosmosClientGameTest implements FabricClientGameTest {
     public void runTest(ClientGameTestContext context) {
         try (TestSingleplayerContext world = context.worldBuilder().create()) {
             context.waitFor(mc -> CosmosState.universe() != null, 20 * 60);
-            context.runOnClient(mc -> { mc.options.renderDistance().set(8); });
+            context.runOnClient(mc -> { mc.options.renderDistance().set(10); });
             world.getServer().runCommand("time set noon");
             world.getServer().runCommand("weather clear");
             world.getServer().runCommand("gamerule doDaylightCycle false");
@@ -60,6 +58,12 @@ public final class CosmosClientGameTest implements FabricClientGameTest {
                 try { visit(context, world, s, i++); }
                 catch (Throwable t) { log("FAIL visiting " + s.name() + ": " + t); }
             }
+            for (String lm : new String[] { "stonehenge", "great_pyramid", "eiffel_tower", "colosseum", "leaning_tower_of_pisa", "big_ben", "apollo_11", "apollo_17", "perseverance" }) {
+                try { landmark(context, world, lm); } catch (Throwable t) { log("FAIL landmark " + lm + ": " + t); }
+            }
+            try { cave(context, world, "earth", 51.45, -0.3, "cosmos-c00-earth-cave"); } catch (Throwable t) { log("FAIL earth cave: " + t); }
+            try { cave(context, world, "moon", 0.67, 23.47, "cosmos-c01-moon-lava-tube"); } catch (Throwable t) { log("FAIL lava tube: " + t); }
+            try { wildlife(context, world); } catch (Throwable t) { log("FAIL wildlife: " + t); }
             try { gravityCheck(context, world); } catch (Throwable t) { log("FAIL gravity: " + t); }
             try { wrapCheck(context, world); } catch (Throwable t) { log("FAIL wrap-around: " + t); }
             try { launchAndLand(context, world); } catch (Throwable t) { log("FAIL launch/land: " + t); }
@@ -92,6 +96,75 @@ public final class CosmosClientGameTest implements FabricClientGameTest {
         String biome = context.computeOnClient(mc -> mc.level.getBiome(mc.player.blockPosition()).unwrapKey().map(k -> k.toString()).orElse("?"));
         log(String.format("%s: at lat %.3f lon %.3f, y=%.1f (elevation ~%.0f m), biome %s", s.name(), info[0], info[1], info[2], info[3], biome));
         context.takeScreenshot(String.format("cosmos-s%02d-%s", i, s.name()));
+    }
+
+    private void landmark(ClientGameTestContext context, TestSingleplayerContext world, String id) {
+        var l = dev.saurus.cosmos.core.terrain.Landmarks.find(id);
+        int C = Planets.projection(l.body()).circumference();
+        double back = l.radius() + Math.max(20, l.height() * 0.35);
+        land(context, world, l.body(), l.lat() - back / C * 360.0, l.lon());
+        float pitch = (float) -Math.toDegrees(Math.atan2(l.height() * 0.45, back));
+        context.runOnClient(mc -> { mc.player.setYRot(180f); mc.player.setXRot(pitch); });
+        context.waitTicks(320);
+        log("landmark " + l.name() + ": viewed from " + Math.round(back) + " blocks south");
+        context.takeScreenshot("cosmos-m-" + id);
+    }
+
+    /** Finds a void the generator will carve (same model) near (lat, lon), stands in it with night vision. */
+    private void cave(ClientGameTestContext context, TestSingleplayerContext world, String body, double lat, double lon, String shot) {
+        var terrain = Planets.terrain(body);
+        PlanetProjection proj = Planets.projection(body);
+        var caves = new dev.saurus.cosmos.core.terrain.Caves(body, Planets.PLANET_SEED, proj.circumference());
+        double x0 = Math.floor(proj.x(Math.toRadians(lon))), z0 = Math.floor(proj.z(Math.toRadians(lat)));
+        double[] hit = null;
+        search:
+        for (int ring = 0; ring < 900; ring += 3) for (int i = -ring; i <= ring; i += 3) for (int k : new int[] { -ring, ring }) {
+            for (int sw = 0; sw < 2; sw++) {
+                double x = x0 + (sw == 0 ? i : k), z = z0 + (sw == 0 ? k : i);
+                double[] ll = proj.latLon(x + 0.5, z + 0.5);
+                double e = terrain.elevation(ll[0], ll[1]);
+                var col = terrain.column(ll[0], ll[1], e, 0);
+                if (col.liquid() != dev.saurus.cosmos.core.terrain.TerrainColumn.Liquid.NONE) continue;
+                int top = ColumnSampler.surfaceY(e);
+                double[] u = PlanetProjection.unit(ll[0], ll[1]);
+                for (int d = 8; d < 30; d++) {
+                    int y = top - d;
+                    if (caves.carve(u, y, d, col.surface()) < -0.3 && caves.carve(u, y + 1, d - 1, col.surface()) < -0.3
+                            && caves.carve(u, y + 2, d - 2, col.surface()) < -0.3 && caves.carve(u, y - 1, d + 1, col.surface()) >= 0) {
+                        hit = new double[] { x, y, z, Math.toDegrees(ll[0]), Math.toDegrees(ll[1]) }; break search;
+                    }
+                }
+            }
+        }
+        if (hit == null) { log("FAIL " + shot + ": no void found by search"); return; }
+        land(context, world, body, hit[3], hit[4]);
+        world.getServer().runCommand("effect give @a night_vision 600 0 true");
+        world.getServer().runCommand(String.format(java.util.Locale.ROOT, "execute as @a at @s run tp @s %.1f %.1f %.1f", hit[0] + 0.5, hit[1], hit[2] + 0.5));
+        context.runOnClient(mc -> { mc.player.setXRot(5f); });
+        context.waitTicks(200);
+        String inside = context.computeOnClient(mc -> mc.level.getBlockState(mc.player.blockPosition()).isAir() + " / above " + mc.level.getBlockState(mc.player.blockPosition().above(3)).getBlock().toString());
+        log(String.format("%s: standing in a void %d blocks under the surface at %.4f, %.4f (air here / block 3 above: %s)", shot, (int) (ColumnSampler.surfaceY(terrain.elevation(Math.toRadians(hit[3]), Math.toRadians(hit[4]))) - hit[1]), hit[3], hit[4], inside));
+        context.takeScreenshot(shot);
+        world.getServer().runCommand("effect clear @a");
+    }
+
+    private void wildlife(ClientGameTestContext context, TestSingleplayerContext world) {
+        int[] counts = new int[3];
+        String[][] sites = { { "African savanna", "-2.3", "34.8" }, { "English countryside", "52.0", "-1.5" }, { "Amazon", "-3.5", "-62.0" } };
+        StringBuilder sb = new StringBuilder("wildlife (animals within 96 blocks after landing):");
+        for (String[] site : sites) {
+            land(context, world, "earth", Double.parseDouble(site[1]), Double.parseDouble(site[2]));
+            context.waitTicks(300);
+            String found = context.computeOnClient(mc -> {
+                java.util.Map<String, Integer> m = new java.util.TreeMap<>();
+                for (var e : mc.level.entitiesForRendering())
+                    if (e != mc.player && e.distanceTo(mc.player) < 96) m.merge(e.getType().toString().replace("entity.minecraft.", ""), 1, Integer::sum);
+                return m.toString();
+            });
+            sb.append(" | ").append(site[0]).append(": ").append(found);
+        }
+        log(sb.toString());
+        context.takeScreenshot("cosmos-w00-wildlife");
     }
 
     private void gravityCheck(ClientGameTestContext context, TestSingleplayerContext world) {

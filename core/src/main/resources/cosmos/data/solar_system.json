@@ -1,170 +1,1599 @@
 {
-  "_comment": "Solar System bodies. Every number is copied from the source named in 'sources' (see sources.md). Units: km, kg, days, degrees, deg/century (planet element rates), deg/day (prime meridian rate).",
-  "sources": {
-    "orbit_planets": "JPL SSD, Keplerian Elements for Approximate Positions of the Major Planets, Table 1 (1800-2050), mean ecliptic and equinox of J2000",
-    "orbit_moons": "JPL SSD, Planetary Satellite Mean Elements (sats/elem/sep.html), epoch 2000-01-01.5 TDB",
-    "rotation": "NAIF pck00011.tpc (IAU WGCCRE 2015, Archinal et al. 2018); nutation/precession periodic terms not applied",
-    "radii": "NAIF pck00011.tpc BODYnnn_RADII (a, b, c)",
-    "mass_planets": "JPL SSD Planetary Physical Parameters (planets/phys_par.html)",
-    "gm_moons": "JPL SSD Planetary Satellite Physical Parameters (sats/phys_par)",
-    "surface": "NASA NSSDCA Planetary Fact Sheet (obliquity, surface pressure, mean temperature)",
-    "rings": "NASA NSSDCA Saturnian Rings Fact Sheet",
-    "gm_sun": "IAU 2015 Resolution B3 nominal solar mass parameter"
-  },
-  "obliquity_j2000_deg": 23.43928,
-  "sun": {
-    "id": 10, "name": "Sun", "gm_m3s2": 1.3271244e20, "radii_km": [695700.0, 695700.0, 695700.0],
-    "teff_k": 5772, "rotation": {"ra": [286.13, 0, 0], "dec": [63.87, 0, 0], "pm": [84.176, 14.18440, 0]}
-  },
-  "planets": [
-    {"id": 199, "name": "Mercury", "mass_kg": 0.330103e24, "radii_km": [2440.53, 2440.53, 2438.26], "albedo": 0.106,
-     "elements": [0.38709927, 0.20563593, 7.00497902, 252.25032350, 77.45779628, 48.33076593],
-     "rates": [0.00000037, 0.00001906, -0.00594749, 149472.67411175, 0.16047689, -0.12534081],
-     "rotation": {"ra": [281.0103, -0.0328, 0], "dec": [61.4155, -0.0049, 0], "pm": [329.5988, 6.1385108, 0]},
-     "surface": {"pressure_bar": 0, "mean_temp_c": 167, "obliquity_deg": 0.034}, "kind": "rocky"},
-    {"id": 299, "name": "Venus", "mass_kg": 4.86731e24, "radii_km": [6051.8, 6051.8, 6051.8], "albedo": 0.65,
-     "elements": [0.72333566, 0.00677672, 3.39467605, 181.97909950, 131.60246718, 76.67984255],
-     "rates": [0.00000390, -0.00004107, -0.00078890, 58517.81538729, 0.00268329, -0.27769418],
-     "rotation": {"ra": [272.76, 0, 0], "dec": [67.16, 0, 0], "pm": [160.20, -1.4813688, 0]},
-     "surface": {"pressure_bar": 92, "mean_temp_c": 464, "obliquity_deg": 177.4}, "kind": "rocky",
-     "atmosphere": "venus"},
-    {"id": 399, "name": "Earth", "mass_kg": 5.97217e24, "radii_km": [6378.1366, 6378.1366, 6356.7519], "albedo": 0.367,
-     "elements_body": "EMB",
-     "elements": [1.00000261, 0.01671123, -0.00001531, 100.46457166, 102.93768193, 0.0],
-     "rates": [0.00000562, -0.00004392, -0.01294668, 35999.37244981, 0.32327364, 0.0],
-     "rotation": {"ra": [0, -0.641, 0], "dec": [90, -0.557, 0], "pm": [190.147, 360.9856235, 0]},
-     "surface": {"pressure_bar": 1, "mean_temp_c": 15, "obliquity_deg": 23.4}, "kind": "rocky",
-     "atmosphere": "earth"},
-    {"id": 499, "name": "Mars", "mass_kg": 0.641691e24, "radii_km": [3396.19, 3396.19, 3376.20], "albedo": 0.150,
-     "elements": [1.52371034, 0.09339410, 1.84969142, -4.55343205, -23.94362959, 49.55953891],
-     "rates": [0.00001847, 0.00007882, -0.00813131, 19140.30268499, 0.44441088, -0.29257343],
-     "rotation": {"ra": [317.269202, -0.10927547, 0], "dec": [54.432516, -0.05827105, 0], "pm": [176.049863, 350.891982443297, 0]},
-     "surface": {"pressure_bar": 0.01, "mean_temp_c": -65, "obliquity_deg": 25.2}, "kind": "rocky",
-     "atmosphere": "mars"},
-    {"id": 599, "name": "Jupiter", "mass_kg": 1898.125e24, "radii_km": [71492, 71492, 66854], "albedo": 0.52,
-     "elements": [5.20288700, 0.04838624, 1.30439695, 34.39644051, 14.72847983, 100.47390909],
-     "rates": [-0.00011607, -0.00013253, -0.00183714, 3034.74612775, 0.21252668, 0.20469106],
-     "rotation": {"ra": [268.056595, -0.006499, 0], "dec": [64.495303, 0.002413, 0], "pm": [284.95, 870.5360000, 0]},
-     "surface": {"pressure_bar": null, "mean_temp_c": -110, "obliquity_deg": 3.1}, "kind": "gas_giant"},
-    {"id": 699, "name": "Saturn", "mass_kg": 568.317e24, "radii_km": [60268, 60268, 54364], "albedo": 0.47,
-     "elements": [9.53667594, 0.05386179, 2.48599187, 49.95424423, 92.59887831, 113.66242448],
-     "rates": [-0.00125060, -0.00050991, 0.00193609, 1222.49362201, -0.41897216, -0.28867794],
-     "rotation": {"ra": [40.589, -0.036, 0], "dec": [83.537, -0.004, 0], "pm": [38.90, 810.7939024, 0]},
-     "surface": {"pressure_bar": null, "mean_temp_c": -140, "obliquity_deg": 26.7}, "kind": "gas_giant",
-     "rings": [
-       {"name": "D", "inner_km": 66900, "outer_km": 74510, "tau": 0.00001},
-       {"name": "C", "inner_km": 74658, "outer_km": 91975, "tau": 0.2, "albedo": 0.2},
-       {"name": "B", "inner_km": 91975, "outer_km": 117507, "tau": 1.5, "albedo": 0.5},
-       {"name": "Cassini Division", "inner_km": 117507, "outer_km": 122340, "tau": 0.05, "albedo": 0.3},
-       {"name": "A", "inner_km": 122340, "outer_km": 136780, "tau": 0.7, "albedo": 0.5},
-       {"name": "F", "inner_km": 139726, "outer_km": 139926, "tau": 0.1, "albedo": 0.6, "_note": "single radius 139,826 km in source; 200 km width is a rendering estimate"}
-     ],
-     "_ring_note": "tau/albedo take the midpoint of the source's ranges (estimate)"},
-    {"id": 799, "name": "Uranus", "mass_kg": 86.8099e24, "radii_km": [25559, 25559, 24973], "albedo": 0.51,
-     "elements": [19.18916464, 0.04725744, 0.77263783, 313.23810451, 170.95427630, 74.01692503],
-     "rates": [-0.00196176, -0.00004397, -0.00242939, 428.48202785, 0.40805281, 0.04240589],
-     "rotation": {"ra": [257.311, 0, 0], "dec": [-15.175, 0, 0], "pm": [203.81, -501.1600928, 0]},
-     "surface": {"pressure_bar": null, "mean_temp_c": -195, "obliquity_deg": 97.8}, "kind": "ice_giant"},
-    {"id": 899, "name": "Neptune", "mass_kg": 102.4092e24, "radii_km": [24764, 24764, 24341], "albedo": 0.41,
-     "elements": [30.06992276, 0.00859048, 1.77004347, -55.12002969, 44.96476227, 131.78422574],
-     "rates": [0.00026291, 0.00005105, 0.00035372, 218.45945325, -0.32241464, -0.00508664],
-     "rotation": {"ra": [299.36, 0, 0], "dec": [43.46, 0, 0], "pm": [249.978, 541.1397757, 0]},
-     "surface": {"pressure_bar": null, "mean_temp_c": -200, "obliquity_deg": 28.3}, "kind": "ice_giant"}
+ "_comment": "Solar System bodies. Every number is copied from the source named in 'sources' (see sources.md). Units: km, kg, days, degrees, deg/century (planet element rates), deg/day (prime meridian rate).",
+ "sources": {
+  "orbit_planets": "JPL SSD, Keplerian Elements for Approximate Positions of the Major Planets, Table 1 (1800-2050), mean ecliptic and equinox of J2000",
+  "orbit_moons": "JPL SSD, Planetary Satellite Mean Elements (sats/elem/sep.html), epoch 2000-01-01.5 TDB",
+  "rotation": "NAIF pck00011.tpc (IAU WGCCRE 2015, Archinal et al. 2018); nutation/precession periodic terms not applied",
+  "radii": "NAIF pck00011.tpc BODYnnn_RADII (a, b, c)",
+  "mass_planets": "JPL SSD Planetary Physical Parameters (planets/phys_par.html)",
+  "gm_moons": "JPL SSD Planetary Satellite Physical Parameters (sats/phys_par)",
+  "surface": "NASA NSSDCA Planetary Fact Sheet (obliquity, surface pressure, mean temperature)",
+  "rings": "NASA NSSDCA Saturnian Rings Fact Sheet",
+  "gm_sun": "IAU 2015 Resolution B3 nominal solar mass parameter"
+ },
+ "obliquity_j2000_deg": 23.43928,
+ "sun": {
+  "id": 10,
+  "name": "Sun",
+  "gm_m3s2": 1.3271244e+20,
+  "radii_km": [
+   695700.0,
+   695700.0,
+   695700.0
   ],
-  "moons": [
-    {"id": 301, "name": "Moon", "parent": 399, "gm_km3s2": 4902.800, "radii_km": [1737.4, 1737.4, 1737.4], "frame": "ecliptic",
-     "el": {"a": 384400, "e": 0.0554, "w": 318.15, "M": 135.27, "i": 5.16, "node": 125.08, "P": 27.322, "Papsis": 5.997, "Pnode": 18.600},
-     "rotation": {"ra": [269.9949, 0.0031, 0], "dec": [66.5392, 0.0130, 0], "pm": [38.3213, 13.17635815, -1.4e-12]}},
-    {"id": 401, "name": "Phobos", "parent": 499, "gm_km3s2": 0.0007087, "radii_km": [13.0, 11.4, 9.1], "frame": "laplace",
-     "el": {"a": 9375, "e": 0.015, "w": 216.3, "M": 189.7, "i": 1.1, "node": 169.2, "P": 0.3187, "Papsis": 1.1, "Pnode": 2.3, "lra": 317.7, "ldec": 52.9},
-     "rotation": {"ra": [317.67071657, -0.10844326, 0], "dec": [52.88627266, -0.06134706, 0], "pm": [35.18774440, 1128.84475928, 9.536137031212154e-09]}},
-    {"id": 402, "name": "Deimos", "parent": 499, "gm_km3s2": 0.0000962, "radii_km": [7.8, 6.0, 5.1], "frame": "laplace",
-     "el": {"a": 23457, "e": 0.000, "w": 0.0, "M": 205.0, "i": 1.8, "node": 54.3, "P": 1.2625, "Papsis": 0.0, "Pnode": 56.2, "lra": 316.6, "ldec": 53.5},
-     "rotation": {"ra": [316.65705808, -0.10518014, 0], "dec": [53.50992033, -0.05979094, 0], "pm": [79.39932954, 285.16188899, 0]}},
-    {"id": 501, "name": "Io", "parent": 599, "gm_km3s2": 5959.91547, "radii_km": [1829.4, 1819.4, 1815.7], "frame": "laplace",
-     "el": {"a": 421800, "e": 0.004, "w": 49.1, "M": 330.9, "i": 0.0, "node": 0.0, "P": 1.762732, "Papsis": 1.333, "Pnode": 0.0, "lra": 268.1, "ldec": 64.5},
-     "rotation": {"ra": [268.05, -0.009, 0], "dec": [64.50, 0.003, 0], "pm": [200.39, 203.4889538, 0]}},
-    {"id": 502, "name": "Europa", "parent": 599, "gm_km3s2": 3202.71210, "radii_km": [1562.6, 1560.3, 1559.5], "frame": "laplace",
-     "el": {"a": 671100, "e": 0.009, "w": 45.0, "M": 345.4, "i": 0.5, "node": 184.0, "P": 3.525463, "Papsis": 1.394, "Pnode": 30.202, "lra": 268.1, "ldec": 64.5},
-     "rotation": {"ra": [268.08, -0.009, 0], "dec": [64.51, 0.003, 0], "pm": [36.022, 101.3747235, 0]}},
-    {"id": 503, "name": "Ganymede", "parent": 599, "gm_km3s2": 9887.83275, "radii_km": [2631.2, 2631.2, 2631.2], "frame": "laplace",
-     "el": {"a": 1070400, "e": 0.001, "w": 198.3, "M": 324.8, "i": 0.2, "node": 58.5, "P": 7.155588, "Papsis": 68.301, "Pnode": 137.812, "lra": 268.2, "ldec": 64.6},
-     "rotation": {"ra": [268.20, -0.009, 0], "dec": [64.57, 0.003, 0], "pm": [44.064, 50.3176081, 0]}},
-    {"id": 504, "name": "Callisto", "parent": 599, "gm_km3s2": 7179.28340, "radii_km": [2410.3, 2410.3, 2410.3], "frame": "laplace",
-     "el": {"a": 1882700, "e": 0.007, "w": 43.8, "M": 87.4, "i": 0.3, "node": 309.1, "P": 16.690440, "Papsis": 277.921, "Pnode": 577.264, "lra": 268.7, "ldec": 64.8},
-     "rotation": {"ra": [268.72, -0.009, 0], "dec": [64.83, 0.003, 0], "pm": [259.51, 21.5710715, 0]}},
-    {"id": 601, "name": "Mimas", "parent": 699, "gm_km3s2": 2.50349, "radii_km": [207.8, 196.7, 190.6], "frame": "laplace",
-     "el": {"a": 186000, "e": 0.020, "w": 160.4, "M": 275.3, "i": 1.6, "node": 66.2, "P": 0.942422, "Papsis": 0.493, "Pnode": 0.986, "lra": 40.6, "ldec": 83.5},
-     "rotation": {"ra": [40.66, -0.036, 0], "dec": [83.52, -0.004, 0], "pm": [333.46, 381.9945550, 0]}},
-    {"id": 602, "name": "Enceladus", "parent": 699, "gm_km3s2": 7.21037, "radii_km": [256.6, 251.4, 248.3], "frame": "laplace",
-     "el": {"a": 238400, "e": 0.005, "w": 119.5, "M": 57.0, "i": 0.0, "node": 0.0, "P": 1.370218, "Papsis": 2.916, "Pnode": 0.0, "lra": 40.6, "ldec": 83.5},
-     "rotation": {"ra": [40.66, -0.036, 0], "dec": [83.52, -0.004, 0], "pm": [6.32, 262.7318996, 0]}},
-    {"id": 603, "name": "Tethys", "parent": 699, "gm_km3s2": 41.21353, "radii_km": [538.4, 528.3, 526.3], "frame": "laplace",
-     "el": {"a": 295000, "e": 0.001, "w": 335.3, "M": 0.0, "i": 1.1, "node": 273.0, "P": 1.887802, "Papsis": 0.005, "Pnode": 4.982, "lra": 40.6, "ldec": 83.5},
-     "rotation": {"ra": [40.66, -0.036, 0], "dec": [83.52, -0.004, 0], "pm": [8.95, 190.6979085, 0]}},
-    {"id": 604, "name": "Dione", "parent": 699, "gm_km3s2": 73.11607, "radii_km": [563.4, 561.3, 559.6], "frame": "laplace",
-     "el": {"a": 377700, "e": 0.002, "w": 116.0, "M": 212.0, "i": 0.0, "node": 0.0, "P": 2.736916, "Papsis": 11.698, "Pnode": 0.0, "lra": 40.6, "ldec": 83.5},
-     "rotation": {"ra": [40.66, -0.036, 0], "dec": [83.52, -0.004, 0], "pm": [357.6, 131.5349316, 0]}},
-    {"id": 605, "name": "Rhea", "parent": 699, "gm_km3s2": 153.94175, "radii_km": [765.0, 763.1, 762.4], "frame": "laplace",
-     "el": {"a": 527200, "e": 0.001, "w": 44.3, "M": 31.5, "i": 0.3, "node": 133.7, "P": 4.517503, "Papsis": 33.939, "Pnode": 35.775, "lra": 40.6, "ldec": 83.5},
-     "rotation": {"ra": [40.38, -0.036, 0], "dec": [83.55, -0.004, 0], "pm": [235.16, 79.6900478, 0]}},
-    {"id": 606, "name": "Titan", "parent": 699, "gm_km3s2": 8978.13710, "radii_km": [2575.15, 2574.78, 2574.47], "frame": "laplace",
-     "el": {"a": 1221900, "e": 0.029, "w": 78.3, "M": 11.7, "i": 0.3, "node": 78.6, "P": 15.945448, "Papsis": 346.680, "Pnode": 687.370, "lra": 36.4, "ldec": 84.0},
-     "rotation": {"ra": [39.4827, 0, 0], "dec": [83.4279, 0, 0], "pm": [186.5855, 22.5769768, 0]}, "atmosphere": "titan"},
-    {"id": 608, "name": "Iapetus", "parent": 699, "gm_km3s2": 120.51511, "radii_km": [745.7, 745.7, 712.1], "frame": "laplace",
-     "el": {"a": 3561700, "e": 0.028, "w": 254.5, "M": 74.8, "i": 7.6, "node": 86.5, "P": 79.331002, "Papsis": 1662.900, "Pnode": 3130.302, "lra": 288.7, "ldec": 78.9},
-     "rotation": {"ra": [318.16, -3.949, 0], "dec": [75.03, -1.143, 0], "pm": [355.2, 4.5379572, 0]}},
-    {"id": 705, "name": "Miranda", "parent": 799, "gm_km3s2": 4.3, "radii_km": [240.4, 234.2, 232.9], "frame": "equatorial",
-     "el": {"a": 129846, "e": 0.001, "w": 154.8, "M": 73.0, "i": 4.4, "node": 100.9, "P": 1.413479, "Papsis": 8.939, "Pnode": 17.787},
-     "rotation": {"ra": [257.43, 0, 0], "dec": [-15.08, 0, 0], "pm": [30.70, -254.6906892, 0]}},
-    {"id": 701, "name": "Ariel", "parent": 799, "gm_km3s2": 83.5, "radii_km": [581.1, 577.9, 577.7], "frame": "equatorial",
-     "el": {"a": 190929, "e": 0.001, "w": 9.6, "M": 193.5, "i": 0.0, "node": 0.0, "P": 2.520379, "Papsis": 28.901, "Pnode": 0.0},
-     "rotation": {"ra": [257.43, 0, 0], "dec": [-15.10, 0, 0], "pm": [156.22, -142.8356681, 0]}},
-    {"id": 702, "name": "Umbriel", "parent": 799, "gm_km3s2": 85.1, "radii_km": [584.7, 584.7, 584.7], "frame": "equatorial",
-     "el": {"a": 265986, "e": 0.004, "w": 183.4, "M": 253.0, "i": 0.1, "node": 174.8, "P": 4.144177, "Papsis": 64.126, "Pnode": 129.945},
-     "rotation": {"ra": [257.43, 0, 0], "dec": [-15.10, 0, 0], "pm": [108.05, -86.8688923, 0]}},
-    {"id": 703, "name": "Titania", "parent": 799, "gm_km3s2": 226.9, "radii_km": [788.9, 788.9, 788.9], "frame": "equatorial",
-     "el": {"a": 436298, "e": 0.002, "w": 184.0, "M": 68.1, "i": 0.1, "node": 29.5, "P": 8.705869, "Papsis": 579.928, "Pnode": 1644.649},
-     "rotation": {"ra": [257.43, 0, 0], "dec": [-15.10, 0, 0], "pm": [77.74, -41.3514316, 0]}},
-    {"id": 704, "name": "Oberon", "parent": 799, "gm_km3s2": 205.3, "radii_km": [761.4, 761.4, 761.4], "frame": "equatorial",
-     "el": {"a": 583511, "e": 0.002, "w": 132.2, "M": 143.6, "i": 0.1, "node": 76.8, "P": 13.463237, "Papsis": 158.604, "Pnode": 192.798},
-     "rotation": {"ra": [257.43, 0, 0], "dec": [-15.10, 0, 0], "pm": [6.77, -26.7394932, 0]}},
-    {"id": 801, "name": "Triton", "parent": 899, "gm_km3s2": 1428.49546, "radii_km": [1352.6, 1352.6, 1352.6], "frame": "equatorial",
-     "el": {"a": 354800, "e": 0.000, "w": 0.0, "M": 63.0, "i": 157.3, "node": 177.7, "P": 5.8792, "Papsis": 675.2, "Pnode": 299.4},
-     "rotation": {"ra": [299.36, 0, 0], "dec": [41.17, 0, 0], "pm": [296.53, -61.2572637, 0]}},
-    {"id": 999, "name": "Pluto", "parent": 10, "mass_kg": 13024.6e18, "radii_km": [1188.3, 1188.3, 1188.3], "frame": "none",
-     "elements": [39.48211675, 0.24882730, 17.14001206, 238.92903833, 224.06891629, 110.30393684],
-     "rates": [-0.00031596, 0.00005170, 0.00004818, 145.20780515, -0.04062942, -0.01183482],
-     "_note": "Pluto row is from the earlier edition of JPL Table 1 (current page omits Pluto), via the copy in github.com/mayakraft/Kepler whose other rows match JPL exactly",
-     "rotation": {"ra": [132.993, 0, 0], "dec": [-6.163, 0, 0], "pm": [302.695, 56.3625225, 0]}},
-    {"id": 901, "name": "Charon", "parent": 999, "gm_km3s2": 106.1, "radii_km": [606, 606, 606], "frame": "equatorial",
-     "el": {"a": 19600, "e": 0.000, "w": 0.0, "M": 304.1, "i": 0.0, "node": 0.0, "P": 6.387222, "Papsis": 0, "Pnode": 0},
-     "rotation": {"ra": [132.993, 0, 0], "dec": [-6.163, 0, 0], "pm": [122.695, 56.3625225, 0]}}
-  ],
-  "atmospheres": {
-    "_comment": "Rendering-model parameters (estimates). Earth values are the standard physically based set used by Bruneton & Neyret 2008 / Hillaire 2020. Scale heights for other bodies follow from surface temperature and molecular mass; scattering colours are tuned approximations and are flagged E.",
-    "earth": {"top_km": 100, "rayleigh_per_m": [5.802e-6, 13.558e-6, 33.1e-6], "rayleigh_h_km": 8.0,
-              "mie_scatter_per_m": 3.996e-6, "mie_extinct_per_m": 4.40e-6, "mie_h_km": 1.2, "mie_g": 0.8,
-              "ozone_absorb_per_m": [0.650e-6, 1.881e-6, 0.085e-6]},
-    "mars":  {"top_km": 80, "rayleigh_per_m": [0.19e-6, 0.1e-6, 0.06e-6], "rayleigh_h_km": 11.1,
-              "mie_scatter_per_m": 2.0e-6, "mie_extinct_per_m": 3.0e-6, "mie_h_km": 11.1, "mie_g": 0.76,
-              "dust_tint": [0.8, 0.45, 0.25]},
-    "venus": {"top_km": 120, "rayleigh_per_m": [1.0e-5, 1.2e-5, 1.4e-5], "rayleigh_h_km": 15.9,
-              "mie_scatter_per_m": 3.0e-5, "mie_extinct_per_m": 3.2e-5, "mie_h_km": 15.9, "mie_g": 0.7,
-              "dust_tint": [1.0, 0.9, 0.6]},
-    "titan": {"top_km": 600, "rayleigh_per_m": [1.0e-6, 1.5e-6, 2.5e-6], "rayleigh_h_km": 40,
-              "mie_scatter_per_m": 6.0e-6, "mie_extinct_per_m": 8.0e-6, "mie_h_km": 40, "mie_g": 0.7,
-              "dust_tint": [0.9, 0.6, 0.25]}
+  "teff_k": 5772,
+  "rotation": {
+   "ra": [
+    286.13,
+    0,
+    0
+   ],
+   "dec": [
+    63.87,
+    0,
+    0
+   ],
+   "pm": [
+    84.176,
+    14.1844,
+    0
+   ]
+  }
+ },
+ "planets": [
+  {
+   "id": 199,
+   "name": "Mercury",
+   "mass_kg": 3.30103e+23,
+   "radii_km": [
+    2440.53,
+    2440.53,
+    2438.26
+   ],
+   "albedo": 0.106,
+   "elements": [
+    0.38709927,
+    0.20563593,
+    7.00497902,
+    252.2503235,
+    77.45779628,
+    48.33076593
+   ],
+   "rates": [
+    3.7e-07,
+    1.906e-05,
+    -0.00594749,
+    149472.67411175,
+    0.16047689,
+    -0.12534081
+   ],
+   "rotation": {
+    "ra": [
+     281.0103,
+     -0.0328,
+     0
+    ],
+    "dec": [
+     61.4155,
+     -0.0049,
+     0
+    ],
+    "pm": [
+     329.5988,
+     6.1385108,
+     0
+    ]
+   },
+   "surface": {
+    "pressure_bar": 0,
+    "mean_temp_c": 167,
+    "obliquity_deg": 0.034
+   },
+   "kind": "rocky"
   },
-  "black_holes": [
-    {"name": "Sagittarius A*", "aliases": ["Sgr A*", "Sgr A star", "Milky Way central black hole"], "mass_msun": 4.297e6,
-     "ra_deg": 266.416837, "dec_deg": -29.007811, "dist_pc": 8277, "spin": 0.9, "spin_kind": "E",
-     "source": "GRAVITY Collaboration 2022, A&A 657, L12 (M, R0); position SIMBAD/Wikipedia J2000; spin is a model-dependent estimate"},
-    {"name": "M87*", "aliases": ["M87 black hole", "Powehi"], "mass_msun": 6.5e9, "host_dso": "NGC4486", "dist_pc": 1.68e7,
-     "spin": null, "inclination_deg": 17, "source": "EHT Collaboration 2019, ApJL 875, L6 (6.5e9 Msun at 16.8 Mpc); jet inclination ~17 deg"},
-    {"name": "Cygnus X-1", "aliases": ["Cyg X-1", "HD 226868"], "mass_msun": 21.2, "host_hyg": "97987", "dist_pc": 2220,
-     "source": "Miller-Jones et al. 2021, Science 371, 1046 (radio astrometry 2.22 kpc, 21.2+/-2.2 Msun); overrides HYG's Hipparcos distance"},
-    {"name": "Gaia BH3", "aliases": ["Gaia DR3 4318465066420528000"], "mass_msun": 32.70, "ra_deg": 294.828, "dec_deg": 14.931722,
-     "dist_pc": 590, "source": "Gaia Collaboration 2024, A&A 686, L2 (32.70+/-0.82 Msun, 590 pc); position from 2MASS J19391872+1455542"}
-  ]
+  {
+   "id": 299,
+   "name": "Venus",
+   "mass_kg": 4.86731e+24,
+   "radii_km": [
+    6051.8,
+    6051.8,
+    6051.8
+   ],
+   "albedo": 0.65,
+   "elements": [
+    0.72333566,
+    0.00677672,
+    3.39467605,
+    181.9790995,
+    131.60246718,
+    76.67984255
+   ],
+   "rates": [
+    3.9e-06,
+    -4.107e-05,
+    -0.0007889,
+    58517.81538729,
+    0.00268329,
+    -0.27769418
+   ],
+   "rotation": {
+    "ra": [
+     272.76,
+     0,
+     0
+    ],
+    "dec": [
+     67.16,
+     0,
+     0
+    ],
+    "pm": [
+     160.2,
+     -1.4813688,
+     0
+    ]
+   },
+   "surface": {
+    "pressure_bar": 92,
+    "mean_temp_c": 464,
+    "obliquity_deg": 177.4
+   },
+   "kind": "rocky",
+   "atmosphere": "venus"
+  },
+  {
+   "id": 399,
+   "name": "Earth",
+   "mass_kg": 5.97217e+24,
+   "radii_km": [
+    6378.1366,
+    6378.1366,
+    6356.7519
+   ],
+   "albedo": 0.367,
+   "elements_body": "EMB",
+   "elements": [
+    1.00000261,
+    0.01671123,
+    -1.531e-05,
+    100.46457166,
+    102.93768193,
+    0.0
+   ],
+   "rates": [
+    5.62e-06,
+    -4.392e-05,
+    -0.01294668,
+    35999.37244981,
+    0.32327364,
+    0.0
+   ],
+   "rotation": {
+    "ra": [
+     0,
+     -0.641,
+     0
+    ],
+    "dec": [
+     90,
+     -0.557,
+     0
+    ],
+    "pm": [
+     190.147,
+     360.9856235,
+     0
+    ]
+   },
+   "surface": {
+    "pressure_bar": 1,
+    "mean_temp_c": 15,
+    "obliquity_deg": 23.4
+   },
+   "kind": "rocky",
+   "atmosphere": "earth"
+  },
+  {
+   "id": 499,
+   "name": "Mars",
+   "mass_kg": 6.41691e+23,
+   "radii_km": [
+    3396.19,
+    3396.19,
+    3376.2
+   ],
+   "albedo": 0.15,
+   "elements": [
+    1.52371034,
+    0.0933941,
+    1.84969142,
+    -4.55343205,
+    -23.94362959,
+    49.55953891
+   ],
+   "rates": [
+    1.847e-05,
+    7.882e-05,
+    -0.00813131,
+    19140.30268499,
+    0.44441088,
+    -0.29257343
+   ],
+   "rotation": {
+    "ra": [
+     317.269202,
+     -0.10927547,
+     0
+    ],
+    "dec": [
+     54.432516,
+     -0.05827105,
+     0
+    ],
+    "pm": [
+     176.049863,
+     350.891982443297,
+     0
+    ]
+   },
+   "surface": {
+    "pressure_bar": 0.01,
+    "mean_temp_c": -65,
+    "obliquity_deg": 25.2
+   },
+   "kind": "rocky",
+   "atmosphere": "mars"
+  },
+  {
+   "id": 599,
+   "name": "Jupiter",
+   "mass_kg": 1.898125e+27,
+   "radii_km": [
+    71492,
+    71492,
+    66854
+   ],
+   "albedo": 0.52,
+   "elements": [
+    5.202887,
+    0.04838624,
+    1.30439695,
+    34.39644051,
+    14.72847983,
+    100.47390909
+   ],
+   "rates": [
+    -0.00011607,
+    -0.00013253,
+    -0.00183714,
+    3034.74612775,
+    0.21252668,
+    0.20469106
+   ],
+   "rotation": {
+    "ra": [
+     268.056595,
+     -0.006499,
+     0
+    ],
+    "dec": [
+     64.495303,
+     0.002413,
+     0
+    ],
+    "pm": [
+     284.95,
+     870.536,
+     0
+    ]
+   },
+   "surface": {
+    "pressure_bar": null,
+    "mean_temp_c": -110,
+    "obliquity_deg": 3.1
+   },
+   "kind": "gas_giant"
+  },
+  {
+   "id": 699,
+   "name": "Saturn",
+   "mass_kg": 5.68317e+26,
+   "radii_km": [
+    60268,
+    60268,
+    54364
+   ],
+   "albedo": 0.47,
+   "elements": [
+    9.53667594,
+    0.05386179,
+    2.48599187,
+    49.95424423,
+    92.59887831,
+    113.66242448
+   ],
+   "rates": [
+    -0.0012506,
+    -0.00050991,
+    0.00193609,
+    1222.49362201,
+    -0.41897216,
+    -0.28867794
+   ],
+   "rotation": {
+    "ra": [
+     40.589,
+     -0.036,
+     0
+    ],
+    "dec": [
+     83.537,
+     -0.004,
+     0
+    ],
+    "pm": [
+     38.9,
+     810.7939024,
+     0
+    ]
+   },
+   "surface": {
+    "pressure_bar": null,
+    "mean_temp_c": -140,
+    "obliquity_deg": 26.7
+   },
+   "kind": "gas_giant",
+   "rings": [
+    {
+     "name": "D",
+     "inner_km": 66900,
+     "outer_km": 74510,
+     "tau": 1e-05
+    },
+    {
+     "name": "C",
+     "inner_km": 74658,
+     "outer_km": 91975,
+     "tau": 0.2,
+     "albedo": 0.2
+    },
+    {
+     "name": "B",
+     "inner_km": 91975,
+     "outer_km": 117507,
+     "tau": 1.5,
+     "albedo": 0.5
+    },
+    {
+     "name": "Cassini Division",
+     "inner_km": 117507,
+     "outer_km": 122340,
+     "tau": 0.05,
+     "albedo": 0.3
+    },
+    {
+     "name": "A",
+     "inner_km": 122340,
+     "outer_km": 136780,
+     "tau": 0.7,
+     "albedo": 0.5
+    },
+    {
+     "name": "F",
+     "inner_km": 139726,
+     "outer_km": 139926,
+     "tau": 0.1,
+     "albedo": 0.6,
+     "_note": "single radius 139,826 km in source; 200 km width is a rendering estimate"
+    }
+   ],
+   "_ring_note": "tau/albedo take the midpoint of the source's ranges (estimate)"
+  },
+  {
+   "id": 799,
+   "name": "Uranus",
+   "mass_kg": 8.68099e+25,
+   "radii_km": [
+    25559,
+    25559,
+    24973
+   ],
+   "albedo": 0.51,
+   "elements": [
+    19.18916464,
+    0.04725744,
+    0.77263783,
+    313.23810451,
+    170.9542763,
+    74.01692503
+   ],
+   "rates": [
+    -0.00196176,
+    -4.397e-05,
+    -0.00242939,
+    428.48202785,
+    0.40805281,
+    0.04240589
+   ],
+   "rotation": {
+    "ra": [
+     257.311,
+     0,
+     0
+    ],
+    "dec": [
+     -15.175,
+     0,
+     0
+    ],
+    "pm": [
+     203.81,
+     -501.1600928,
+     0
+    ]
+   },
+   "surface": {
+    "pressure_bar": null,
+    "mean_temp_c": -195,
+    "obliquity_deg": 97.8
+   },
+   "kind": "ice_giant"
+  },
+  {
+   "id": 899,
+   "name": "Neptune",
+   "mass_kg": 1.024092e+26,
+   "radii_km": [
+    24764,
+    24764,
+    24341
+   ],
+   "albedo": 0.41,
+   "elements": [
+    30.06992276,
+    0.00859048,
+    1.77004347,
+    -55.12002969,
+    44.96476227,
+    131.78422574
+   ],
+   "rates": [
+    0.00026291,
+    5.105e-05,
+    0.00035372,
+    218.45945325,
+    -0.32241464,
+    -0.00508664
+   ],
+   "rotation": {
+    "ra": [
+     299.36,
+     0,
+     0
+    ],
+    "dec": [
+     43.46,
+     0,
+     0
+    ],
+    "pm": [
+     249.978,
+     541.1397757,
+     0
+    ]
+   },
+   "surface": {
+    "pressure_bar": null,
+    "mean_temp_c": -200,
+    "obliquity_deg": 28.3
+   },
+   "kind": "ice_giant"
+  }
+ ],
+ "moons": [
+  {
+   "id": 301,
+   "name": "Moon",
+   "parent": 399,
+   "gm_km3s2": 4902.8,
+   "radii_km": [
+    1737.4,
+    1737.4,
+    1737.4
+   ],
+   "frame": "ecliptic",
+   "el": {
+    "a": 384400,
+    "e": 0.0554,
+    "w": 318.15,
+    "M": 135.27,
+    "i": 5.16,
+    "node": 125.08,
+    "P": 27.322,
+    "Papsis": 5.997,
+    "Pnode": 18.6
+   },
+   "rotation": {
+    "ra": [
+     269.9949,
+     0.0031,
+     0
+    ],
+    "dec": [
+     66.5392,
+     0.013,
+     0
+    ],
+    "pm": [
+     38.3213,
+     13.17635815,
+     -1.4e-12
+    ]
+   }
+  },
+  {
+   "id": 401,
+   "name": "Phobos",
+   "parent": 499,
+   "gm_km3s2": 0.0007087,
+   "radii_km": [
+    13.0,
+    11.4,
+    9.1
+   ],
+   "frame": "laplace",
+   "el": {
+    "a": 9375,
+    "e": 0.015,
+    "w": 216.3,
+    "M": 189.7,
+    "i": 1.1,
+    "node": 169.2,
+    "P": 0.3187,
+    "Papsis": 1.1,
+    "Pnode": 2.3,
+    "lra": 317.7,
+    "ldec": 52.9
+   },
+   "rotation": {
+    "ra": [
+     317.67071657,
+     -0.10844326,
+     0
+    ],
+    "dec": [
+     52.88627266,
+     -0.06134706,
+     0
+    ],
+    "pm": [
+     35.1877444,
+     1128.84475928,
+     9.536137031212154e-09
+    ]
+   }
+  },
+  {
+   "id": 402,
+   "name": "Deimos",
+   "parent": 499,
+   "gm_km3s2": 9.62e-05,
+   "radii_km": [
+    7.8,
+    6.0,
+    5.1
+   ],
+   "frame": "laplace",
+   "el": {
+    "a": 23457,
+    "e": 0.0,
+    "w": 0.0,
+    "M": 205.0,
+    "i": 1.8,
+    "node": 54.3,
+    "P": 1.2625,
+    "Papsis": 0.0,
+    "Pnode": 56.2,
+    "lra": 316.6,
+    "ldec": 53.5
+   },
+   "rotation": {
+    "ra": [
+     316.65705808,
+     -0.10518014,
+     0
+    ],
+    "dec": [
+     53.50992033,
+     -0.05979094,
+     0
+    ],
+    "pm": [
+     79.39932954,
+     285.16188899,
+     0
+    ]
+   }
+  },
+  {
+   "id": 501,
+   "name": "Io",
+   "parent": 599,
+   "gm_km3s2": 5959.91547,
+   "radii_km": [
+    1829.4,
+    1819.4,
+    1815.7
+   ],
+   "frame": "laplace",
+   "el": {
+    "a": 421800,
+    "e": 0.004,
+    "w": 49.1,
+    "M": 330.9,
+    "i": 0.0,
+    "node": 0.0,
+    "P": 1.762732,
+    "Papsis": 1.333,
+    "Pnode": 0.0,
+    "lra": 268.1,
+    "ldec": 64.5
+   },
+   "rotation": {
+    "ra": [
+     268.05,
+     -0.009,
+     0
+    ],
+    "dec": [
+     64.5,
+     0.003,
+     0
+    ],
+    "pm": [
+     200.39,
+     203.4889538,
+     0
+    ]
+   }
+  },
+  {
+   "id": 502,
+   "name": "Europa",
+   "parent": 599,
+   "gm_km3s2": 3202.7121,
+   "radii_km": [
+    1562.6,
+    1560.3,
+    1559.5
+   ],
+   "frame": "laplace",
+   "el": {
+    "a": 671100,
+    "e": 0.009,
+    "w": 45.0,
+    "M": 345.4,
+    "i": 0.5,
+    "node": 184.0,
+    "P": 3.525463,
+    "Papsis": 1.394,
+    "Pnode": 30.202,
+    "lra": 268.1,
+    "ldec": 64.5
+   },
+   "rotation": {
+    "ra": [
+     268.08,
+     -0.009,
+     0
+    ],
+    "dec": [
+     64.51,
+     0.003,
+     0
+    ],
+    "pm": [
+     36.022,
+     101.3747235,
+     0
+    ]
+   }
+  },
+  {
+   "id": 503,
+   "name": "Ganymede",
+   "parent": 599,
+   "gm_km3s2": 9887.83275,
+   "radii_km": [
+    2631.2,
+    2631.2,
+    2631.2
+   ],
+   "frame": "laplace",
+   "el": {
+    "a": 1070400,
+    "e": 0.001,
+    "w": 198.3,
+    "M": 324.8,
+    "i": 0.2,
+    "node": 58.5,
+    "P": 7.155588,
+    "Papsis": 68.301,
+    "Pnode": 137.812,
+    "lra": 268.2,
+    "ldec": 64.6
+   },
+   "rotation": {
+    "ra": [
+     268.2,
+     -0.009,
+     0
+    ],
+    "dec": [
+     64.57,
+     0.003,
+     0
+    ],
+    "pm": [
+     44.064,
+     50.3176081,
+     0
+    ]
+   }
+  },
+  {
+   "id": 504,
+   "name": "Callisto",
+   "parent": 599,
+   "gm_km3s2": 7179.2834,
+   "radii_km": [
+    2410.3,
+    2410.3,
+    2410.3
+   ],
+   "frame": "laplace",
+   "el": {
+    "a": 1882700,
+    "e": 0.007,
+    "w": 43.8,
+    "M": 87.4,
+    "i": 0.3,
+    "node": 309.1,
+    "P": 16.69044,
+    "Papsis": 277.921,
+    "Pnode": 577.264,
+    "lra": 268.7,
+    "ldec": 64.8
+   },
+   "rotation": {
+    "ra": [
+     268.72,
+     -0.009,
+     0
+    ],
+    "dec": [
+     64.83,
+     0.003,
+     0
+    ],
+    "pm": [
+     259.51,
+     21.5710715,
+     0
+    ]
+   }
+  },
+  {
+   "id": 601,
+   "name": "Mimas",
+   "parent": 699,
+   "gm_km3s2": 2.50349,
+   "radii_km": [
+    207.8,
+    196.7,
+    190.6
+   ],
+   "frame": "laplace",
+   "el": {
+    "a": 186000,
+    "e": 0.02,
+    "w": 160.4,
+    "M": 275.3,
+    "i": 1.6,
+    "node": 66.2,
+    "P": 0.942422,
+    "Papsis": 0.493,
+    "Pnode": 0.986,
+    "lra": 40.6,
+    "ldec": 83.5
+   },
+   "rotation": {
+    "ra": [
+     40.66,
+     -0.036,
+     0
+    ],
+    "dec": [
+     83.52,
+     -0.004,
+     0
+    ],
+    "pm": [
+     333.46,
+     381.994555,
+     0
+    ]
+   }
+  },
+  {
+   "id": 602,
+   "name": "Enceladus",
+   "parent": 699,
+   "gm_km3s2": 7.21037,
+   "radii_km": [
+    256.6,
+    251.4,
+    248.3
+   ],
+   "frame": "laplace",
+   "el": {
+    "a": 238400,
+    "e": 0.005,
+    "w": 119.5,
+    "M": 57.0,
+    "i": 0.0,
+    "node": 0.0,
+    "P": 1.370218,
+    "Papsis": 2.916,
+    "Pnode": 0.0,
+    "lra": 40.6,
+    "ldec": 83.5
+   },
+   "rotation": {
+    "ra": [
+     40.66,
+     -0.036,
+     0
+    ],
+    "dec": [
+     83.52,
+     -0.004,
+     0
+    ],
+    "pm": [
+     6.32,
+     262.7318996,
+     0
+    ]
+   }
+  },
+  {
+   "id": 603,
+   "name": "Tethys",
+   "parent": 699,
+   "gm_km3s2": 41.21353,
+   "radii_km": [
+    538.4,
+    528.3,
+    526.3
+   ],
+   "frame": "laplace",
+   "el": {
+    "a": 295000,
+    "e": 0.001,
+    "w": 335.3,
+    "M": 0.0,
+    "i": 1.1,
+    "node": 273.0,
+    "P": 1.887802,
+    "Papsis": 0.005,
+    "Pnode": 4.982,
+    "lra": 40.6,
+    "ldec": 83.5
+   },
+   "rotation": {
+    "ra": [
+     40.66,
+     -0.036,
+     0
+    ],
+    "dec": [
+     83.52,
+     -0.004,
+     0
+    ],
+    "pm": [
+     8.95,
+     190.6979085,
+     0
+    ]
+   }
+  },
+  {
+   "id": 604,
+   "name": "Dione",
+   "parent": 699,
+   "gm_km3s2": 73.11607,
+   "radii_km": [
+    563.4,
+    561.3,
+    559.6
+   ],
+   "frame": "laplace",
+   "el": {
+    "a": 377700,
+    "e": 0.002,
+    "w": 116.0,
+    "M": 212.0,
+    "i": 0.0,
+    "node": 0.0,
+    "P": 2.736916,
+    "Papsis": 11.698,
+    "Pnode": 0.0,
+    "lra": 40.6,
+    "ldec": 83.5
+   },
+   "rotation": {
+    "ra": [
+     40.66,
+     -0.036,
+     0
+    ],
+    "dec": [
+     83.52,
+     -0.004,
+     0
+    ],
+    "pm": [
+     357.6,
+     131.5349316,
+     0
+    ]
+   }
+  },
+  {
+   "id": 605,
+   "name": "Rhea",
+   "parent": 699,
+   "gm_km3s2": 153.94175,
+   "radii_km": [
+    765.0,
+    763.1,
+    762.4
+   ],
+   "frame": "laplace",
+   "el": {
+    "a": 527200,
+    "e": 0.001,
+    "w": 44.3,
+    "M": 31.5,
+    "i": 0.3,
+    "node": 133.7,
+    "P": 4.517503,
+    "Papsis": 33.939,
+    "Pnode": 35.775,
+    "lra": 40.6,
+    "ldec": 83.5
+   },
+   "rotation": {
+    "ra": [
+     40.38,
+     -0.036,
+     0
+    ],
+    "dec": [
+     83.55,
+     -0.004,
+     0
+    ],
+    "pm": [
+     235.16,
+     79.6900478,
+     0
+    ]
+   }
+  },
+  {
+   "id": 606,
+   "name": "Titan",
+   "parent": 699,
+   "gm_km3s2": 8978.1371,
+   "radii_km": [
+    2575.15,
+    2574.78,
+    2574.47
+   ],
+   "frame": "laplace",
+   "el": {
+    "a": 1221900,
+    "e": 0.029,
+    "w": 78.3,
+    "M": 11.7,
+    "i": 0.3,
+    "node": 78.6,
+    "P": 15.945448,
+    "Papsis": 346.68,
+    "Pnode": 687.37,
+    "lra": 36.4,
+    "ldec": 84.0
+   },
+   "rotation": {
+    "ra": [
+     39.4827,
+     0,
+     0
+    ],
+    "dec": [
+     83.4279,
+     0,
+     0
+    ],
+    "pm": [
+     186.5855,
+     22.5769768,
+     0
+    ]
+   },
+   "atmosphere": "titan"
+  },
+  {
+   "id": 608,
+   "name": "Iapetus",
+   "parent": 699,
+   "gm_km3s2": 120.51511,
+   "radii_km": [
+    745.7,
+    745.7,
+    712.1
+   ],
+   "frame": "laplace",
+   "el": {
+    "a": 3561700,
+    "e": 0.028,
+    "w": 254.5,
+    "M": 74.8,
+    "i": 7.6,
+    "node": 86.5,
+    "P": 79.331002,
+    "Papsis": 1662.9,
+    "Pnode": 3130.302,
+    "lra": 288.7,
+    "ldec": 78.9
+   },
+   "rotation": {
+    "ra": [
+     318.16,
+     -3.949,
+     0
+    ],
+    "dec": [
+     75.03,
+     -1.143,
+     0
+    ],
+    "pm": [
+     355.2,
+     4.5379572,
+     0
+    ]
+   }
+  },
+  {
+   "id": 705,
+   "name": "Miranda",
+   "parent": 799,
+   "gm_km3s2": 4.3,
+   "radii_km": [
+    240.4,
+    234.2,
+    232.9
+   ],
+   "frame": "equatorial",
+   "el": {
+    "a": 129846,
+    "e": 0.001,
+    "w": 154.8,
+    "M": 73.0,
+    "i": 4.4,
+    "node": 100.9,
+    "P": 1.413479,
+    "Papsis": 8.939,
+    "Pnode": 17.787
+   },
+   "rotation": {
+    "ra": [
+     257.43,
+     0,
+     0
+    ],
+    "dec": [
+     -15.08,
+     0,
+     0
+    ],
+    "pm": [
+     30.7,
+     -254.6906892,
+     0
+    ]
+   }
+  },
+  {
+   "id": 701,
+   "name": "Ariel",
+   "parent": 799,
+   "gm_km3s2": 83.5,
+   "radii_km": [
+    581.1,
+    577.9,
+    577.7
+   ],
+   "frame": "equatorial",
+   "el": {
+    "a": 190929,
+    "e": 0.001,
+    "w": 9.6,
+    "M": 193.5,
+    "i": 0.0,
+    "node": 0.0,
+    "P": 2.520379,
+    "Papsis": 28.901,
+    "Pnode": 0.0
+   },
+   "rotation": {
+    "ra": [
+     257.43,
+     0,
+     0
+    ],
+    "dec": [
+     -15.1,
+     0,
+     0
+    ],
+    "pm": [
+     156.22,
+     -142.8356681,
+     0
+    ]
+   }
+  },
+  {
+   "id": 702,
+   "name": "Umbriel",
+   "parent": 799,
+   "gm_km3s2": 85.1,
+   "radii_km": [
+    584.7,
+    584.7,
+    584.7
+   ],
+   "frame": "equatorial",
+   "el": {
+    "a": 265986,
+    "e": 0.004,
+    "w": 183.4,
+    "M": 253.0,
+    "i": 0.1,
+    "node": 174.8,
+    "P": 4.144177,
+    "Papsis": 64.126,
+    "Pnode": 129.945
+   },
+   "rotation": {
+    "ra": [
+     257.43,
+     0,
+     0
+    ],
+    "dec": [
+     -15.1,
+     0,
+     0
+    ],
+    "pm": [
+     108.05,
+     -86.8688923,
+     0
+    ]
+   }
+  },
+  {
+   "id": 703,
+   "name": "Titania",
+   "parent": 799,
+   "gm_km3s2": 226.9,
+   "radii_km": [
+    788.9,
+    788.9,
+    788.9
+   ],
+   "frame": "equatorial",
+   "el": {
+    "a": 436298,
+    "e": 0.002,
+    "w": 184.0,
+    "M": 68.1,
+    "i": 0.1,
+    "node": 29.5,
+    "P": 8.705869,
+    "Papsis": 579.928,
+    "Pnode": 1644.649
+   },
+   "rotation": {
+    "ra": [
+     257.43,
+     0,
+     0
+    ],
+    "dec": [
+     -15.1,
+     0,
+     0
+    ],
+    "pm": [
+     77.74,
+     -41.3514316,
+     0
+    ]
+   }
+  },
+  {
+   "id": 704,
+   "name": "Oberon",
+   "parent": 799,
+   "gm_km3s2": 205.3,
+   "radii_km": [
+    761.4,
+    761.4,
+    761.4
+   ],
+   "frame": "equatorial",
+   "el": {
+    "a": 583511,
+    "e": 0.002,
+    "w": 132.2,
+    "M": 143.6,
+    "i": 0.1,
+    "node": 76.8,
+    "P": 13.463237,
+    "Papsis": 158.604,
+    "Pnode": 192.798
+   },
+   "rotation": {
+    "ra": [
+     257.43,
+     0,
+     0
+    ],
+    "dec": [
+     -15.1,
+     0,
+     0
+    ],
+    "pm": [
+     6.77,
+     -26.7394932,
+     0
+    ]
+   }
+  },
+  {
+   "id": 801,
+   "name": "Triton",
+   "parent": 899,
+   "gm_km3s2": 1428.49546,
+   "radii_km": [
+    1352.6,
+    1352.6,
+    1352.6
+   ],
+   "frame": "equatorial",
+   "el": {
+    "a": 354800,
+    "e": 0.0,
+    "w": 0.0,
+    "M": 63.0,
+    "i": 157.3,
+    "node": 177.7,
+    "P": 5.8792,
+    "Papsis": 675.2,
+    "Pnode": 299.4
+   },
+   "rotation": {
+    "ra": [
+     299.36,
+     0,
+     0
+    ],
+    "dec": [
+     41.17,
+     0,
+     0
+    ],
+    "pm": [
+     296.53,
+     -61.2572637,
+     0
+    ]
+   }
+  },
+  {
+   "id": 999,
+   "name": "Pluto",
+   "parent": 10,
+   "mass_kg": 1.30246e+22,
+   "radii_km": [
+    1188.3,
+    1188.3,
+    1188.3
+   ],
+   "frame": "none",
+   "elements": [
+    39.48211675,
+    0.2488273,
+    17.14001206,
+    238.92903833,
+    224.06891629,
+    110.30393684
+   ],
+   "rates": [
+    -0.00031596,
+    5.17e-05,
+    4.818e-05,
+    145.20780515,
+    -0.04062942,
+    -0.01183482
+   ],
+   "_note": "Pluto row is from the earlier edition of JPL Table 1 (current page omits Pluto), via the copy in github.com/mayakraft/Kepler whose other rows match JPL exactly",
+   "rotation": {
+    "ra": [
+     132.993,
+     0,
+     0
+    ],
+    "dec": [
+     -6.163,
+     0,
+     0
+    ],
+    "pm": [
+     302.695,
+     56.3625225,
+     0
+    ]
+   }
+  },
+  {
+   "id": 901,
+   "name": "Charon",
+   "parent": 999,
+   "gm_km3s2": 106.1,
+   "radii_km": [
+    606,
+    606,
+    606
+   ],
+   "frame": "equatorial",
+   "el": {
+    "a": 19600,
+    "e": 0.0,
+    "w": 0.0,
+    "M": 304.1,
+    "i": 0.0,
+    "node": 0.0,
+    "P": 6.387222,
+    "Papsis": 0,
+    "Pnode": 0
+   },
+   "rotation": {
+    "ra": [
+     132.993,
+     0,
+     0
+    ],
+    "dec": [
+     -6.163,
+     0,
+     0
+    ],
+    "pm": [
+     122.695,
+     56.3625225,
+     0
+    ]
+   }
+  }
+ ],
+ "atmospheres": {
+  "_comment": "Rendering-model parameters (estimates). Earth values are the standard physically based set used by Bruneton & Neyret 2008 / Hillaire 2020. Scale heights for other bodies follow from surface temperature and molecular mass; scattering colours are tuned approximations and are flagged E.",
+  "earth": {
+   "top_km": 100,
+   "rayleigh_per_m": [
+    5.802e-06,
+    1.3558e-05,
+    3.31e-05
+   ],
+   "rayleigh_h_km": 8.0,
+   "mie_scatter_per_m": 3.996e-06,
+   "mie_extinct_per_m": 4.4e-06,
+   "mie_h_km": 1.2,
+   "mie_g": 0.8,
+   "ozone_absorb_per_m": [
+    6.5e-07,
+    1.881e-06,
+    8.5e-08
+   ]
+  },
+  "mars": {
+   "top_km": 80,
+   "rayleigh_per_m": [
+    1.9e-07,
+    1e-07,
+    6e-08
+   ],
+   "rayleigh_h_km": 11.1,
+   "mie_scatter_per_m": 2e-06,
+   "mie_extinct_per_m": 3e-06,
+   "mie_h_km": 11.1,
+   "mie_g": 0.76,
+   "dust_tint": [
+    0.8,
+    0.45,
+    0.25
+   ]
+  },
+  "venus": {
+   "top_km": 120,
+   "rayleigh_per_m": [
+    1e-05,
+    1.2e-05,
+    1.4e-05
+   ],
+   "rayleigh_h_km": 15.9,
+   "mie_scatter_per_m": 3e-05,
+   "mie_extinct_per_m": 3.2e-05,
+   "mie_h_km": 15.9,
+   "mie_g": 0.7,
+   "dust_tint": [
+    1.0,
+    0.9,
+    0.6
+   ]
+  },
+  "titan": {
+   "top_km": 600,
+   "rayleigh_per_m": [
+    1e-06,
+    1.5e-06,
+    2.5e-06
+   ],
+   "rayleigh_h_km": 40,
+   "mie_scatter_per_m": 6e-06,
+   "mie_extinct_per_m": 8e-06,
+   "mie_h_km": 40,
+   "mie_g": 0.7,
+   "dust_tint": [
+    0.9,
+    0.6,
+    0.25
+   ]
+  }
+ },
+ "black_holes": [
+  {
+   "name": "Sagittarius A*",
+   "aliases": [
+    "Sgr A*",
+    "Sgr A star",
+    "Milky Way central black hole"
+   ],
+   "mass_msun": 4297000.0,
+   "ra_deg": 266.416837,
+   "dec_deg": -29.007811,
+   "dist_pc": 8277,
+   "spin": 0.9,
+   "spin_kind": "E",
+   "source": "GRAVITY Collaboration 2022, A&A 657, L12 (M, R0); position SIMBAD/Wikipedia J2000; spin is a model-dependent estimate"
+  },
+  {
+   "name": "M87*",
+   "aliases": [
+    "M87 black hole",
+    "Powehi"
+   ],
+   "mass_msun": 6500000000.0,
+   "host_dso": "NGC4486",
+   "dist_pc": 16800000.0,
+   "spin": null,
+   "inclination_deg": 17,
+   "source": "EHT Collaboration 2019, ApJL 875, L6 (6.5e9 Msun at 16.8 Mpc); jet inclination ~17 deg"
+  },
+  {
+   "name": "Cygnus X-1",
+   "aliases": [
+    "Cyg X-1",
+    "HD 226868"
+   ],
+   "mass_msun": 21.2,
+   "host_hyg": "97987",
+   "dist_pc": 2220,
+   "source": "Miller-Jones et al. 2021, Science 371, 1046 (radio astrometry 2.22 kpc, 21.2+/-2.2 Msun); overrides HYG's Hipparcos distance"
+  },
+  {
+   "name": "Gaia BH3",
+   "aliases": [
+    "Gaia DR3 4318465066420528000"
+   ],
+   "mass_msun": 32.7,
+   "ra_deg": 294.828,
+   "dec_deg": 14.931722,
+   "dist_pc": 590,
+   "source": "Gaia Collaboration 2024, A&A 686, L2 (32.70+/-0.82 Msun, 590 pc); position from 2MASS J19391872+1455542"
+  },
+  {
+   "name": "Gaia BH1",
+   "aliases": [
+    "Gaia DR3 4373465352415301632"
+   ],
+   "mass_msun": 9.62,
+   "ra_deg": 262.17121,
+   "dec_deg": -0.58109,
+   "dist_pc": 478,
+   "source": "El-Badry et al. 2023, MNRAS 518, 1057 (9.62+/-0.18 Msun, 478+/-5 pc); position Gaia DR3"
+  },
+  {
+   "name": "Gaia BH2",
+   "aliases": [
+    "Gaia DR3 5870569352746779008"
+   ],
+   "mass_msun": 8.94,
+   "ra_deg": 207.56958,
+   "dec_deg": -59.239,
+   "dist_pc": 1160,
+   "source": "El-Badry et al. 2023, MNRAS 521, 4323 (8.94+/-0.34 Msun, 1.16 kpc); position Gaia DR3"
+  },
+  {
+   "name": "V404 Cygni",
+   "aliases": [
+    "V404 Cyg",
+    "GS 2023+338",
+    "Nova Cygni 1938"
+   ],
+   "mass_msun": 9.0,
+   "ra_deg": 306.015917,
+   "dec_deg": 33.867222,
+   "dist_pc": 2390,
+   "spin": 0.92,
+   "source": "Miller-Jones et al. 2009, ApJ 706, L230 (VLBI parallax 2.39+/-0.14 kpc); mass ~9 Msun"
+  },
+  {
+   "name": "A0620-00",
+   "aliases": [
+    "V616 Mon",
+    "V616 Monocerotis",
+    "Nova Monocerotis 1975"
+   ],
+   "mass_msun": 6.6,
+   "ra_deg": 95.68542,
+   "dec_deg": -0.34583,
+   "dist_pc": 1060,
+   "spin": 0.12,
+   "source": "Cantrell et al. 2010, ApJ 710, 1127 (6.6+/-0.25 Msun, 1.06 kpc)"
+  },
+  {
+   "name": "M31*",
+   "aliases": [
+    "Andromeda central black hole",
+    "M31 black hole"
+   ],
+   "mass_msun": 140000000.0,
+   "dist_pc": 765000,
+   "spin": 0.5,
+   "source": "Bender et al. 2005, ApJ 631, 280 (1.4e8 Msun); distance 765 kpc; position of the M31 nucleus (J2000)",
+   "ra_deg": 10.684708,
+   "dec_deg": 41.26875
+  }
+ ]
 }

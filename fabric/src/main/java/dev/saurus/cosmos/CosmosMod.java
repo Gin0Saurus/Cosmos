@@ -17,6 +17,20 @@ import net.minecraft.resources.Identifier;
 
 /** Common (server + client) initialisation: world generation types, networking, planetary travel. */
 public final class CosmosMod implements ModInitializer {
+    /** First start of a Cosmos Universe world: spawn on Westminster Bridge Road, a short walk south of Big Ben. */
+    private static void spawnInLondon(net.minecraft.server.MinecraftServer server) {
+        try {
+            java.nio.file.Path marker = server.getWorldPath(net.minecraft.world.level.storage.LevelResource.ROOT).resolve("cosmos_spawn_set");
+            if (java.nio.file.Files.exists(marker)) return;
+            var proj = Planets.projection("earth");
+            int x = (int) Math.floor(proj.x(Math.toRadians(-0.1246))) + 12, z = (int) Math.floor(proj.z(Math.toRadians(51.5007))) + 24;
+            int y = Math.max(dev.saurus.cosmos.world.ColumnSampler.surfaceY(new dev.saurus.cosmos.world.ColumnSampler("earth").elevation(x, z)),
+                    dev.saurus.cosmos.core.terrain.SurfaceScale.DATUM_Y) + 1;
+            server.getCommands().performPrefixedCommand(server.createCommandSourceStack(), "setworldspawn " + x + " " + y + " " + z);
+            java.nio.file.Files.writeString(marker, "spawn set by Cosmos at " + x + " " + y + " " + z);
+        } catch (Exception e) { System.err.println("[Cosmos] could not set the London spawn: " + e); }
+    }
+
     @Override
     public void onInitialize() {
         Registry.register(BuiltInRegistries.CHUNK_GENERATOR, Identifier.fromNamespaceAndPath("cosmos", "planet"), CosmosChunkGenerator.CODEC);
@@ -32,6 +46,7 @@ public final class CosmosMod implements ModInitializer {
             Planets.overworldIsEarth = server.overworld().getChunkSource().getGenerator() instanceof CosmosChunkGenerator g && g.body().equals("earth");
             Thread t = new Thread(() -> Planets.terrain("earth"), "cosmos-terrain-warmup");   // loads elevation grids off-thread
             t.setDaemon(true); t.start();
+            if (Planets.overworldIsEarth) spawnInLondon(server);
         });
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> PlanetTravel.sendInfo(handler.getPlayer(), Planets.bodyOf(handler.getPlayer().level())));
         ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> PlanetTravel.forget(handler.getPlayer()));
